@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84781FB92162186700F8290D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C38D18CF215EE6E700E95389 /* Assets.xcassets */; };
+		84781FBB216219F500F8290D /* WMConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84781FBA216219F500F8290D /* WMConstants.swift */; };
+		84781FBC216219F800F8290D /* WMConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84781FBA216219F500F8290D /* WMConstants.swift */; };
+		84781FBF2162294300F8290D /* WMEBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84781FBE2162294300F8290D /* WMEBaseVC.swift */; };
 		C38D18CC215EE6E600E95389 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D18CB215EE6E600E95389 /* AppDelegate.swift */; };
 		C38D18CE215EE6E600E95389 /* WMMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D18CD215EE6E600E95389 /* WMMainVC.swift */; };
 		C38D18D0215EE6E700E95389 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C38D18CF215EE6E700E95389 /* Assets.xcassets */; };
@@ -54,6 +58,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		84781FBA216219F500F8290D /* WMConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMConstants.swift; sourceTree = "<group>"; };
+		84781FBE2162294300F8290D /* WMEBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMEBaseVC.swift; sourceTree = "<group>"; };
 		C38D18C8215EE6E600E95389 /* Wayback Machine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wayback Machine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C38D18CB215EE6E600E95389 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C38D18CD215EE6E600E95389 /* WMMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMMainVC.swift; sourceTree = "<group>"; };
@@ -103,6 +109,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84781FBD2162290200F8290D /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				84781FBE2162294300F8290D /* WMEBaseVC.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		C38D18BF215EE6E600E95389 = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				C38D1914215EF50100E95389 /* Extension */,
+				84781FBA216219F500F8290D /* WMConstants.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -272,6 +287,7 @@
 		C38D1912215EE8A300E95389 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				84781FBD2162290200F8290D /* Base */,
 				C38D18F4215EE78D00E95389 /* WMEMainVC.swift */,
 				C38D18F6215EE78D00E95389 /* WMEMainVC.xib */,
 			);
@@ -440,6 +456,7 @@
 			files = (
 				C38D18FD215EE78D00E95389 /* ToolbarItemIcon.pdf in Resources */,
 				C38D18F8215EE78D00E95389 /* WMEMainVC.xib in Resources */,
+				84781FB92162186700F8290D /* Assets.xcassets in Resources */,
 				C38D18FB215EE78D00E95389 /* script.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,6 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C38D18CE215EE6E600E95389 /* WMMainVC.swift in Sources */,
+				84781FBB216219F500F8290D /* WMConstants.swift in Sources */,
 				C38D18CC215EE6E600E95389 /* AppDelegate.swift in Sources */,
 				C38D191A215EF59100E95389 /* WMBaseVC.swift in Sources */,
 			);
@@ -470,7 +488,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C38D18F5215EE78D00E95389 /* WMEMainVC.swift in Sources */,
+				84781FBC216219F800F8290D /* WMConstants.swift in Sources */,
 				C38D18F3215EE78D00E95389 /* SafariExtensionHandler.swift in Sources */,
+				84781FBF2162294300F8290D /* WMEBaseVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

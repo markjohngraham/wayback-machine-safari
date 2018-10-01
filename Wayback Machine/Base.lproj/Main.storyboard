@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -155,8 +155,8 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FOZ-BP-IMC">
-                                <rect key="frame" x="158" y="213" width="50" height="17"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Version" id="GFp-93-LAJ">
+                                <rect key="frame" x="158" y="213" width="53" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Version:" id="GFp-93-LAJ">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -185,9 +185,11 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F6D-6X-UDI">
-                                <rect key="frame" x="220" y="213" width="4" height="17"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F6D-6X-UDI">
+                                <rect key="frame" x="217" y="213" width="104" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="iWg-2e-Q7N"/>
+                                </constraints>
                                 <textFieldCell key="cell" lineBreakMode="clipping" id="bhb-0R-adg">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -200,6 +202,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="showPreferencesClicked:" target="XfG-lQ-9wD" id="K8O-R1-UA0"/>
+                                </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eGO-xX-nzZ">
                                 <rect key="frame" x="30" y="130" width="100" height="100"/>
@@ -207,24 +212,32 @@
                                     <constraint firstAttribute="height" constant="100" id="1gV-5d-AXL"/>
                                     <constraint firstAttribute="width" constant="100" id="1xN-kU-m7I"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="logo" id="JZG-vx-m4Z"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Applogo" id="JZG-vx-m4Z"/>
                             </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="FOZ-BP-IMC" firstAttribute="leading" secondItem="eGO-xX-nzZ" secondAttribute="trailing" constant="30" id="3dc-fD-iiG"/>
                             <constraint firstItem="diM-yR-vrR" firstAttribute="top" secondItem="FOZ-BP-IMC" secondAttribute="bottom" constant="20" id="84q-Es-WGQ"/>
                             <constraint firstItem="FOZ-BP-IMC" firstAttribute="top" secondItem="eGO-xX-nzZ" secondAttribute="top" id="AHs-3g-sMh"/>
+                            <constraint firstItem="e4j-SM-5tF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="DmT-A1-VUn"/>
                             <constraint firstAttribute="trailing" secondItem="e4j-SM-5tF" secondAttribute="trailing" constant="30" id="FMo-Bw-u97"/>
                             <constraint firstItem="diM-yR-vrR" firstAttribute="leading" secondItem="FOZ-BP-IMC" secondAttribute="leading" id="JlQ-VY-bNd"/>
+                            <constraint firstItem="F6D-6X-UDI" firstAttribute="top" secondItem="FOZ-BP-IMC" secondAttribute="top" id="dkV-JQ-KVJ"/>
                             <constraint firstItem="eGO-xX-nzZ" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="70" id="eAN-zm-VVN"/>
                             <constraint firstItem="e4j-SM-5tF" firstAttribute="top" secondItem="i70-v7-raQ" secondAttribute="bottom" constant="30" id="edk-fF-TiS"/>
                             <constraint firstItem="zRy-6Z-ZQY" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="ela-EB-y80"/>
                             <constraint firstItem="i70-v7-raQ" firstAttribute="top" secondItem="diM-yR-vrR" secondAttribute="bottom" constant="10" id="hMH-tA-3d0"/>
-                            <constraint firstItem="i70-v7-raQ" firstAttribute="leading" secondItem="diM-yR-vrR" secondAttribute="leading" constant="10" id="miR-NA-dbY"/>
+                            <constraint firstAttribute="trailing" secondItem="diM-yR-vrR" secondAttribute="trailing" constant="57" id="jSr-id-x50"/>
+                            <constraint firstItem="F6D-6X-UDI" firstAttribute="leading" secondItem="FOZ-BP-IMC" secondAttribute="trailing" constant="10" id="kvR-ro-5Y1"/>
+                            <constraint firstItem="i70-v7-raQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="diM-yR-vrR" secondAttribute="leading" id="miR-NA-dbY"/>
+                            <constraint firstAttribute="trailing" secondItem="i70-v7-raQ" secondAttribute="trailing" constant="35" id="ndG-Jm-f7R"/>
                             <constraint firstItem="zRy-6Z-ZQY" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="ovz-la-x3c"/>
                             <constraint firstItem="eGO-xX-nzZ" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="30" id="xcx-kB-fQ0"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="txtVersion" destination="F6D-6X-UDI" id="a7C-Gh-g1G"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -232,6 +245,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="400" height="400"/>
+        <image name="Applogo" width="400" height="400"/>
     </resources>
 </document>
