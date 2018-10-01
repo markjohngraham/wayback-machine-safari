@@ -43,7 +43,9 @@ class WMEMainVC: WMEBaseVC {
         guard let url = url else { return }
         
         SFSafariApplication.getActiveWindow { (activeWindow) in
-            activeWindow?.openTab(with: URL(string: url)!, makeActiveIfPossible: true, completionHandler: nil)
+            activeWindow?.openTab(with: URL(string: url)!, makeActiveIfPossible: true, completionHandler: { (tab) in
+                
+            })
         }
     }
     
