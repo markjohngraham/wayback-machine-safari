@@ -15,6 +15,14 @@ class WMEMainVC: WMEBaseVC {
         return shared
     }()
     
+    override func viewDidLoad() {
+        self.view.layer?.backgroundColor = NSColor.white.cgColor
+    }
+    
+    override func viewWillAppear() {
+        self.view.layer?.backgroundColor = NSColor.white.cgColor
+    }
+    
     func getActivePageURL(completion: @escaping(String?) -> Void) {
         SFSafariApplication.getActiveWindow { (activeWindow) in
             activeWindow?.getActiveTab(completionHandler: { (activeTab) in

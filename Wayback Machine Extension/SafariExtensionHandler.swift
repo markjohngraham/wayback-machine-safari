@@ -67,7 +67,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             
             guard let _ = data, error == nil else {
-                print("error=\(error)")
+                print("error=\(String(describing: error))")
                 completion(nil)
                 return
             }

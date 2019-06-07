@@ -21,7 +21,6 @@ class WMMainVC: WMBaseVC {
 
     override func viewDidAppear() {
         self.view.window?.styleMask = [NSWindow.StyleMask.closable, NSWindow.StyleMask.titled, NSWindow.StyleMask.miniaturizable]
-        self.view.layer?.backgroundColor = CGColor(red:1.0, green:1.0, blue:1.0, alpha:1.0)
     }
     
     //- MARK: Actions

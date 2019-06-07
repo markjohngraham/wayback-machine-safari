@@ -7,10 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53884A628D91C43EBDCF64A1 /* Pods_Wayback_Machine_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8865BE4CB6E14B950A1CC51C /* Pods_Wayback_Machine_Extension.framework */; };
 		84781FB92162186700F8290D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C38D18CF215EE6E700E95389 /* Assets.xcassets */; };
 		84781FBB216219F500F8290D /* WMConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84781FBA216219F500F8290D /* WMConstants.swift */; };
 		84781FBC216219F800F8290D /* WMConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84781FBA216219F500F8290D /* WMConstants.swift */; };
 		84781FBF2162294300F8290D /* WMEBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84781FBE2162294300F8290D /* WMEBaseVC.swift */; };
+		84F2843B22AB0E37006E260A /* WMGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F2843A22AB0E37006E260A /* WMGlobal.swift */; };
+		84F2843D22AB0E55006E260A /* NSViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F2843C22AB0E55006E260A /* NSViewExtensions.swift */; };
+		84F2843E22AB0F68006E260A /* NSViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F2843C22AB0E55006E260A /* NSViewExtensions.swift */; };
+		9DDBBD09CCE05C0221DBA198 /* Pods_Wayback_Machine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB596902556784B78624D76F /* Pods_Wayback_Machine.framework */; };
+		B087815C4B750783FAFCF6D0 /* Pods_Wayback_MachineTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6758A322BB636E0C492B6393 /* Pods_Wayback_MachineTests.framework */; };
 		C38D18CC215EE6E600E95389 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D18CB215EE6E600E95389 /* AppDelegate.swift */; };
 		C38D18CE215EE6E600E95389 /* WMMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D18CD215EE6E600E95389 /* WMMainVC.swift */; };
 		C38D18D0215EE6E700E95389 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C38D18CF215EE6E700E95389 /* Assets.xcassets */; };
@@ -58,8 +64,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		50B36A2ACD6F209093A7F65A /* Pods-Wayback Machine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayback Machine.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wayback Machine/Pods-Wayback Machine.release.xcconfig"; sourceTree = "<group>"; };
+		6758A322BB636E0C492B6393 /* Pods_Wayback_MachineTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wayback_MachineTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C6E258152BB1339A97A1D58 /* Pods-Wayback MachineTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayback MachineTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wayback MachineTests/Pods-Wayback MachineTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7D4980ACE5D8CECEA5094051 /* Pods-Wayback MachineTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayback MachineTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wayback MachineTests/Pods-Wayback MachineTests.release.xcconfig"; sourceTree = "<group>"; };
 		84781FBA216219F500F8290D /* WMConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMConstants.swift; sourceTree = "<group>"; };
 		84781FBE2162294300F8290D /* WMEBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMEBaseVC.swift; sourceTree = "<group>"; };
+		84F2843A22AB0E37006E260A /* WMGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMGlobal.swift; sourceTree = "<group>"; };
+		84F2843C22AB0E55006E260A /* NSViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewExtensions.swift; sourceTree = "<group>"; };
+		8865BE4CB6E14B950A1CC51C /* Pods_Wayback_Machine_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wayback_Machine_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94ED460EDB0D0C2C788B3241 /* Pods-Wayback Machine Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayback Machine Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wayback Machine Extension/Pods-Wayback Machine Extension.release.xcconfig"; sourceTree = "<group>"; };
+		AD2530D724188BF4AC645F1D /* Pods-Wayback Machine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayback Machine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wayback Machine/Pods-Wayback Machine.debug.xcconfig"; sourceTree = "<group>"; };
+		B2815BA1B831F9C055B78FBB /* Pods-Wayback Machine Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayback Machine Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wayback Machine Extension/Pods-Wayback Machine Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		C38D18C8215EE6E600E95389 /* Wayback Machine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wayback Machine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C38D18CB215EE6E600E95389 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C38D18CD215EE6E600E95389 /* WMMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMMainVC.swift; sourceTree = "<group>"; };
@@ -81,6 +97,7 @@
 		C38D18FE215EE78D00E95389 /* Wayback_Machine_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wayback_Machine_Extension.entitlements; sourceTree = "<group>"; };
 		C38D1913215EE8BE00E95389 /* Wayback Machine Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Wayback Machine Extension.entitlements"; sourceTree = "<group>"; };
 		C38D1919215EF59100E95389 /* WMBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMBaseVC.swift; sourceTree = "<group>"; };
+		EB596902556784B78624D76F /* Pods_Wayback_Machine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wayback_Machine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DDBBD09CCE05C0221DBA198 /* Pods_Wayback_Machine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B087815C4B750783FAFCF6D0 /* Pods_Wayback_MachineTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,16 +122,69 @@
 			buildActionMask = 2147483647;
 			files = (
 				C38D18F0215EE78D00E95389 /* Cocoa.framework in Frameworks */,
+				53884A628D91C43EBDCF64A1 /* Pods_Wayback_Machine_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6372C1701AC457A25196C5DC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AD2530D724188BF4AC645F1D /* Pods-Wayback Machine.debug.xcconfig */,
+				50B36A2ACD6F209093A7F65A /* Pods-Wayback Machine.release.xcconfig */,
+				B2815BA1B831F9C055B78FBB /* Pods-Wayback Machine Extension.debug.xcconfig */,
+				94ED460EDB0D0C2C788B3241 /* Pods-Wayback Machine Extension.release.xcconfig */,
+				7C6E258152BB1339A97A1D58 /* Pods-Wayback MachineTests.debug.xcconfig */,
+				7D4980ACE5D8CECEA5094051 /* Pods-Wayback MachineTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		84781FBD2162290200F8290D /* Base */ = {
 			isa = PBXGroup;
 			children = (
 				84781FBE2162294300F8290D /* WMEBaseVC.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		84F2843522AB0DC3006E260A /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				84F2843622AB0DDF006E260A /* Extension */,
+				84F2843A22AB0E37006E260A /* WMGlobal.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		84F2843622AB0DDF006E260A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				84F2843C22AB0E55006E260A /* NSViewExtensions.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		84F2843722AB0DE8006E260A /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		84F2843822AB0DF3006E260A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				84F2843922AB0E02006E260A /* Base */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		84F2843922AB0E02006E260A /* Base */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -125,6 +197,7 @@
 				C38D18F1215EE78D00E95389 /* Wayback Machine Extension */,
 				C38D18EE215EE78D00E95389 /* Frameworks */,
 				C38D18C9215EE6E600E95389 /* Products */,
+				6372C1701AC457A25196C5DC /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -165,6 +238,9 @@
 			isa = PBXGroup;
 			children = (
 				C38D18EF215EE78D00E95389 /* Cocoa.framework */,
+				EB596902556784B78624D76F /* Pods_Wayback_Machine.framework */,
+				8865BE4CB6E14B950A1CC51C /* Pods_Wayback_Machine_Extension.framework */,
+				6758A322BB636E0C492B6393 /* Pods_Wayback_MachineTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -279,6 +355,9 @@
 		C38D1911215EE8A300E95389 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				84F2843822AB0DF3006E260A /* Views */,
+				84F2843722AB0DE8006E260A /* Libraries */,
+				84F2843522AB0DC3006E260A /* Global */,
 				C38D1912215EE8A300E95389 /* ViewControllers */,
 			);
 			path = Classes;
@@ -337,10 +416,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C38D18E3215EE6E700E95389 /* Build configuration list for PBXNativeTarget "Wayback Machine" */;
 			buildPhases = (
+				404EBD03992C173958DBB421 /* [CP] Check Pods Manifest.lock */,
 				C38D18C4215EE6E600E95389 /* Sources */,
 				C38D18C5215EE6E600E95389 /* Frameworks */,
 				C38D18C6215EE6E600E95389 /* Resources */,
 				C38D1905215EE78D00E95389 /* Embed App Extensions */,
+				FE6AB579A27966A227316AB7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -356,6 +437,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C38D18E6215EE6E700E95389 /* Build configuration list for PBXNativeTarget "Wayback MachineTests" */;
 			buildPhases = (
+				9E0CEC491A6AA8F154A7D917 /* [CP] Check Pods Manifest.lock */,
 				C38D18D6215EE6E700E95389 /* Sources */,
 				C38D18D7215EE6E700E95389 /* Frameworks */,
 				C38D18D8215EE6E700E95389 /* Resources */,
@@ -374,6 +456,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C38D1902215EE78D00E95389 /* Build configuration list for PBXNativeTarget "Wayback Machine Extension" */;
 			buildPhases = (
+				6665E90C78E8EECB8FB378AD /* [CP] Check Pods Manifest.lock */,
 				C38D18E9215EE78D00E95389 /* Sources */,
 				C38D18EA215EE78D00E95389 /* Frameworks */,
 				C38D18EB215EE78D00E95389 /* Resources */,
@@ -463,12 +546,104 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		404EBD03992C173958DBB421 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Wayback Machine-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6665E90C78E8EECB8FB378AD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Wayback Machine Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E0CEC491A6AA8F154A7D917 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Wayback MachineTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE6AB579A27966A227316AB7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Wayback Machine/Pods-Wayback Machine-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SYFlatButton/SYFlatButton.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SYFlatButton.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wayback Machine/Pods-Wayback Machine-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C38D18C4215EE6E600E95389 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C38D18CE215EE6E600E95389 /* WMMainVC.swift in Sources */,
+				84F2843E22AB0F68006E260A /* NSViewExtensions.swift in Sources */,
 				84781FBB216219F500F8290D /* WMConstants.swift in Sources */,
 				C38D18CC215EE6E600E95389 /* AppDelegate.swift in Sources */,
 				C38D191A215EF59100E95389 /* WMBaseVC.swift in Sources */,
@@ -488,7 +663,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C38D18F5215EE78D00E95389 /* WMEMainVC.swift in Sources */,
+				84F2843D22AB0E55006E260A /* NSViewExtensions.swift in Sources */,
 				84781FBC216219F800F8290D /* WMConstants.swift in Sources */,
+				84F2843B22AB0E37006E260A /* WMGlobal.swift in Sources */,
 				C38D18F3215EE78D00E95389 /* SafariExtensionHandler.swift in Sources */,
 				84781FBF2162294300F8290D /* WMEBaseVC.swift in Sources */,
 			);
@@ -646,6 +823,7 @@
 		};
 		C38D18E4215EE6E700E95389 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD2530D724188BF4AC645F1D /* Pods-Wayback Machine.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -668,6 +846,7 @@
 		};
 		C38D18E5215EE6E700E95389 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50B36A2ACD6F209093A7F65A /* Pods-Wayback Machine.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -690,6 +869,7 @@
 		};
 		C38D18E7215EE6E700E95389 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C6E258152BB1339A97A1D58 /* Pods-Wayback MachineTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -713,6 +893,7 @@
 		};
 		C38D18E8215EE6E700E95389 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D4980ACE5D8CECEA5094051 /* Pods-Wayback MachineTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -736,6 +917,7 @@
 		};
 		C38D1903215EE78D00E95389 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2815BA1B831F9C055B78FBB /* Pods-Wayback Machine Extension.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Wayback Machine Extension/Wayback Machine Extension.entitlements";
 				CODE_SIGN_IDENTITY = "-";
@@ -757,6 +939,7 @@
 		};
 		C38D1904215EE78D00E95389 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94ED460EDB0D0C2C788B3241 /* Pods-Wayback Machine Extension.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Wayback Machine Extension/Wayback Machine Extension.entitlements";
 				CODE_SIGN_IDENTITY = "-";
