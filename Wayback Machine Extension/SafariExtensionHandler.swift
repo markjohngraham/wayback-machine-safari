@@ -35,7 +35,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     }
     
     func handleBeforeNavigate() {
-        WMEMainVC.shared.getActivePageURL { (url) in
+        WMEGlobal.shared.getActivePageURL { (url) in
             guard let url = url else { return }
             self.getResponse(url: url, completion: { (status) in
                 guard let status = status else { return }
@@ -43,7 +43,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
                     return
                 }
                 
-                WMEMainVC.shared.wmAvailabilityCheck(url: url, timestamp: nil, completion: { (waybackURL, url) in
+                WMEGlobal.shared.wmAvailabilityCheck(url: url, timestamp: nil, completion: { (waybackURL, url) in
                     guard let waybackURL = waybackURL else { return }
                     SFSafariApplication.getActiveWindow(completionHandler: {(activeWindow) in
                         activeWindow?.getActiveTab(completionHandler: {(activeTab) in
