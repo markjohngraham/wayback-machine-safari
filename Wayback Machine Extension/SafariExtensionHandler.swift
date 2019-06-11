@@ -43,7 +43,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
                     return
                 }
                 
-                WMEUtil.shared.wmAvailabilityCheck(url: url, timestamp: nil, completion: { (waybackURL, url) in
+                WMEUtil.shared.wmAvailabilityCheck(url: url, completion: { (waybackURL, url) in
                     guard let waybackURL = waybackURL else { return }
                     SFSafariApplication.getActiveWindow(completionHandler: {(activeWindow) in
                         activeWindow?.getActiveTab(completionHandler: {(activeTab) in

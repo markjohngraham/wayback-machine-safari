@@ -15,6 +15,19 @@ class WMEUtil: NSObject {
         return shared
     }()
     
+    func dispatchMessage(messageName: String, userInfo: [String: String]) {
+        SFSafariApplication.getActiveWindow(completionHandler: {(activeWindow) in
+            activeWindow?.getActiveTab(completionHandler: {(activeTab) in
+                guard let activeTab = activeTab else { return }
+                
+                activeTab.getActivePage(completionHandler: {(activePage) in
+                    guard let activePage = activePage else { return }
+                    activePage.dispatchMessageToScript(withName: messageName, userInfo: userInfo)
+                })
+            })
+        })
+    }
+    
     func getActivePageURL(completion: @escaping(String?) -> Void) {
         SFSafariApplication.getActiveWindow { (activeWindow) in
             activeWindow?.getActiveTab(completionHandler: { (activeTab) in

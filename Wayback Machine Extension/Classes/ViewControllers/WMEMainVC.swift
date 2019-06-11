@@ -87,7 +87,10 @@ class WMEMainVC: WMEBaseVC {
     }
     
     @IBAction func sitemapClicked(_ sender: Any) {
-        
+        WMEUtil.shared.getActivePageURL { (url) in
+            guard let url = url else { return }
+            WMEUtil.shared.dispatchMessage(messageName: "RADIAL_TREE", userInfo: ["url": url])
+        }
     }
     
     
