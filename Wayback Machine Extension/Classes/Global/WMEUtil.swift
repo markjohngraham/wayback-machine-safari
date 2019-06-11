@@ -1,17 +1,17 @@
 //
-//  WMGlobal.swift
+//  WMEUtil.swift
 //  Wayback Machine Extension
 //
-//  Created by admin on 6/7/19.
+//  Created by admin on 6/10/19.
 //
 
 import Cocoa
 import SafariServices
 
-class WMEGlobal: NSObject {
+class WMEUtil: NSObject {
     
-    static let shared: WMEGlobal = {
-        let shared = WMEGlobal()
+    static let shared: WMEUtil = {
+        let shared = WMEUtil()
         return shared
     }()
     
@@ -49,19 +49,15 @@ class WMEGlobal: NSObject {
         }
     }
     
-    func wmAvailabilityCheck(url: String, timestamp: String?, completion: @escaping (String?, String) -> Void) {
+    func wmAvailabilityCheck(url: String, completion: @escaping (String?, String) -> Void) {
         
-        var postString = "url=" + url
-        if timestamp != nil {
-            postString += "&&timestamp=" + timestamp!
-        }
-        
-        var request = URLRequest(url: URL(string: Availability_API_URL)!)
+        let requestParams = "url=\(url)"
+        var request = URLRequest(url: URL(string: AvailabilityAPIURL)!)
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-type")
         request.setValue("2", forHTTPHeaderField: "Wayback-Api-Version")
         request.setValue("Wayback_Machine_Safari_XC/\(VERSION)", forHTTPHeaderField: "User-Agent")
-        request.httpBody = postString.data(using: .utf8)
+        request.httpBody = requestParams.data(using: .utf8)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             
