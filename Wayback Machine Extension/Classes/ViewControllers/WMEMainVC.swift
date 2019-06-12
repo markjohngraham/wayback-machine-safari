@@ -97,27 +97,27 @@ class WMEMainVC: WMEBaseVC {
     @IBAction func facebookClicked(_ sender: Any) {
         WMEUtil.shared.getActivePageURL { (url) in
             guard let url = url else { return }
-            
-            WMEUtil.shared.getActivePageTitle { (title) in
-                guard let title = title else { return }
-                let sharingURL = "https://www.facebook.com/sharer/sharer.php?u=\(url)&title=\(title)"
-                WMEUtil.shared.openTabWithURL(url: sharingURL)
-            }
+            WMEUtil.shared.openTabWithURL(url: "https://www.facebook.com/sharer/sharer.php?u=\(url)")
         }
     }
     
     @IBAction func twitterClicked(_ sender: Any) {
         WMEUtil.shared.getActivePageURL { (url) in
             guard let url = url else { return }
-            let sharingURL = "http://twitter.com/share?url=\(url)&via=internetarchive"
-            WMEUtil.shared.openTabWithURL(url: sharingURL)
+            WMEUtil.shared.openTabWithURL(url: "http://twitter.com/share?url=\(url)")
         }
     }
     
     @IBAction func linkedinClicked(_ sender: Any) {
+        WMEUtil.shared.getActivePageURL { (url) in
+            guard let url = url else { return }
+            WMEUtil.shared.openTabWithURL(url: "https://www.linkedin.com/shareArticle?url=\(url)")
+        }
     }
     
     @IBAction func aboutClicked(_ sender: Any) {
+        let aboutVC = WMEAboutVC.init(nibName: "WMEAboutVC", bundle: nil)
+        self.view.window?.contentViewController = aboutVC
     }
     
 }

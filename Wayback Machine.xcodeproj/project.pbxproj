@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		53884A628D91C43EBDCF64A1 /* Pods_Wayback_Machine_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8865BE4CB6E14B950A1CC51C /* Pods_Wayback_Machine_Extension.framework */; };
 		840C191B22AF834600B6C67E /* WMEUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840C191A22AF834600B6C67E /* WMEUtil.swift */; };
+		841E733322B0D39100F489E6 /* WMEAboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E733122B0D39100F489E6 /* WMEAboutVC.swift */; };
+		841E733422B0D39100F489E6 /* WMEAboutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841E733222B0D39100F489E6 /* WMEAboutVC.xib */; };
 		84781FB92162186700F8290D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C38D18CF215EE6E700E95389 /* Assets.xcassets */; };
 		84781FBB216219F500F8290D /* WMConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84781FBA216219F500F8290D /* WMConstants.swift */; };
 		84781FBC216219F800F8290D /* WMConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84781FBA216219F500F8290D /* WMConstants.swift */; };
@@ -69,6 +71,8 @@
 		7C6E258152BB1339A97A1D58 /* Pods-Wayback MachineTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayback MachineTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wayback MachineTests/Pods-Wayback MachineTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7D4980ACE5D8CECEA5094051 /* Pods-Wayback MachineTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayback MachineTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wayback MachineTests/Pods-Wayback MachineTests.release.xcconfig"; sourceTree = "<group>"; };
 		840C191A22AF834600B6C67E /* WMEUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMEUtil.swift; sourceTree = "<group>"; };
+		841E733122B0D39100F489E6 /* WMEAboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMEAboutVC.swift; sourceTree = "<group>"; };
+		841E733222B0D39100F489E6 /* WMEAboutVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WMEAboutVC.xib; sourceTree = "<group>"; };
 		84781FBA216219F500F8290D /* WMConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMConstants.swift; sourceTree = "<group>"; };
 		84781FBE2162294300F8290D /* WMEBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMEBaseVC.swift; sourceTree = "<group>"; };
 		84F2843C22AB0E55006E260A /* NSViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewExtensions.swift; sourceTree = "<group>"; };
@@ -369,6 +373,8 @@
 				84781FBD2162290200F8290D /* Base */,
 				C38D18F4215EE78D00E95389 /* WMEMainVC.swift */,
 				C38D18F6215EE78D00E95389 /* WMEMainVC.xib */,
+				841E733122B0D39100F489E6 /* WMEAboutVC.swift */,
+				841E733222B0D39100F489E6 /* WMEAboutVC.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -540,6 +546,7 @@
 				C38D18FD215EE78D00E95389 /* ToolbarItemIcon.pdf in Resources */,
 				C38D18F8215EE78D00E95389 /* WMEMainVC.xib in Resources */,
 				84781FB92162186700F8290D /* Assets.xcassets in Resources */,
+				841E733422B0D39100F489E6 /* WMEAboutVC.xib in Resources */,
 				C38D18FB215EE78D00E95389 /* script.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -664,6 +671,7 @@
 			files = (
 				C38D18F5215EE78D00E95389 /* WMEMainVC.swift in Sources */,
 				84F2843D22AB0E55006E260A /* NSViewExtensions.swift in Sources */,
+				841E733322B0D39100F489E6 /* WMEAboutVC.swift in Sources */,
 				840C191B22AF834600B6C67E /* WMEUtil.swift in Sources */,
 				84781FBC216219F800F8290D /* WMConstants.swift in Sources */,
 				C38D18F3215EE78D00E95389 /* SafariExtensionHandler.swift in Sources */,

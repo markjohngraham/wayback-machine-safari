@@ -48,7 +48,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
                     SFSafariApplication.getActiveWindow(completionHandler: {(activeWindow) in
                         activeWindow?.getActiveTab(completionHandler: {(activeTab) in
                             activeTab?.getActivePage(completionHandler: {(activePage) in
-                                activePage?.dispatchMessageToScript(withName: "showBanner", userInfo: ["url": waybackURL])
+                                activePage?.dispatchMessageToScript(withName: "SHOW_BANNER", userInfo: ["url": waybackURL])
                             })
                         })
                     })
