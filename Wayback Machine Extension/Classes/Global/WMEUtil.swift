@@ -22,6 +22,7 @@ class WMEUtil: NSObject {
                 
                 activeTab.getActivePage(completionHandler: {(activePage) in
                     guard let activePage = activePage else { return }
+                    print(messageName)
                     activePage.dispatchMessageToScript(withName: messageName, userInfo: userInfo)
                 })
             })

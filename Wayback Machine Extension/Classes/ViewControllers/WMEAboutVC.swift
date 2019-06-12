@@ -11,7 +11,6 @@ class WMEAboutVC: WMEBaseVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
     }
     
     @IBAction func backClicked(_ sender: Any) {

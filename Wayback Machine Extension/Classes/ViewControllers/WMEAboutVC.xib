@@ -17,19 +17,13 @@
             <rect key="frame" x="0.0" y="0.0" width="250" height="536"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gMW-XW-ZjQ">
-                    <rect key="frame" x="88" y="259" width="75" height="17"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="About Page" id="cNJ-zn-cgq">
-                        <font key="font" usesAppearanceFont="YES"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VtI-1A-CC6">
-                    <rect key="frame" x="20" y="488" width="70" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Back" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9b1-oD-tT3">
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VtI-1A-CC6">
+                    <rect key="frame" x="5" y="506" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="0PA-P2-tde"/>
+                        <constraint firstAttribute="width" secondItem="VtI-1A-CC6" secondAttribute="height" multiplier="1:1" id="6iP-wl-sB0"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="back" imagePosition="only" alignment="center" transparent="YES" imageScaling="proportionallyDown" inset="2" id="9b1-oD-tT3">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -37,15 +31,84 @@
                         <action selector="backClicked:" target="-2" id="qpT-PQ-SxV"/>
                     </connections>
                 </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="225" translatesAutoresizingMaskIntoConstraints="NO" id="SOs-mS-orT">
+                    <rect key="frame" x="3" y="453" width="244" height="38"/>
+                    <textFieldCell key="cell" lineBreakMode="charWrapping" alignment="center" title="The Official Wayback Machine  Extension:" id="zFP-wq-br6">
+                        <font key="font" metaFont="systemBold" size="16"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OER-MS-8wU">
+                    <rect key="frame" x="6" y="312" width="60" height="19"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="License" id="7qn-PD-cqn">
+                        <font key="font" metaFont="systemSemibold" size="15"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="247" translatesAutoresizingMaskIntoConstraints="NO" id="gxb-fb-8gY">
+                    <rect key="frame" x="11" y="273" width="228" height="34"/>
+                    <textFieldCell key="cell" id="OFC-iv-vYR">
+                        <font key="font" metaFont="system"/>
+                        <string key="title">Copyright Internet Archive, 
+2017 AGPL-3</string>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9AH-Az-Zsi">
+                    <rect key="frame" x="6" y="244" width="63" height="19"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Support" id="5bQ-r2-hYk">
+                        <font key="font" metaFont="systemSemibold" size="15"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="247" translatesAutoresizingMaskIntoConstraints="NO" id="keP-4W-aaV">
+                    <rect key="frame" x="11" y="222" width="106" height="17"/>
+                    <textFieldCell key="cell" title="info@archive.org" id="elG-qk-hzp">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="33" translatesAutoresizingMaskIntoConstraints="NO" id="8g5-ek-KqW">
+                    <rect key="frame" x="11" y="341" width="228" height="102"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="102" id="zCu-tq-74Z"/>
+                    </constraints>
+                    <textFieldCell key="cell" id="rcW-xP-Yoy">
+                        <font key="font" metaFont="system"/>
+                        <string key="title">The Internet Archive presents The Official WayBack Machine Extension. With the power of the WayBack Machine, we let you go in time to see how a URL has changed and evolved through the history of the Web!</string>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
+            <constraints>
+                <constraint firstItem="8g5-ek-KqW" firstAttribute="top" secondItem="SOs-mS-orT" secondAttribute="bottom" constant="10" id="9iK-YX-Beq"/>
+                <constraint firstItem="VtI-1A-CC6" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="10" id="Bgd-eM-RbG"/>
+                <constraint firstAttribute="trailing" secondItem="8g5-ek-KqW" secondAttribute="trailing" constant="13" id="JkY-N7-Lz6"/>
+                <constraint firstItem="OER-MS-8wU" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="8" id="LMG-ZY-2Mh"/>
+                <constraint firstItem="gxb-fb-8gY" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="13" id="MQz-IH-Arf"/>
+                <constraint firstItem="VtI-1A-CC6" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="5" id="NqZ-Sc-dAC"/>
+                <constraint firstAttribute="trailing" secondItem="gxb-fb-8gY" secondAttribute="trailing" constant="13" id="ZjG-UI-UPw"/>
+                <constraint firstItem="SOs-mS-orT" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="5" id="cPd-Sy-Xdc"/>
+                <constraint firstItem="keP-4W-aaV" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="13" id="f4p-Rd-b9h"/>
+                <constraint firstItem="keP-4W-aaV" firstAttribute="top" secondItem="9AH-Az-Zsi" secondAttribute="bottom" constant="5" id="frc-vm-lGg"/>
+                <constraint firstAttribute="trailing" secondItem="SOs-mS-orT" secondAttribute="trailing" constant="5" id="ft2-2f-sGL"/>
+                <constraint firstItem="SOs-mS-orT" firstAttribute="top" secondItem="VtI-1A-CC6" secondAttribute="bottom" constant="15" id="ghx-qz-IMg"/>
+                <constraint firstItem="9AH-Az-Zsi" firstAttribute="top" secondItem="gxb-fb-8gY" secondAttribute="bottom" constant="10" id="gt3-vS-K9Y"/>
+                <constraint firstItem="OER-MS-8wU" firstAttribute="top" secondItem="8g5-ek-KqW" secondAttribute="bottom" constant="10" id="iQz-Lg-Hbc"/>
+                <constraint firstItem="8g5-ek-KqW" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="13" id="lCT-Yg-Ccw"/>
+                <constraint firstItem="9AH-Az-Zsi" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="8" id="m1j-Jb-GBr"/>
+                <constraint firstItem="gxb-fb-8gY" firstAttribute="top" secondItem="OER-MS-8wU" secondAttribute="bottom" constant="5" id="zK0-ph-2nR"/>
+            </constraints>
+            <point key="canvasLocation" x="130" y="154"/>
         </customView>
-        <button verticalHuggingPriority="750" id="NEw-xM-cny">
-            <rect key="frame" x="0.0" y="0.0" width="82" height="32"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TeH-p4-Tge">
-                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                <font key="font" metaFont="system"/>
-            </buttonCell>
-        </button>
     </objects>
+    <resources>
+        <image name="back" width="80" height="80"/>
+    </resources>
 </document>
