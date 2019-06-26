@@ -37,26 +37,26 @@
 		<array>
 			<dict>
 				<key>Style Sheet</key>
-				<string>Resource/StyleSheet/googlestyle.css</string>
+				<string>googlestyle.css</string>
 			</dict>
 			<dict>
 				<key>Style Sheet</key>
-				<string>Resource/StyleSheet/RTContent.css</string>
+				<string>RTContent.css</string>
 			</dict>
 			<dict>
 				<key>Style Sheet</key>
-				<string>Resource/StyleSheet/sequences.css</string>
+				<string>sequences.css</string>
 			</dict>
 		</array>
 		<key>SFSafariContentScript</key>
 		<array>
 			<dict>
 				<key>Script</key>
-				<string>Resources/Javascript/d3.min.js</string>
+				<string>d3.min.js</string>
 			</dict>
 			<dict>
 				<key>Script</key>
-				<string>Resources/Javascript/script.js</string>
+				<string>script.js</string>
 			</dict>
 		</array>
 		<key>SFSafariToolbarItem</key>

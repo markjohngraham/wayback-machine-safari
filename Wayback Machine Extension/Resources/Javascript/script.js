@@ -320,7 +320,7 @@ function displayRadialTree(url, data) {
     console.log("Data", data);
     // if (window.top !== window) return;
     
-    document.getElementById("RTloader").style.display = "block";
+    document.getElementById("RTloader").style.display = "none";
     var paths_arr=new Array();
     var j=0;
     for(var i=1;i<data.length;i++){
