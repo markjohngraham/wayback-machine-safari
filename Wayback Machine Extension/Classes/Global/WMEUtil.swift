@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import Alamofire
 import SafariServices
 
 class WMEUtil: NSObject {
@@ -15,14 +16,13 @@ class WMEUtil: NSObject {
         return shared
     }()
     
-    func dispatchMessage(messageName: String, userInfo: [String: String]) {
+    func dispatchMessage(messageName: String, userInfo: [String: Any]) {
         SFSafariApplication.getActiveWindow(completionHandler: {(activeWindow) in
             activeWindow?.getActiveTab(completionHandler: {(activeTab) in
                 guard let activeTab = activeTab else { return }
                 
                 activeTab.getActivePage(completionHandler: {(activePage) in
                     guard let activePage = activePage else { return }
-                    print(messageName)
                     activePage.dispatchMessageToScript(withName: messageName, userInfo: userInfo)
                 })
             })
@@ -149,6 +149,21 @@ class WMEUtil: NSObject {
         }
         
         return originalURL!
+    }
+    
+    func getSearchResult(url: String, completion: @escaping ([Any]) -> Void) {
+        let url = "https://web.archive.org/cdx/search/cdx?url=\(url)/&fl=timestamp,original&matchType=prefix&filter=statuscode:200&filter=mimetype:text/html&output=json"
+        
+        Alamofire.request(url, method: .get)
+        .responseJSON { (response) in
+            switch response.result {
+            case .success(let data):
+                completion(data as! [Any])
+            case .failure(let error):
+                print(error.localizedDescription)
+                completion([])
+            }
+        }
     }
     
 }

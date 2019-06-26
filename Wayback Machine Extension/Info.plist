@@ -33,11 +33,30 @@
 		<string>com.apple.Safari.extension</string>
 		<key>NSExtensionPrincipalClass</key>
 		<string>$(PRODUCT_MODULE_NAME).SafariExtensionHandler</string>
+		<key>SFSafariStyleSheet</key>
+		<array>
+			<dict>
+				<key>Style Sheet</key>
+				<string>Resource/StyleSheet/googlestyle.css</string>
+			</dict>
+			<dict>
+				<key>Style Sheet</key>
+				<string>Resource/StyleSheet/RTContent.css</string>
+			</dict>
+			<dict>
+				<key>Style Sheet</key>
+				<string>Resource/StyleSheet/sequences.css</string>
+			</dict>
+		</array>
 		<key>SFSafariContentScript</key>
 		<array>
 			<dict>
 				<key>Script</key>
-				<string>script.js</string>
+				<string>Resources/Javascript/d3.min.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>Resources/Javascript/script.js</string>
 			</dict>
 		</array>
 		<key>SFSafariToolbarItem</key>

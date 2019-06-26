@@ -140,11 +140,25 @@ class WMEMainVC: WMEBaseVC {
     
     @IBAction func sitemapClicked(_ sender: Any) {
         getURL { (url) in
-            guard let url = url else {
+            guard var url = url else {
                 self.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
                 return
             }
-            WMEUtil.shared.dispatchMessage(messageName: "RADIAL_TREE", userInfo: ["url": url])
+            
+            url = url.replacingOccurrences(of: "https://", with: "")
+            url = url.replacingOccurrences(of: "http://", with: "")
+            
+            if url.contains("/") {
+                url = url.components(separatedBy: "/")[0]
+            }
+            
+            WMEUtil.shared.getSearchResult(url: url, completion: { (data) in
+                WMEUtil.shared.dispatchMessage(messageName: "RADIAL_TREE", userInfo: [
+                    "url": url,
+                    "data": data
+                ])
+            })
+            
         }
     }
     

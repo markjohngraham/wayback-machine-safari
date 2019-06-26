@@ -11,6 +11,10 @@
 		840C191B22AF834600B6C67E /* WMEUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840C191A22AF834600B6C67E /* WMEUtil.swift */; };
 		841E733322B0D39100F489E6 /* WMEAboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E733122B0D39100F489E6 /* WMEAboutVC.swift */; };
 		841E733422B0D39100F489E6 /* WMEAboutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841E733222B0D39100F489E6 /* WMEAboutVC.xib */; };
+		8476247122C3DCCD00E8ADD8 /* d3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 8476247022C3DCCD00E8ADD8 /* d3.min.js */; };
+		8476247822C3E3C500E8ADD8 /* sequences.css in Resources */ = {isa = PBXBuildFile; fileRef = 8476247522C3E3C500E8ADD8 /* sequences.css */; };
+		8476247922C3E3C500E8ADD8 /* googlestyle.css in Resources */ = {isa = PBXBuildFile; fileRef = 8476247622C3E3C500E8ADD8 /* googlestyle.css */; };
+		8476247A22C3E3C500E8ADD8 /* RTContent.css in Resources */ = {isa = PBXBuildFile; fileRef = 8476247722C3E3C500E8ADD8 /* RTContent.css */; };
 		84781FB92162186700F8290D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C38D18CF215EE6E700E95389 /* Assets.xcassets */; };
 		84781FBB216219F500F8290D /* WMConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84781FBA216219F500F8290D /* WMConstants.swift */; };
 		84781FBC216219F800F8290D /* WMConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84781FBA216219F500F8290D /* WMConstants.swift */; };
@@ -73,6 +77,10 @@
 		840C191A22AF834600B6C67E /* WMEUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMEUtil.swift; sourceTree = "<group>"; };
 		841E733122B0D39100F489E6 /* WMEAboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMEAboutVC.swift; sourceTree = "<group>"; };
 		841E733222B0D39100F489E6 /* WMEAboutVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WMEAboutVC.xib; sourceTree = "<group>"; };
+		8476247022C3DCCD00E8ADD8 /* d3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = d3.min.js; sourceTree = "<group>"; };
+		8476247522C3E3C500E8ADD8 /* sequences.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = sequences.css; sourceTree = "<group>"; };
+		8476247622C3E3C500E8ADD8 /* googlestyle.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = googlestyle.css; sourceTree = "<group>"; };
+		8476247722C3E3C500E8ADD8 /* RTContent.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = RTContent.css; sourceTree = "<group>"; };
 		84781FBA216219F500F8290D /* WMConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMConstants.swift; sourceTree = "<group>"; };
 		84781FBE2162294300F8290D /* WMEBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMEBaseVC.swift; sourceTree = "<group>"; };
 		84F2843C22AB0E55006E260A /* NSViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewExtensions.swift; sourceTree = "<group>"; };
@@ -144,6 +152,34 @@
 				7D4980ACE5D8CECEA5094051 /* Pods-Wayback MachineTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		8476247222C3E37B00E8ADD8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8476247422C3E39200E8ADD8 /* StyleSheet */,
+				8476247322C3E38500E8ADD8 /* Javascript */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8476247322C3E38500E8ADD8 /* Javascript */ = {
+			isa = PBXGroup;
+			children = (
+				8476247022C3DCCD00E8ADD8 /* d3.min.js */,
+				C38D18FA215EE78D00E95389 /* script.js */,
+			);
+			path = Javascript;
+			sourceTree = "<group>";
+		};
+		8476247422C3E39200E8ADD8 /* StyleSheet */ = {
+			isa = PBXGroup;
+			children = (
+				8476247622C3E3C500E8ADD8 /* googlestyle.css */,
+				8476247722C3E3C500E8ADD8 /* RTContent.css */,
+				8476247522C3E3C500E8ADD8 /* sequences.css */,
+			);
+			path = StyleSheet;
 			sourceTree = "<group>";
 		};
 		84781FBD2162290200F8290D /* Base */ = {
@@ -255,8 +291,8 @@
 				C38D1913215EE8BE00E95389 /* Wayback Machine Extension.entitlements */,
 				C38D18F2215EE78D00E95389 /* SafariExtensionHandler.swift */,
 				C38D1911215EE8A300E95389 /* Classes */,
+				8476247222C3E37B00E8ADD8 /* Resources */,
 				C38D18F9215EE78D00E95389 /* Info.plist */,
-				C38D18FA215EE78D00E95389 /* script.js */,
 				C38D18FC215EE78D00E95389 /* ToolbarItemIcon.pdf */,
 				C38D18FE215EE78D00E95389 /* Wayback_Machine_Extension.entitlements */,
 			);
@@ -546,7 +582,11 @@
 				C38D18FD215EE78D00E95389 /* ToolbarItemIcon.pdf in Resources */,
 				C38D18F8215EE78D00E95389 /* WMEMainVC.xib in Resources */,
 				84781FB92162186700F8290D /* Assets.xcassets in Resources */,
+				8476247122C3DCCD00E8ADD8 /* d3.min.js in Resources */,
+				8476247922C3E3C500E8ADD8 /* googlestyle.css in Resources */,
 				841E733422B0D39100F489E6 /* WMEAboutVC.xib in Resources */,
+				8476247A22C3E3C500E8ADD8 /* RTContent.css in Resources */,
+				8476247822C3E3C500E8ADD8 /* sequences.css in Resources */,
 				C38D18FB215EE78D00E95389 /* script.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -629,13 +669,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Wayback Machine/Pods-Wayback Machine-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SYFlatButton/SYFlatButton.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SYFlatButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
