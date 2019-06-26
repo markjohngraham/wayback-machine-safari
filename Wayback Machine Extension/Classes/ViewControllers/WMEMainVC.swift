@@ -20,10 +20,10 @@ class WMEMainVC: WMEBaseVC {
     func getURL(completion: @escaping (String?) -> Void) {
         if !txtSearch.stringValue.isEmpty {
             completion(txtSearch.stringValue)
-        }
-        
-        WMEUtil.shared.getActivePageURL { (url) in
-            completion(url)
+        } else {
+            WMEUtil.shared.getActivePageURL { (url) in
+                completion(url)
+            }
         }
     }
     
