@@ -4,7 +4,6 @@
 document.addEventListener("DOMContentLoaded", function(event) {
     safari.extension.dispatchMessage("Hello World!");
     safari.self.addEventListener("message", handleMessage);
-    
 });
 
 window.addEventListener("load", function(event) {
@@ -18,12 +17,20 @@ window.onbeforeunload = function(event) {
     safari.extension.dispatchMessage("_onBeforeNavigate");
 }
 
+window.onload = function() {
+    displayRTContent();
+}
+
 function handleMessage(event) {
     if (event.name == "SHOW_BANNER") {
         checkIt(event.message["url"]);
     } else if (event.name == "RADIAL_TREE") {
-        displayRTContent();
-        displayRadialTree(event.message["url"], event.message["data"])
+        document.getElementById("myModal").style.display = "block";
+        document.getElementById("RTloader").style.display = "none";
+        displayRadialTree(event.message["url"], event.message["data"]);
+    } else if (event.name == "DISPLAY_RT_LOADER") {
+        document.getElementById("myModal").style.display = "block";
+        document.getElementById("RTloader").style.display = "block";
     }
 }
 
@@ -308,7 +315,7 @@ function displayRTContent() {
     modal.appendChild(message);
     document.body.appendChild(modal);
     
-    modal.style.display = "block";
+    modal.style.display = "none";
     
     span.onclick = function() {
         modal.style.display = "none";
@@ -316,11 +323,8 @@ function displayRTContent() {
 }
 
 function displayRadialTree(url, data) {
-    console.log("URL", url);
-    console.log("Data", data);
     // if (window.top !== window) return;
-    
-    document.getElementById("RTloader").style.display = "none";
+
     var paths_arr=new Array();
     var j=0;
     for(var i=1;i<data.length;i++){

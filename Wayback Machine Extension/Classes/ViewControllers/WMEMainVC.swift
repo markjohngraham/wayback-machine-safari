@@ -152,6 +152,10 @@ class WMEMainVC: WMEBaseVC {
                 url = url.components(separatedBy: "/")[0]
             }
             
+            WMEUtil.shared.dispatchMessage(messageName: "DISPLAY_RT_LOADER", userInfo: [
+                "visible": true
+            ])
+            
             WMEUtil.shared.getSearchResult(url: url, completion: { (data) in
                 WMEUtil.shared.dispatchMessage(messageName: "RADIAL_TREE", userInfo: [
                     "url": url,
