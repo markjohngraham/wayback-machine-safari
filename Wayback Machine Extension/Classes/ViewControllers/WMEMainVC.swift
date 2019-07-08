@@ -27,36 +27,48 @@ class WMEMainVC: WMEBaseVC {
         }
     }
     
-    func showMessage(msg: String, info: String) {
-        DispatchQueue.main.async {
-            let alert = NSAlert()
-            alert.messageText = msg
-            alert.informativeText = info
-            alert.alertStyle = .warning
-            alert.addButton(withTitle: "OK")
-            alert.runModal()
-        }
-    }
-    
     @IBAction func savePageNowClicked(_ sender: Any) {
         getURL { (url) in
             guard let url = url else {
-                self.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
+                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
                 return
             }
-            WMEUtil.shared.openTabWithURL(url: "\(BaseURL)/save/\(url)")
+
+            guard let userData = WMEGlobal.shared.getUserData(),
+                let loggedInUser = userData["logged-in-user"] as? HTTPCookie,
+                let loggedInSig = userData["logged-in-sig"] as? HTTPCookie else {
+                
+                return
+            }
+            
+            WMEAPIManager.shared.requestCapture(url: url, logged_in_user: loggedInUser, logged_in_sig: loggedInSig, completion: { (jobId) in
+                
+                if jobId == nil {
+                    WMEUtil.shared.showMessage(msg: "Error", info: "Archiving failed")
+                    return
+                }
+                
+                WMEAPIManager.shared.requestCaptureStatus(job_id: jobId!, logged_in_user: loggedInUser, logged_in_sig: loggedInSig, completion: { (url, error) in
+                    
+                    if url == nil {
+                        WMEUtil.shared.showMessage(msg: "Error", info: "\(error!)")
+                    } else {
+                        WMEUtil.shared.openTabWithURL(url: url!)
+                    }
+                })
+            })
         }
     }
     
     @IBAction func recentVersionClicked(_ sender: Any) {
         getURL { (url) in
             guard let url = url else {
-                self.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab.")
+                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab.")
                 return
             }
             WMEUtil.shared.wmAvailabilityCheck(url: url, completion: { (waybackURL, url) in
                 guard waybackURL != nil else {
-                    self.showMessage(msg: "Not in Internet Archive", info: "The URL is not in Internet Archive. We would suggest to archive the URL by clicking Save Page Now")
+                    WMEUtil.shared.showMessage(msg: "Not in Internet Archive", info: "The URL is not in Internet Archive. We would suggest to archive the URL by clicking Save Page Now")
                     return
                 }
                 WMEUtil.shared.openTabWithURL(url: "\(BaseURL)/web/2/\(url)")
@@ -67,12 +79,12 @@ class WMEMainVC: WMEBaseVC {
     @IBAction func firstVersionClicked(_ sender: Any) {
         getURL { (url) in
             guard let url = url else {
-                self.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab.")
+                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab.")
                 return
             }
             WMEUtil.shared.wmAvailabilityCheck(url: url, completion: { (waybackURL, url) in
                 guard waybackURL != nil else {
-                    self.showMessage(msg: "Not in Internet Archive", info: "The URL is not in Internet Archive. We would suggest to archive the URL by clicking Save Page Now")
+                    WMEUtil.shared.showMessage(msg: "Not in Internet Archive", info: "The URL is not in Internet Archive. We would suggest to archive the URL by clicking Save Page Now")
                     return
                 }
                 WMEUtil.shared.openTabWithURL(url: "\(BaseURL)/web/0/\(url)")
@@ -83,12 +95,12 @@ class WMEMainVC: WMEBaseVC {
     @IBAction func overviewClicked(_ sender: Any) {
         getURL { (url) in
             guard let url = url else {
-                self.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab.")
+                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab.")
                 return
             }
             WMEUtil.shared.wmAvailabilityCheck(url: url, completion: { (waybackURL, url) in
                 guard waybackURL != nil else {
-                    self.showMessage(msg: "Not in Internet Archive", info: "The URL is not in Internet Archive. We would suggest to archive the URL by clicking Save Page Now")
+                    WMEUtil.shared.showMessage(msg: "Not in Internet Archive", info: "The URL is not in Internet Archive. We would suggest to archive the URL by clicking Save Page Now")
                     return
                 }
                 WMEUtil.shared.openTabWithURL(url: "\(BaseURL)/web/*/\(url)")
@@ -99,7 +111,7 @@ class WMEMainVC: WMEBaseVC {
     @IBAction func alexaClicked(_ sender: Any) {
         getURL { (url) in
             guard let url = url else {
-                self.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
+                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
                 return
             }
             WMEUtil.shared.openTabWithURL(url: "https://www.alexa.com/siteinfo/\(url)")
@@ -109,7 +121,7 @@ class WMEMainVC: WMEBaseVC {
     @IBAction func whoisClicked(_ sender: Any) {
         getURL { (url) in
             guard let url = url else {
-                self.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
+                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
                 return
             }
             WMEUtil.shared.openTabWithURL(url: "https://www.whois.com/whois/\(url)")
@@ -119,7 +131,7 @@ class WMEMainVC: WMEBaseVC {
     @IBAction func tweetsClicked(_ sender: Any) {
         getURL { (url) in
             guard var url = url else {
-                self.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
+                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
                 return
             }
             
@@ -141,7 +153,7 @@ class WMEMainVC: WMEBaseVC {
     @IBAction func sitemapClicked(_ sender: Any) {
         getURL { (url) in
             guard var url = url else {
-                self.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
+                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
                 return
             }
             
@@ -156,7 +168,7 @@ class WMEMainVC: WMEBaseVC {
                 "visible": true
             ])
             
-            WMEUtil.shared.getSearchResult(url: url, completion: { (data) in
+            WMEAPIManager.shared.getSearchResult(url: url, completion: { (data) in
                 WMEUtil.shared.dispatchMessage(messageName: "RADIAL_TREE", userInfo: [
                     "url": url,
                     "data": data
@@ -169,7 +181,7 @@ class WMEMainVC: WMEBaseVC {
     @IBAction func facebookClicked(_ sender: Any) {
         getURL { (url) in
             guard let url = url else {
-                self.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
+                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
                 return
             }
             WMEUtil.shared.openTabWithURL(url: "https://www.facebook.com/sharer/sharer.php?u=\(url)")
@@ -179,7 +191,7 @@ class WMEMainVC: WMEBaseVC {
     @IBAction func twitterClicked(_ sender: Any) {
         getURL { (url) in
             guard let url = url else {
-                self.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
+                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
                 return
             }
             WMEUtil.shared.openTabWithURL(url: "http://twitter.com/share?url=\(url)")
@@ -189,7 +201,7 @@ class WMEMainVC: WMEBaseVC {
     @IBAction func linkedinClicked(_ sender: Any) {
         getURL { (url) in
             guard let url = url else {
-                self.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
+                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
                 return
             }
             WMEUtil.shared.openTabWithURL(url: "https://www.linkedin.com/shareArticle?url=\(url)")

@@ -31,7 +31,11 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     }
     
     override func popoverViewController() -> SFSafariExtensionViewController {
-        return WMEMainVC.shared
+        if WMEGlobal.shared.isLoggedIn() {
+            return WMEMainVC.shared
+        } else {
+            return WMELoginVC.shared
+        }
     }
     
     func handleBeforeNavigate() {

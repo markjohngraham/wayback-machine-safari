@@ -16,6 +16,17 @@ class WMEUtil: NSObject {
         return shared
     }()
     
+    func showMessage(msg: String, info: String) {
+        DispatchQueue.main.async {
+            let alert = NSAlert()
+            alert.messageText = msg
+            alert.informativeText = info
+            alert.alertStyle = .warning
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
+        }
+    }
+    
     func dispatchMessage(messageName: String, userInfo: [String: Any]) {
         SFSafariApplication.getActiveWindow(completionHandler: {(activeWindow) in
             activeWindow?.getActiveTab(completionHandler: {(activeTab) in
@@ -149,21 +160,6 @@ class WMEUtil: NSObject {
         }
         
         return originalURL!
-    }
-    
-    func getSearchResult(url: String, completion: @escaping ([Any]) -> Void) {
-        let url = "https://web.archive.org/cdx/search/cdx?url=\(url)/&fl=timestamp,original&matchType=prefix&filter=statuscode:200&filter=mimetype:text/html&output=json"
-        
-        Alamofire.request(url, method: .get)
-        .responseJSON { (response) in
-            switch response.result {
-            case .success(let data):
-                completion(data as! [Any])
-            case .failure(let error):
-                print(error.localizedDescription)
-                completion([])
-            }
-        }
     }
     
 }

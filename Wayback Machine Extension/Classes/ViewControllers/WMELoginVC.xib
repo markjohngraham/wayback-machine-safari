@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="WMELoginVC" customModule="Wayback_Machine_Extension" customModuleProvider="target">
+            <connections>
+                <outlet property="txtEmail" destination="ZSf-24-bOS" id="gra-vw-Kgr"/>
+                <outlet property="txtPassword" destination="Unj-gS-T29" id="75F-Sb-c06"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="536"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9Kn-HO-LeY">
+                    <rect key="frame" x="30" y="197" width="75" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="75" id="SNR-C4-Rd6"/>
+                        <constraint firstAttribute="height" constant="30" id="e6F-r9-GeD"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" title="Login" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="eST-U6-GLm">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <color key="contentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                            <color key="value" red="0.64313725490196072" green="0.13333333333333333" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="loginClicked:" target="-2" id="X5r-gZ-Yge"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O0g-FP-oLe">
+                    <rect key="frame" x="145" y="197" width="75" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Hrt-lJ-LUE"/>
+                        <constraint firstAttribute="width" constant="75" id="PnR-2g-K1V"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" title="Cancel" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="pfA-Rm-9f4">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <color key="contentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                            <color key="value" red="0.64313725489999995" green="0.1333333333" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="cancelClicked:" target="-2" id="PZB-Rc-z7R"/>
+                    </connections>
+                </button>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZSf-24-bOS">
+                    <rect key="frame" x="15" y="337" width="220" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="tEg-Pu-RSM"/>
+                    </constraints>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="email" bezelStyle="round" id="Zik-Ud-fxy">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dn8-z9-cdk">
+                    <rect key="frame" x="13" y="402" width="224" height="19"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Login to Internet Archive" id="m8w-DF-cqb">
+                        <font key="font" metaFont="system" size="16"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Unj-gS-T29">
+                    <rect key="frame" x="15" y="287" width="220" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="VHf-zJ-9CB"/>
+                    </constraints>
+                    <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="password" usesSingleLineMode="YES" bezelStyle="round" id="D9c-pp-Fat">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        <allowedInputSourceLocales>
+                            <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                        </allowedInputSourceLocales>
+                    </secureTextFieldCell>
+                </secureTextField>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yxq-jJ-2NE">
+                    <rect key="frame" x="5" y="451" width="240" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Yxq-jJ-2NE" secondAttribute="height" multiplier="12:4" id="4vZ-DX-Sg2"/>
+                        <constraint firstAttribute="width" constant="240" id="boJ-g3-X3d"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="logo" id="m9f-yW-15D"/>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="9Kn-HO-LeY" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="30" id="1hd-t7-t7V"/>
+                <constraint firstAttribute="trailing" secondItem="dn8-z9-cdk" secondAttribute="trailing" constant="15" id="5U5-qQ-pHF"/>
+                <constraint firstItem="dn8-z9-cdk" firstAttribute="top" secondItem="Yxq-jJ-2NE" secondAttribute="bottom" constant="30" id="9vY-vY-hGi"/>
+                <constraint firstItem="Yxq-jJ-2NE" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="5" id="9ya-oi-NDF"/>
+                <constraint firstItem="O0g-FP-oLe" firstAttribute="top" secondItem="Unj-gS-T29" secondAttribute="bottom" constant="60" id="B8N-Mj-8f5"/>
+                <constraint firstItem="9Kn-HO-LeY" firstAttribute="top" secondItem="Unj-gS-T29" secondAttribute="bottom" constant="60" id="Ka3-pW-IHN"/>
+                <constraint firstItem="Unj-gS-T29" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="15" id="PCd-8O-opt"/>
+                <constraint firstItem="Yxq-jJ-2NE" firstAttribute="width" secondItem="Yxq-jJ-2NE" secondAttribute="height" multiplier="12:4" id="PRz-qK-Zsl"/>
+                <constraint firstAttribute="trailing" secondItem="ZSf-24-bOS" secondAttribute="trailing" constant="15" id="XpN-5o-K8N"/>
+                <constraint firstAttribute="trailing" secondItem="Unj-gS-T29" secondAttribute="trailing" constant="15" id="ihX-dF-oQ6"/>
+                <constraint firstItem="ZSf-24-bOS" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="15" id="j5t-oM-RPZ"/>
+                <constraint firstItem="dn8-z9-cdk" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="15" id="oXq-Wn-Xhi"/>
+                <constraint firstAttribute="trailing" secondItem="Yxq-jJ-2NE" secondAttribute="trailing" constant="5" id="pGI-oG-Ovi"/>
+                <constraint firstItem="Yxq-jJ-2NE" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="5" id="qPI-e9-SOx"/>
+                <constraint firstItem="Unj-gS-T29" firstAttribute="top" secondItem="ZSf-24-bOS" secondAttribute="bottom" constant="20" id="rI4-q9-j4I"/>
+                <constraint firstAttribute="trailing" secondItem="O0g-FP-oLe" secondAttribute="trailing" constant="30" id="wHr-2y-hop"/>
+                <constraint firstItem="ZSf-24-bOS" firstAttribute="top" secondItem="dn8-z9-cdk" secondAttribute="bottom" constant="35" id="yT5-m6-93R"/>
+            </constraints>
+        </customView>
+    </objects>
+    <resources>
+        <image name="logo" width="240" height="100"/>
+    </resources>
+</document>
