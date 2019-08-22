@@ -8,7 +8,7 @@
 import Cocoa
 import SafariServices
 
-class WMMainVC: WMBaseVC {
+class WMMainVC: WMBaseVC, NSWindowDelegate {
 
     @IBOutlet weak var txtVersion: NSTextField!
     
@@ -20,7 +20,13 @@ class WMMainVC: WMBaseVC {
     }
 
     override func viewDidAppear() {
+        self.view.window?.delegate = self
         self.view.window?.styleMask = [NSWindow.StyleMask.closable, NSWindow.StyleMask.titled, NSWindow.StyleMask.miniaturizable]
+    }
+    
+    func windowShouldClose(_ sender: NSWindow) -> Bool {
+        NSApplication.shared.terminate(self)
+        return true
     }
     
     //- MARK: Actions
