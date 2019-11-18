@@ -17,6 +17,36 @@ class WMEMainVC: WMEBaseVC {
     //- MARK: Actions
     @IBOutlet weak var txtSearch: NSTextField!
     
+    override func viewDidAppear() {
+        
+        if let userData = WMEGlobal.shared.getUserData(),
+            let isLoggedin = userData["logged-in"] as? Bool,
+            let email = userData["email"] as? String,
+            let password = userData["password"] as? String,
+            isLoggedin == true {
+            
+            WMEAPIManager.shared.login(email: email, password: password) { (loggedInUser, loggedInSig) in
+                
+                if let loggedInUser = loggedInUser, let loggedInSig = loggedInSig {
+                    WMEGlobal.shared.saveUserData(userData: [
+                        "email": email,
+                        "password": password,
+                        "logged-in-user": loggedInUser,
+                        "logged-in-sig": loggedInSig,
+                        "logged-in": true
+                    ])
+                } else {
+                    let loginVC = WMELoginVC.init(nibName: "WMELoginVC", bundle: nil)
+                    self.view.window?.contentViewController = loginVC
+                }
+            }
+        } else {
+            let loginVC = WMELoginVC.init(nibName: "WMELoginVC", bundle: nil)
+            self.view.window?.contentViewController = loginVC
+        }
+        
+    }
+    
     func getURL(completion: @escaping (String?) -> Void) {
         if !txtSearch.stringValue.isEmpty {
             completion(txtSearch.stringValue)

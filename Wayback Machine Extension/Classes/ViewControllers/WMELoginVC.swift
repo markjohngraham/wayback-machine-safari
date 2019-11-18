@@ -43,6 +43,8 @@ class WMELoginVC: WMEBaseVC {
             }
             
             WMEGlobal.shared.saveUserData(userData: [
+                "email": email,
+                "password": password,
                 "logged-in-user": loggedInUser,
                 "logged-in-sig": loggedInSig,
                 "logged-in": true
