@@ -10,19 +10,22 @@ import SafariServices
 class SafariExtensionHandler: SFSafariExtensionHandler {
     
     override func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String : Any]?) {
+        NSLog("*** messageReceived(): %@", messageName)  // DEBUG
         // This method will be called when a content script provided by your extension calls safari.extension.dispatchMessage("message").
         page.getPropertiesWithCompletionHandler { properties in
-            NSLog("The extension received a message (\(messageName)) from a script injected into (\(String(describing: properties?.url))) with userInfo (\(userInfo ?? [:]))")
+            NSLog("*** The extension received a message (\(messageName)) from a script injected into (\(String(describing: properties?.url))) with userInfo (\(userInfo ?? [:]))")
         }
         
         if (messageName == "_onBeforeNavigate") {
-            handleBeforeNavigate()
+            // NOTE: Commenting this out will prevent keychain alert during auth logins,
+            // but will also disable auto-checking the archive when http GET returns an error status code.
+            //handleBeforeNavigate()
         }
     }
     
     override func toolbarItemClicked(in window: SFSafariWindow) {
         // This method will be called when your toolbar item is clicked.
-        NSLog("The extension's toolbar item was clicked")
+        NSLog("*** The extension's toolbar item was clicked")
     }
     
     override func validateToolbarItem(in window: SFSafariWindow, validationHandler: @escaping ((Bool, String) -> Void)) {
@@ -39,14 +42,14 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     }
     
     func handleBeforeNavigate() {
+        NSLog("*** handleBeforeNavigate()")  // DEBUG
         WMEUtil.shared.getActivePageURL { (url) in
             guard let url = url else { return }
             self.getResponse(url: url, completion: { (status) in
                 guard let status = status else { return }
-                if (HTTPFailCodes.index(of: status) == nil) {
-                    return
-                }
-                
+                // if success (200) or not one of the fail codes then return, else check the archive
+                // FIXME: Need to handle (401) Unauthorized, but before the login prompt?
+                if (HTTPFailCodes.index(of: status) == nil) { return }
                 WMEUtil.shared.wmAvailabilityCheck(url: url, completion: { (waybackURL, url) in
                     guard let waybackURL = waybackURL else { return }
                     SFSafariApplication.getActiveWindow(completionHandler: {(activeWindow) in
@@ -63,6 +66,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     }
     
     func getResponse(url: String?, completion: @escaping (Int?) -> Void) {
+        NSLog("*** getResponse() url: %@", url ?? "")  // DEBUG
         if (url == nil) {return}
         
         var request = URLRequest(url: URL(string: url!)!)
@@ -71,13 +75,14 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             
             guard let _ = data, error == nil else {
-                print("error=\(String(describing: error))")
+                NSLog("*** error: \(String(describing: error))")
                 completion(nil)
                 return
             }
             
             let httpStatus = response as? HTTPURLResponse
-            
+            NSLog("*** statusCode: \(String(describing: httpStatus?.statusCode))")  // DEBUG
+            NSLog("*** allHeaderFields: \(String(describing: httpStatus?.allHeaderFields))")  // DEBUG
             completion(httpStatus?.statusCode)
         }
         

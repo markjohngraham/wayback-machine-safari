@@ -21,6 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @IBAction func openSupportWebsite(_ sender: Any) {
+        NSLog("*** openSupportWebsite()")  // DEBUG
         NSWorkspace.shared.open(URL(string: SupportURL)!)
     }
 

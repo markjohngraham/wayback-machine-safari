@@ -20,7 +20,7 @@ class WMEAPIManager: NSObject {
                 case .success(let data):
                     completion(data as! [Any])
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    NSLog("*** ERROR: %@", error.localizedDescription)
                     completion([])
                 }
         }
@@ -52,7 +52,7 @@ class WMEAPIManager: NSObject {
                         completion(nil)
                     }
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    NSLog("*** ERROR: %@", error.localizedDescription)
                     completion(nil)
                 }
         }
