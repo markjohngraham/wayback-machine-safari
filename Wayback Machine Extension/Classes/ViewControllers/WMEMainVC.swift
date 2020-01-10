@@ -18,7 +18,8 @@ class WMEMainVC: WMEBaseVC {
     @IBOutlet weak var txtSearch: NSTextField!
     
     override func viewDidAppear() {
-        
+        NSLog("*** WMEMainVC.viewDidAppear()")  // DEBUG
+
         if let userData = WMEGlobal.shared.getUserData(),
             let isLoggedin = userData["logged-in"] as? Bool,
             let email = userData["email"] as? String,
@@ -71,7 +72,7 @@ class WMEMainVC: WMEBaseVC {
                 return
             }
             
-            WMEAPIManager.shared.requestCapture(url: url, logged_in_user: loggedInUser, logged_in_sig: loggedInSig, completion: { (jobId) in
+            WMEAPIManager.shared.requestCapture(url: url, logged_in_user: loggedInUser, logged_in_sig: loggedInSig, options:[.allErrors], completion: { (jobId) in
                 
                 if jobId == nil {
                     WMEUtil.shared.showMessage(msg: "Error", info: "Archiving failed")
@@ -79,11 +80,10 @@ class WMEMainVC: WMEBaseVC {
                 }
                 
                 WMEAPIManager.shared.requestCaptureStatus(job_id: jobId!, logged_in_user: loggedInUser, logged_in_sig: loggedInSig, completion: { (url, error) in
-                    
-                    if url == nil {
-                        WMEUtil.shared.showMessage(msg: "Error", info: "\(error!)")
+                    if let url = url {
+                        WMEUtil.shared.openTabWithURL(url: url)
                     } else {
-                        WMEUtil.shared.openTabWithURL(url: url!)
+                        WMEUtil.shared.showMessage(msg: "Error", info: (error ?? "Unknown"))
                     }
                 })
             })
