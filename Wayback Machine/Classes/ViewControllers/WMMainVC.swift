@@ -16,7 +16,7 @@ class WMMainVC: WMBaseVC, NSWindowDelegate {
         super.viewDidLoad()
         
         self.view.wantsLayer = true
-        txtVersion.stringValue = VERSION
+        txtVersion.stringValue = "\(VERSION) (\(BUILD))"
     }
 
     override func viewDidAppear() {

@@ -9,8 +9,11 @@ import Cocoa
 
 class WMEAboutVC: WMEBaseVC {
 
+    @IBOutlet weak var txtVersion: NSTextField!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        txtVersion.stringValue = "\(VERSION) (\(BUILD))"
     }
     
     @IBAction func backClicked(_ sender: Any) {
