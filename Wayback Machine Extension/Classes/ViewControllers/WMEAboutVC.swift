@@ -20,5 +20,9 @@ class WMEAboutVC: WMEBaseVC {
         let mainVC = WMEMainVC.init(nibName: "WMEMainVC", bundle: nil)
         self.view.window?.contentViewController = mainVC
     }
-    
+
+    /// Opens the help.archive.org webpage.
+    @IBAction func helpClicked(_ sender: Any) {
+        WMEUtil.shared.openTabWithURL(url: "https://help.archive.org")
+    }
 }
