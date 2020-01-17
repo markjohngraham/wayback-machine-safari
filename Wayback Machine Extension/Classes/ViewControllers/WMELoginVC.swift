@@ -54,9 +54,21 @@ class WMELoginVC: WMEBaseVC {
             self.view.window?.contentViewController = mainVC
         }
     }
-    
-    @IBAction func cancelClicked(_ sender: Any) {
-        
+
+    /// Opens the sign up webpage.
+    @IBAction func signupClicked(_ sender: Any) {
+        WMEUtil.shared.openTabWithURL(url: "https://archive.org/account/signup?referer=SafariExtension")
     }
-    
+
+    /// Opens the forgot password webpage.
+    @IBAction func forgotPasswordClicked(_ sender: Any) {
+        WMEUtil.shared.openTabWithURL(url: "https://archive.org/account/forgot-password")
+    }
+
+    /// Go to About view
+    @IBAction func aboutClicked(_ sender: Any) {
+        let aboutVC = WMEAboutVC.init(nibName: "WMEAboutVC", bundle: nil)
+        self.view.window?.contentViewController = aboutVC
+    }
+
 }

@@ -242,5 +242,18 @@ class WMEMainVC: WMEBaseVC {
         let aboutVC = WMEAboutVC.init(nibName: "WMEAboutVC", bundle: nil)
         self.view.window?.contentViewController = aboutVC
     }
-    
+
+    @IBAction func logoutClicked(_ sender: Any) {
+        // clear login data
+        WMEGlobal.shared.saveUserData(userData: [
+            "email": nil,
+            "password": nil,
+            "logged-in-user": nil,
+            "logged-in-sig": nil,
+            "logged-in": false
+        ])
+        // go to Login view
+        self.view.window?.contentViewController = WMEMainVC.init(nibName: "WMELoginVC", bundle: nil)
+    }
+
 }
