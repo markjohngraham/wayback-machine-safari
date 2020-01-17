@@ -33,8 +33,8 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="225" translatesAutoresizingMaskIntoConstraints="NO" id="SOs-mS-orT">
-                    <rect key="frame" x="3" y="474" width="244" height="57"/>
-                    <textFieldCell key="cell" lineBreakMode="charWrapping" alignment="center" id="zFP-wq-br6">
+                    <rect key="frame" x="83" y="474" width="159" height="57"/>
+                    <textFieldCell key="cell" lineBreakMode="charWrapping" alignment="left" id="zFP-wq-br6">
                         <font key="font" metaFont="systemBold" size="16"/>
                         <string key="title">The Official 
 Wayback Machine 
@@ -44,7 +44,7 @@ Extension</string>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="33" translatesAutoresizingMaskIntoConstraints="NO" id="8g5-ek-KqW">
-                    <rect key="frame" x="11" y="352" width="228" height="102"/>
+                    <rect key="frame" x="13" y="352" width="224" height="102"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="102" id="zCu-tq-74Z"/>
                     </constraints>
@@ -56,7 +56,7 @@ Extension</string>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OER-MS-8wU">
-                    <rect key="frame" x="6" y="313" width="60" height="19"/>
+                    <rect key="frame" x="8" y="313" width="60" height="19"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="License" id="7qn-PD-cqn">
                         <font key="font" metaFont="systemSemibold" size="15"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -64,7 +64,7 @@ Extension</string>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="247" translatesAutoresizingMaskIntoConstraints="NO" id="gxb-fb-8gY">
-                    <rect key="frame" x="11" y="274" width="228" height="34"/>
+                    <rect key="frame" x="13" y="274" width="224" height="34"/>
                     <textFieldCell key="cell" id="OFC-iv-vYR">
                         <font key="font" metaFont="system"/>
                         <string key="title">Copyright © 2017-2020 
@@ -74,7 +74,7 @@ Internet Archive, AGPLv3</string>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QhQ-kr-LNY">
-                    <rect key="frame" x="6" y="245" width="58" height="19"/>
+                    <rect key="frame" x="8" y="245" width="58" height="19"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Version" id="y3L-Oj-UJQ">
                         <font key="font" metaFont="systemSemibold" size="15"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -82,7 +82,7 @@ Internet Archive, AGPLv3</string>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="247" translatesAutoresizingMaskIntoConstraints="NO" id="Qy3-H5-dZu">
-                    <rect key="frame" x="11" y="223" width="11" height="17"/>
+                    <rect key="frame" x="13" y="223" width="11" height="17"/>
                     <textFieldCell key="cell" title="?" id="THq-mW-6QP">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -90,7 +90,7 @@ Internet Archive, AGPLv3</string>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9AH-Az-Zsi">
-                    <rect key="frame" x="6" y="194" width="63" height="19"/>
+                    <rect key="frame" x="8" y="194" width="63" height="19"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Support" id="5bQ-r2-hYk">
                         <font key="font" metaFont="systemSemibold" size="15"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -98,7 +98,7 @@ Internet Archive, AGPLv3</string>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="247" translatesAutoresizingMaskIntoConstraints="NO" id="keP-4W-aaV">
-                    <rect key="frame" x="11" y="172" width="106" height="17"/>
+                    <rect key="frame" x="13" y="172" width="106" height="17"/>
                     <textFieldCell key="cell" title="info@archive.org" id="elG-qk-hzp">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -134,38 +134,49 @@ Internet Archive, AGPLv3</string>
                         <action selector="helpClicked:" target="-2" id="2vk-lH-4Hi"/>
                     </connections>
                 </button>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mej-br-Ayp">
+                    <rect key="frame" x="25" y="478" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Mej-br-Ayp" secondAttribute="height" multiplier="1:1" id="P0o-Pj-1cn"/>
+                        <constraint firstAttribute="width" constant="50" id="kUy-fl-Ssj"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Applogo" id="qJW-GE-1X5"/>
+                </imageView>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="R8F-wZ-Fj8" secondAttribute="trailing" priority="750" constant="30" id="4HN-ph-yFG"/>
+                <constraint firstItem="Mej-br-Ayp" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="25" id="57I-tH-9yI"/>
                 <constraint firstItem="R8F-wZ-Fj8" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="59M-dy-gqt"/>
                 <constraint firstItem="8g5-ek-KqW" firstAttribute="top" secondItem="SOs-mS-orT" secondAttribute="bottom" constant="20" id="9iK-YX-Beq"/>
                 <constraint firstItem="VtI-1A-CC6" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="10" id="Bgd-eM-RbG"/>
                 <constraint firstItem="Qy3-H5-dZu" firstAttribute="top" secondItem="QhQ-kr-LNY" secondAttribute="bottom" constant="5" id="F5p-ht-WFA"/>
                 <constraint firstItem="R8F-wZ-Fj8" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" priority="750" constant="30" id="HsD-GS-nqU"/>
-                <constraint firstItem="QhQ-kr-LNY" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="8" id="J3c-0R-lWx"/>
-                <constraint firstAttribute="trailing" secondItem="8g5-ek-KqW" secondAttribute="trailing" constant="13" id="JkY-N7-Lz6"/>
-                <constraint firstItem="OER-MS-8wU" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="8" id="LMG-ZY-2Mh"/>
-                <constraint firstItem="gxb-fb-8gY" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="13" id="MQz-IH-Arf"/>
+                <constraint firstItem="QhQ-kr-LNY" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="10" id="J3c-0R-lWx"/>
+                <constraint firstAttribute="trailing" secondItem="8g5-ek-KqW" secondAttribute="trailing" constant="15" id="JkY-N7-Lz6"/>
+                <constraint firstItem="OER-MS-8wU" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="10" id="LMG-ZY-2Mh"/>
+                <constraint firstItem="gxb-fb-8gY" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="15" id="MQz-IH-Arf"/>
                 <constraint firstItem="VtI-1A-CC6" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="5" id="NqZ-Sc-dAC"/>
                 <constraint firstItem="9AH-Az-Zsi" firstAttribute="top" secondItem="Qy3-H5-dZu" secondAttribute="bottom" constant="10" id="XWR-hD-gXj"/>
-                <constraint firstAttribute="trailing" secondItem="gxb-fb-8gY" secondAttribute="trailing" constant="13" id="ZjG-UI-UPw"/>
-                <constraint firstItem="SOs-mS-orT" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="5" id="cPd-Sy-Xdc"/>
-                <constraint firstItem="keP-4W-aaV" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="13" id="f4p-Rd-b9h"/>
-                <constraint firstItem="Qy3-H5-dZu" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="13" id="faH-2U-ph6"/>
+                <constraint firstAttribute="trailing" secondItem="gxb-fb-8gY" secondAttribute="trailing" constant="15" id="ZjG-UI-UPw"/>
+                <constraint firstItem="keP-4W-aaV" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="15" id="f4p-Rd-b9h"/>
+                <constraint firstItem="Qy3-H5-dZu" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="15" id="faH-2U-ph6"/>
                 <constraint firstItem="keP-4W-aaV" firstAttribute="top" secondItem="9AH-Az-Zsi" secondAttribute="bottom" constant="5" id="frc-vm-lGg"/>
-                <constraint firstAttribute="trailing" secondItem="SOs-mS-orT" secondAttribute="trailing" constant="5" id="ft2-2f-sGL"/>
+                <constraint firstAttribute="trailing" secondItem="SOs-mS-orT" secondAttribute="trailing" constant="10" id="ft2-2f-sGL"/>
                 <constraint firstItem="SOs-mS-orT" firstAttribute="top" secondItem="VtI-1A-CC6" secondAttribute="bottom" constant="15" id="ghx-qz-IMg"/>
                 <constraint firstItem="OER-MS-8wU" firstAttribute="top" secondItem="8g5-ek-KqW" secondAttribute="bottom" constant="20" id="iQz-Lg-Hbc"/>
-                <constraint firstItem="8g5-ek-KqW" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="13" id="lCT-Yg-Ccw"/>
-                <constraint firstItem="9AH-Az-Zsi" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="8" id="m1j-Jb-GBr"/>
+                <constraint firstItem="8g5-ek-KqW" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="15" id="lCT-Yg-Ccw"/>
+                <constraint firstItem="9AH-Az-Zsi" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="10" id="m1j-Jb-GBr"/>
                 <constraint firstItem="QhQ-kr-LNY" firstAttribute="top" secondItem="gxb-fb-8gY" secondAttribute="bottom" constant="10" id="oHz-LG-vh4"/>
+                <constraint firstItem="SOs-mS-orT" firstAttribute="leading" secondItem="Mej-br-Ayp" secondAttribute="trailing" constant="10" id="oS8-8L-3cB"/>
                 <constraint firstAttribute="bottom" secondItem="R8F-wZ-Fj8" secondAttribute="bottom" constant="20" id="rbU-Ws-XNJ"/>
+                <constraint firstItem="SOs-mS-orT" firstAttribute="centerY" secondItem="Mej-br-Ayp" secondAttribute="centerY" id="xxO-u4-9UR"/>
                 <constraint firstItem="gxb-fb-8gY" firstAttribute="top" secondItem="OER-MS-8wU" secondAttribute="bottom" constant="5" id="zK0-ph-2nR"/>
             </constraints>
             <point key="canvasLocation" x="130" y="154"/>
         </customView>
     </objects>
     <resources>
+        <image name="Applogo" width="128" height="128"/>
         <image name="back" width="80" height="80"/>
     </resources>
 </document>
