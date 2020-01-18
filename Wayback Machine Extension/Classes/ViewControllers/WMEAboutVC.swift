@@ -19,10 +19,10 @@ class WMEAboutVC: WMEBaseVC {
     @IBAction func backClicked(_ sender: Any) {
         if WMEGlobal.shared.isLoggedIn() {
             // return to Main if logged in
-            self.view.window?.contentViewController = WMEMainVC.init(nibName: "WMEMainVC", bundle: nil)
+            self.view.window?.contentViewController = WMEMainVC()
         } else {
             // return to Login if logged out
-            self.view.window?.contentViewController = WMEMainVC.init(nibName: "WMELoginVC", bundle: nil)
+            self.view.window?.contentViewController = WMELoginVC()
         }
     }
 

@@ -44,19 +44,20 @@ Extension</string>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="33" translatesAutoresizingMaskIntoConstraints="NO" id="8g5-ek-KqW">
-                    <rect key="frame" x="13" y="352" width="224" height="102"/>
+                    <rect key="frame" x="13" y="314" width="224" height="140"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="102" id="zCu-tq-74Z"/>
+                        <constraint firstAttribute="height" constant="140" id="c8a-cf-Mn7"/>
                     </constraints>
-                    <textFieldCell key="cell" id="rcW-xP-Yoy">
+                    <textFieldCell key="cell" alignment="left" id="rcW-xP-Yoy">
                         <font key="font" metaFont="system"/>
-                        <string key="title">The Internet Archive presents The Official WayBack Machine Extension. With the power of the WayBack Machine, we let you go in time to see how a URL has changed and evolved through the history of the Web!</string>
+                        <string key="title">The Internet Archive presents 
+The Official WayBack Machine Extension. With the power of the WayBack Machine, we let you go in time to see how a URL has changed and evolved through the history of the Web!</string>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OER-MS-8wU">
-                    <rect key="frame" x="8" y="313" width="60" height="19"/>
+                    <rect key="frame" x="8" y="275" width="60" height="19"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="License" id="7qn-PD-cqn">
                         <font key="font" metaFont="systemSemibold" size="15"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -64,7 +65,7 @@ Extension</string>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="247" translatesAutoresizingMaskIntoConstraints="NO" id="gxb-fb-8gY">
-                    <rect key="frame" x="13" y="274" width="224" height="34"/>
+                    <rect key="frame" x="13" y="236" width="224" height="34"/>
                     <textFieldCell key="cell" id="OFC-iv-vYR">
                         <font key="font" metaFont="system"/>
                         <string key="title">Copyright © 2017-2020 
@@ -74,7 +75,7 @@ Internet Archive, AGPLv3</string>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QhQ-kr-LNY">
-                    <rect key="frame" x="8" y="245" width="58" height="19"/>
+                    <rect key="frame" x="8" y="207" width="58" height="19"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Version" id="y3L-Oj-UJQ">
                         <font key="font" metaFont="systemSemibold" size="15"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -82,7 +83,7 @@ Internet Archive, AGPLv3</string>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="247" translatesAutoresizingMaskIntoConstraints="NO" id="Qy3-H5-dZu">
-                    <rect key="frame" x="13" y="223" width="11" height="17"/>
+                    <rect key="frame" x="13" y="185" width="11" height="17"/>
                     <textFieldCell key="cell" title="?" id="THq-mW-6QP">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -90,7 +91,7 @@ Internet Archive, AGPLv3</string>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9AH-Az-Zsi">
-                    <rect key="frame" x="8" y="194" width="63" height="19"/>
+                    <rect key="frame" x="8" y="156" width="63" height="19"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Support" id="5bQ-r2-hYk">
                         <font key="font" metaFont="systemSemibold" size="15"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -98,7 +99,7 @@ Internet Archive, AGPLv3</string>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="247" translatesAutoresizingMaskIntoConstraints="NO" id="keP-4W-aaV">
-                    <rect key="frame" x="13" y="172" width="106" height="17"/>
+                    <rect key="frame" x="13" y="134" width="106" height="17"/>
                     <textFieldCell key="cell" title="info@archive.org" id="elG-qk-hzp">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>

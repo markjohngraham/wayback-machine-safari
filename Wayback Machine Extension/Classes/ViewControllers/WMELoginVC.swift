@@ -10,18 +10,38 @@ import Cocoa
 class WMELoginVC: WMEBaseVC {
     
     static let shared: WMELoginVC = {
-        let shared = WMELoginVC()
-        return shared
+        NSLog("*** WMELoginVC.shared")  // DEBUG
+        //let shared = WMELoginVC()
+        return WMELoginVC()
+        //return WMELoginVC.init(nibName: "WMELoginVC", bundle: nil)
     }()
     
     @IBOutlet weak var txtEmail: NSTextField!
     @IBOutlet weak var txtPassword: NSTextField!
-    
+    @IBOutlet weak var btnLogin: NSButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //self.btnLogin.isEnabled = true
+        loginEnable(true)
     }
-    
+
+    override func viewDidAppear() {
+        //self.btnLogin.isEnabled = true
+        loginEnable(true)
+    }
+
+    func loginEnable(_ enable:Bool) {
+        if enable {
+            btnLogin.title = "Log In"
+            btnLogin.isEnabled = true
+        } else {
+            // TODO: animate?
+            btnLogin.title = "Please Wait..."
+            btnLogin.isEnabled = false
+        }
+    }
+
     @IBAction func loginClicked(_ sender: Any) {
         if txtEmail.stringValue.isEmpty {
             WMEUtil.shared.showMessage(msg: "Email is required", info: "Please type an email")
@@ -35,8 +55,13 @@ class WMELoginVC: WMEBaseVC {
         
         let email = txtEmail.stringValue
         let password = txtPassword.stringValue
-        
+
+        loginEnable(false)
+        //self.btnLogin.isEnabled = false
         WMEAPIManager.shared.login(email: email, password: password) { (loggedInUser, loggedInSig) in
+
+            self.loginEnable(true)
+            //self.btnLogin.isEnabled = true
             guard let loggedInUser = loggedInUser, let loggedInSig = loggedInSig else {
                 WMEUtil.shared.showMessage(msg: "Login failed", info: "Email or password is not valid")
                 return
@@ -50,8 +75,9 @@ class WMELoginVC: WMEBaseVC {
                 "logged-in": true
             ])
             
-            let mainVC = WMEMainVC.init(nibName: "WMEMainVC", bundle: nil)
-            self.view.window?.contentViewController = mainVC
+            //let mainVC = WMEMainVC.init(nibName: "WMEMainVC", bundle: nil)
+            //self.view.window?.contentViewController = mainVC
+            self.view.window?.contentViewController = WMEMainVC()
         }
     }
 
@@ -67,8 +93,8 @@ class WMELoginVC: WMEBaseVC {
 
     /// Go to About view
     @IBAction func aboutClicked(_ sender: Any) {
-        let aboutVC = WMEAboutVC.init(nibName: "WMEAboutVC", bundle: nil)
-        self.view.window?.contentViewController = aboutVC
+        //let aboutVC = WMEAboutVC.init(nibName: "WMEAboutVC", bundle: nil)
+        self.view.window?.contentViewController = WMEAboutVC()
     }
 
 }

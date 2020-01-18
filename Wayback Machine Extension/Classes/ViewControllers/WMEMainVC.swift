@@ -10,8 +10,10 @@ import Cocoa
 class WMEMainVC: WMEBaseVC {
     
     static let shared: WMEMainVC = {
-        let shared = WMEMainVC()
-        return shared
+        NSLog("*** WMEMainVC.shared")  // DEBUG
+        //let shared = WMEMainVC()
+        return WMEMainVC()  // auto loads nib of same name
+        //return WMEMainVC.init(nibName: "WMEMainVC", bundle: nil)
     }()
     
     //- MARK: Actions
@@ -37,13 +39,15 @@ class WMEMainVC: WMEBaseVC {
                         "logged-in": true
                     ])
                 } else {
-                    let loginVC = WMELoginVC.init(nibName: "WMELoginVC", bundle: nil)
-                    self.view.window?.contentViewController = loginVC
+                    //let loginVC = WMELoginVC.init(nibName: "WMELoginVC", bundle: nil)
+                    //self.view.window?.contentViewController = loginVC
+                    self.view.window?.contentViewController = WMELoginVC()
                 }
             }
         } else {
-            let loginVC = WMELoginVC.init(nibName: "WMELoginVC", bundle: nil)
-            self.view.window?.contentViewController = loginVC
+            //let loginVC = WMELoginVC.init(nibName: "WMELoginVC", bundle: nil)
+            //self.view.window?.contentViewController = loginVC
+            self.view.window?.contentViewController = WMELoginVC()
         }
         
     }
@@ -239,8 +243,8 @@ class WMEMainVC: WMEBaseVC {
     }
     
     @IBAction func aboutClicked(_ sender: Any) {
-        let aboutVC = WMEAboutVC.init(nibName: "WMEAboutVC", bundle: nil)
-        self.view.window?.contentViewController = aboutVC
+        //let aboutVC = WMEAboutVC.init(nibName: "WMEAboutVC", bundle: nil)
+        self.view.window?.contentViewController = WMEAboutVC()
     }
 
     @IBAction func logoutClicked(_ sender: Any) {
@@ -253,7 +257,8 @@ class WMEMainVC: WMEBaseVC {
             "logged-in": false
         ])
         // go to Login view
-        self.view.window?.contentViewController = WMEMainVC.init(nibName: "WMELoginVC", bundle: nil)
+        //self.view.window?.contentViewController = WMELoginVC.init(nibName: "WMELoginVC", bundle: nil)
+        self.view.window?.contentViewController = WMELoginVC()
     }
 
 }
