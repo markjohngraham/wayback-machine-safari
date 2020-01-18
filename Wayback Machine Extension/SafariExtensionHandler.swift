@@ -34,20 +34,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     }
     
     override func popoverViewController() -> SFSafariExtensionViewController {
-
-        //let vc = WMEGlobal.shared.isLoggedIn() ? WMEMainVC.shared : WMELoginVC.shared
         let vc = WMEGlobal.shared.isLoggedIn() ? WMEMainVC() : WMELoginVC()
-
-        /*
-        if WMEGlobal.shared.isLoggedIn() {
-            return WMEMainVC.shared
-        } else {
-            return WMELoginVC.shared
-        }
-        */
-        NSLog("*** popoverViewController() preferredContentSize = \(vc.preferredContentSize)")  // DEBUG
-        NSLog("*** popoverViewController() view.size = \(vc.view.size)")  // DEBUG
-        //vc.view.size = vc.preferredContentSize  // TEST: doesn't fix issue
         return vc
     }
     

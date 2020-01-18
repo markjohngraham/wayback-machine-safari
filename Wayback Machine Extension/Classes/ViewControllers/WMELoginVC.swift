@@ -10,10 +10,7 @@ import Cocoa
 class WMELoginVC: WMEBaseVC {
     
     static let shared: WMELoginVC = {
-        NSLog("*** WMELoginVC.shared")  // DEBUG
-        //let shared = WMELoginVC()
         return WMELoginVC()
-        //return WMELoginVC.init(nibName: "WMELoginVC", bundle: nil)
     }()
     
     @IBOutlet weak var txtEmail: NSTextField!
@@ -22,12 +19,10 @@ class WMELoginVC: WMEBaseVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.btnLogin.isEnabled = true
         loginEnable(true)
     }
 
     override func viewDidAppear() {
-        //self.btnLogin.isEnabled = true
         loginEnable(true)
     }
 
@@ -57,16 +52,13 @@ class WMELoginVC: WMEBaseVC {
         let password = txtPassword.stringValue
 
         loginEnable(false)
-        //self.btnLogin.isEnabled = false
         WMEAPIManager.shared.login(email: email, password: password) { (loggedInUser, loggedInSig) in
 
             self.loginEnable(true)
-            //self.btnLogin.isEnabled = true
             guard let loggedInUser = loggedInUser, let loggedInSig = loggedInSig else {
                 WMEUtil.shared.showMessage(msg: "Login failed", info: "Email or password is not valid")
                 return
             }
-            
             WMEGlobal.shared.saveUserData(userData: [
                 "email": email,
                 "password": password,
@@ -74,9 +66,6 @@ class WMELoginVC: WMEBaseVC {
                 "logged-in-sig": loggedInSig,
                 "logged-in": true
             ])
-            
-            //let mainVC = WMEMainVC.init(nibName: "WMEMainVC", bundle: nil)
-            //self.view.window?.contentViewController = mainVC
             self.view.window?.contentViewController = WMEMainVC()
         }
     }
@@ -93,7 +82,6 @@ class WMELoginVC: WMEBaseVC {
 
     /// Go to About view
     @IBAction func aboutClicked(_ sender: Any) {
-        //let aboutVC = WMEAboutVC.init(nibName: "WMEAboutVC", bundle: nil)
         self.view.window?.contentViewController = WMEAboutVC()
     }
 
