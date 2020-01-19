@@ -17,27 +17,27 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="250" height="576"/>
+            <rect key="frame" x="0.0" y="0.0" width="250" height="580"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yxq-jJ-2NE">
-                    <rect key="frame" x="5" y="491" width="240" height="80"/>
+                    <rect key="frame" x="5" y="495" width="240" height="80"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Yxq-jJ-2NE" secondAttribute="height" multiplier="12:4" id="4vZ-DX-Sg2"/>
                         <constraint firstAttribute="width" constant="240" id="boJ-g3-X3d"/>
                     </constraints>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="logo" id="m9f-yW-15D"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="wayback-logo" id="m9f-yW-15D"/>
                 </imageView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dn8-z9-cdk">
-                    <rect key="frame" x="13" y="442" width="224" height="19"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Log in to Internet Archive" id="m8w-DF-cqb">
+                    <rect key="frame" x="13" y="446" width="224" height="19"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Log in to the Internet Archive" id="m8w-DF-cqb">
                         <font key="font" metaFont="system" size="16"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZSf-24-bOS">
-                    <rect key="frame" x="15" y="377" width="220" height="30"/>
+                    <rect key="frame" x="15" y="381" width="220" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="tEg-Pu-RSM"/>
                     </constraints>
@@ -48,7 +48,7 @@
                     </textFieldCell>
                 </textField>
                 <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Unj-gS-T29">
-                    <rect key="frame" x="15" y="327" width="220" height="30"/>
+                    <rect key="frame" x="15" y="331" width="220" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="VHf-zJ-9CB"/>
                     </constraints>
@@ -62,7 +62,7 @@
                     </secureTextFieldCell>
                 </secureTextField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9Kn-HO-LeY">
-                    <rect key="frame" x="30" y="277" width="190" height="30"/>
+                    <rect key="frame" x="30" y="281" width="190" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="e6F-r9-GeD"/>
                     </constraints>
@@ -84,7 +84,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bGM-gB-50H">
-                    <rect key="frame" x="30" y="207" width="190" height="30"/>
+                    <rect key="frame" x="30" y="211" width="190" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="j4Q-ji-B7W"/>
                     </constraints>
@@ -106,7 +106,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YBt-7F-SxZ">
-                    <rect key="frame" x="30" y="167" width="190" height="30"/>
+                    <rect key="frame" x="30" y="171" width="190" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="X5Q-by-vdc"/>
                     </constraints>
@@ -173,7 +173,6 @@
                 <constraint firstAttribute="trailing" secondItem="Unj-gS-T29" secondAttribute="trailing" constant="15" id="ihX-dF-oQ6"/>
                 <constraint firstItem="ZSf-24-bOS" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="15" id="j5t-oM-RPZ"/>
                 <constraint firstItem="YBt-7F-SxZ" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="30" id="mYe-u2-gbF"/>
-                <constraint firstItem="4Nv-ge-RcT" firstAttribute="top" secondItem="YBt-7F-SxZ" secondAttribute="bottom" constant="117" id="mmY-st-z5s"/>
                 <constraint firstItem="dn8-z9-cdk" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="15" id="oXq-Wn-Xhi"/>
                 <constraint firstItem="4Nv-ge-RcT" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="30" id="p8H-eI-ZKw"/>
                 <constraint firstAttribute="trailing" secondItem="Yxq-jJ-2NE" secondAttribute="trailing" constant="5" id="pGI-oG-Ovi"/>
@@ -188,6 +187,6 @@
         </customView>
     </objects>
     <resources>
-        <image name="logo" width="240" height="100"/>
+        <image name="wayback-logo" width="240" height="80"/>
     </resources>
 </document>

@@ -150,7 +150,7 @@
                                     <constraint firstAttribute="height" constant="100" id="1gV-5d-AXL"/>
                                     <constraint firstAttribute="width" constant="100" id="1xN-kU-m7I"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Applogo" id="JZG-vx-m4Z"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppIcon100" id="JZG-vx-m4Z"/>
                             </imageView>
                         </subviews>
                         <constraints>
@@ -183,6 +183,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Applogo" width="128" height="128"/>
+        <image name="AppIcon100" width="100" height="100"/>
     </resources>
 </document>

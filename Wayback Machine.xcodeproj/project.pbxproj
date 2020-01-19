@@ -30,6 +30,7 @@
 		84F2843E22AB0F68006E260A /* NSViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F2843C22AB0E55006E260A /* NSViewExtensions.swift */; };
 		9DDBBD09CCE05C0221DBA198 /* Pods_Wayback_Machine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB596902556784B78624D76F /* Pods_Wayback_Machine.framework */; };
 		B087815C4B750783FAFCF6D0 /* Pods_Wayback_MachineTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6758A322BB636E0C492B6393 /* Pods_Wayback_MachineTests.framework */; };
+		C33C34A923D3E9EA00A214FB /* toolbar-item-icon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C33C34A823D3E9EA00A214FB /* toolbar-item-icon.pdf */; };
 		C38D18CC215EE6E600E95389 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D18CB215EE6E600E95389 /* AppDelegate.swift */; };
 		C38D18CE215EE6E600E95389 /* WMMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D18CD215EE6E600E95389 /* WMMainVC.swift */; };
 		C38D18D0215EE6E700E95389 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C38D18CF215EE6E700E95389 /* Assets.xcassets */; };
@@ -39,7 +40,6 @@
 		C38D18F3215EE78D00E95389 /* SafariExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D18F2215EE78D00E95389 /* SafariExtensionHandler.swift */; };
 		C38D18F5215EE78D00E95389 /* WMEMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D18F4215EE78D00E95389 /* WMEMainVC.swift */; };
 		C38D18FB215EE78D00E95389 /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = C38D18FA215EE78D00E95389 /* script.js */; };
-		C38D18FD215EE78D00E95389 /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C38D18FC215EE78D00E95389 /* ToolbarItemIcon.pdf */; };
 		C38D1901215EE78D00E95389 /* Wayback Machine Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C38D18ED215EE78D00E95389 /* Wayback Machine Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C38D191A215EF59100E95389 /* WMBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D1919215EF59100E95389 /* WMBaseVC.swift */; };
 /* End PBXBuildFile section */
@@ -102,6 +102,7 @@
 		94ED460EDB0D0C2C788B3241 /* Pods-Wayback Machine Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayback Machine Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wayback Machine Extension/Pods-Wayback Machine Extension.release.xcconfig"; sourceTree = "<group>"; };
 		AD2530D724188BF4AC645F1D /* Pods-Wayback Machine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayback Machine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wayback Machine/Pods-Wayback Machine.debug.xcconfig"; sourceTree = "<group>"; };
 		B2815BA1B831F9C055B78FBB /* Pods-Wayback Machine Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayback Machine Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wayback Machine Extension/Pods-Wayback Machine Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		C33C34A823D3E9EA00A214FB /* toolbar-item-icon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "toolbar-item-icon.pdf"; sourceTree = "<group>"; };
 		C38D18C8215EE6E600E95389 /* Wayback Machine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wayback Machine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C38D18CB215EE6E600E95389 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C38D18CD215EE6E600E95389 /* WMMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMMainVC.swift; sourceTree = "<group>"; };
@@ -118,7 +119,6 @@
 		C38D18F4215EE78D00E95389 /* WMEMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMEMainVC.swift; sourceTree = "<group>"; };
 		C38D18F9215EE78D00E95389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C38D18FA215EE78D00E95389 /* script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
-		C38D18FC215EE78D00E95389 /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
 		C38D18FE215EE78D00E95389 /* Wayback_Machine_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wayback_Machine_Extension.entitlements; sourceTree = "<group>"; };
 		C38D1913215EE8BE00E95389 /* Wayback Machine Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Wayback Machine Extension.entitlements"; sourceTree = "<group>"; };
 		C38D1919215EF59100E95389 /* WMBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMBaseVC.swift; sourceTree = "<group>"; };
@@ -319,7 +319,7 @@
 				C38D1911215EE8A300E95389 /* Classes */,
 				8476247222C3E37B00E8ADD8 /* Resources */,
 				C38D18F9215EE78D00E95389 /* Info.plist */,
-				C38D18FC215EE78D00E95389 /* ToolbarItemIcon.pdf */,
+				C33C34A823D3E9EA00A214FB /* toolbar-item-icon.pdf */,
 				C38D18FE215EE78D00E95389 /* Wayback_Machine_Extension.entitlements */,
 			);
 			path = "Wayback Machine Extension";
@@ -612,7 +612,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C38D18FD215EE78D00E95389 /* ToolbarItemIcon.pdf in Resources */,
+				C33C34A923D3E9EA00A214FB /* toolbar-item-icon.pdf in Resources */,
 				84781FB92162186700F8290D /* Assets.xcassets in Resources */,
 				8476247122C3DCCD00E8ADD8 /* d3.min.js in Resources */,
 				8476247922C3E3C500E8ADD8 /* googlestyle.css in Resources */,
