@@ -14,7 +14,7 @@ class WMEMainVC: WMEBaseVC {
     }()
     
     //- MARK: Actions
-    @IBOutlet weak var txtSearch: NSTextField!
+    @IBOutlet weak var txtSearch: NSSearchField!
     
     override func viewDidAppear() {
         NSLog("*** WMEMainVC.viewDidAppear()")  // DEBUG
@@ -24,7 +24,10 @@ class WMEMainVC: WMEBaseVC {
             let email = userData["email"] as? String,
             let password = userData["password"] as? String,
             isLoggedin == true {
-            
+
+            // FIXME: flashes to LoginVC, even if "logged in", if no Internet connection.
+            // need to NOT call the login API on every viewDidAppear() !!
+
             WMEAPIManager.shared.login(email: email, password: password) { (loggedInUser, loggedInSig) in
                 
                 if let loggedInUser = loggedInUser, let loggedInSig = loggedInSig {
