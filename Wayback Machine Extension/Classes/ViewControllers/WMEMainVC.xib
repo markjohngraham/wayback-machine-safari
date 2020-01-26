@@ -360,7 +360,7 @@
                                     <constraint firstAttribute="width" constant="40" id="MA7-IO-glK"/>
                                     <constraint firstAttribute="width" secondItem="DtL-2D-D1P" secondAttribute="height" multiplier="1:1" id="jtF-XX-KWZ"/>
                                 </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="twitter-icon" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="cM0-QQ-1jB">
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="linkedin-icon" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="cM0-QQ-1jB">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -473,6 +473,7 @@
     <resources>
         <image name="calendar-icon" width="20" height="20"/>
         <image name="facebook-icon" width="40" height="40"/>
+        <image name="linkedin-icon" width="40" height="40"/>
         <image name="twitter-icon" width="40" height="40"/>
         <image name="wayback-logo" width="240" height="80"/>
     </resources>
