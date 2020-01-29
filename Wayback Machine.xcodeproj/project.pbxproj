@@ -905,7 +905,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = ZSFX78H3ZT;
 				INFOPLIST_FILE = "Wayback Machine/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -930,7 +930,7 @@
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = ZSFX78H3ZT;
 				INFOPLIST_FILE = "Wayback Machine/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1000,7 +1000,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Wayback Machine Extension/Wayback Machine Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = ZSFX78H3ZT;
 				INFOPLIST_FILE = "Wayback Machine Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1024,7 +1024,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Wayback Machine Extension/Wayback Machine Extension.entitlements";
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = ZSFX78H3ZT;
 				INFOPLIST_FILE = "Wayback Machine Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -17,13 +17,13 @@ class WMEAboutVC: WMEBaseVC {
     }
     
     @IBAction func backClicked(_ sender: Any) {
-        if WMEGlobal.shared.isLoggedIn() {
+        //if WMEGlobal.shared.isLoggedIn() {
             // return to Main if logged in
             self.view.window?.contentViewController = WMEMainVC()
-        } else {
+        //} else {
             // return to Login if logged out
-            self.view.window?.contentViewController = WMELoginVC()
-        }
+        //    self.view.window?.contentViewController = WMELoginVC()
+        //}
     }
 
     /// Opens the help.archive.org webpage.

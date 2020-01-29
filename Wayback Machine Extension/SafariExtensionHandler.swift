@@ -34,7 +34,8 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     }
     
     override func popoverViewController() -> SFSafariExtensionViewController {
-        let vc = WMEGlobal.shared.isLoggedIn() ? WMEMainVC() : WMELoginVC()
+        //let vc = WMEGlobal.shared.isLoggedIn() ? WMEMainVC() : WMELoginVC()
+        let vc = WMEMainVC()
         return vc
     }
     
@@ -47,7 +48,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
                 // if success (200) or not one of the fail codes then return, else check the archive
                 // FIXME: Need to handle (401) Unauthorized, but before the login prompt?
                 if (HTTPFailCodes.index(of: status) == nil) { return }
-                WMEUtil.shared.wmAvailabilityCheck(url: url, completion: { (waybackURL, url) in
+                WMEAPIManager.shared.wmAvailabilityCheck(url: url, completion: { (waybackURL, url) in
                     guard let waybackURL = waybackURL else { return }
                     SFSafariApplication.getActiveWindow(completionHandler: {(activeWindow) in
                         activeWindow?.getActiveTab(completionHandler: {(activeTab) in

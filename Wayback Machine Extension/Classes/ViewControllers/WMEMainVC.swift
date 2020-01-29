@@ -8,7 +8,11 @@
 import Cocoa
 
 class WMEMainVC: WMEBaseVC {
-    
+
+    @IBOutlet weak var btnSavePage: NSButton!
+    @IBOutlet weak var btnLoginout: NSButton!
+    @IBOutlet weak var boxWayback: NSBox!
+
     static let shared: WMEMainVC = {
         return WMEMainVC()
     }()
@@ -19,6 +23,11 @@ class WMEMainVC: WMEBaseVC {
     override func viewDidAppear() {
         NSLog("*** WMEMainVC.viewDidAppear()")  // DEBUG
 
+        updateLoginUI(WMEGlobal.shared.isLoggedIn())
+
+        //return  // TEST
+
+        /*
         if let userData = WMEGlobal.shared.getUserData(),
             let isLoggedin = userData["logged-in"] as? Bool,
             let email = userData["email"] as? String,
@@ -45,9 +54,23 @@ class WMEMainVC: WMEBaseVC {
         } else {
             self.view.window?.contentViewController = WMELoginVC()
         }
-        
+        */
     }
-    
+
+    func updateLoginUI(_ isLoggedIn: Bool) {
+        if isLoggedIn {
+            boxWayback?.title = "Wayback (FooBarBaz)"  // TODO: username
+            btnSavePage?.isEnabled = true
+            btnSavePage?.title = "Save Page Now"
+            btnLoginout?.title = "Logout"
+        } else {
+            boxWayback?.title = "Wayback (logged out)"
+            btnSavePage?.isEnabled = false
+            btnSavePage?.title = "Login to Save Page"
+            btnLoginout?.title = "Login"
+        }
+    }
+
     func getURL(completion: @escaping (String?) -> Void) {
         if !txtSearch.stringValue.isEmpty {
             completion(txtSearch.stringValue)
@@ -68,7 +91,7 @@ class WMEMainVC: WMEBaseVC {
             guard let userData = WMEGlobal.shared.getUserData(),
                 let loggedInUser = userData["logged-in-user"] as? HTTPCookie,
                 let loggedInSig = userData["logged-in-sig"] as? HTTPCookie else {
-                
+                // TODO: popup error msg
                 return
             }
             
@@ -96,7 +119,7 @@ class WMEMainVC: WMEBaseVC {
                 WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab.")
                 return
             }
-            WMEUtil.shared.wmAvailabilityCheck(url: url, completion: { (waybackURL, url) in
+            WMEAPIManager.shared.wmAvailabilityCheck(url: url, completion: { (waybackURL, url) in
                 guard waybackURL != nil else {
                     WMEUtil.shared.showMessage(msg: "Not in Internet Archive", info: "The URL is not in Internet Archive. We would suggest to archive the URL by clicking Save Page Now")
                     return
@@ -112,7 +135,7 @@ class WMEMainVC: WMEBaseVC {
                 WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab.")
                 return
             }
-            WMEUtil.shared.wmAvailabilityCheck(url: url, completion: { (waybackURL, url) in
+            WMEAPIManager.shared.wmAvailabilityCheck(url: url, completion: { (waybackURL, url) in
                 guard waybackURL != nil else {
                     WMEUtil.shared.showMessage(msg: "Not in Internet Archive", info: "The URL is not in Internet Archive. We would suggest to archive the URL by clicking Save Page Now")
                     return
@@ -128,7 +151,7 @@ class WMEMainVC: WMEBaseVC {
                 WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab.")
                 return
             }
-            WMEUtil.shared.wmAvailabilityCheck(url: url, completion: { (waybackURL, url) in
+            WMEAPIManager.shared.wmAvailabilityCheck(url: url, completion: { (waybackURL, url) in
                 guard waybackURL != nil else {
                     WMEUtil.shared.showMessage(msg: "Not in Internet Archive", info: "The URL is not in Internet Archive. We would suggest to archive the URL by clicking Save Page Now")
                     return

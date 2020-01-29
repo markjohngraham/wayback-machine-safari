@@ -31,7 +31,6 @@ class WMEGlobal: NSObject {
             isLoggedin == true {
             return true
         }
-        
         return false
     }
 }

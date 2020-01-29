@@ -59,7 +59,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="e6F-r9-GeD"/>
                     </constraints>
-                    <buttonCell key="cell" type="square" title="Log in" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="eST-U6-GLm">
+                    <buttonCell key="cell" type="square" title="Login" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="eST-U6-GLm">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -176,8 +176,8 @@
                     <color key="contentTintColor" name="textColor" catalog="System" colorSpace="catalog"/>
                 </imageView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dn8-z9-cdk">
-                    <rect key="frame" x="16" y="366" width="218" height="19"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Log in to the Internet Archive" id="m8w-DF-cqb">
+                    <rect key="frame" x="18" y="366" width="214" height="19"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Login to the Internet Archive" id="m8w-DF-cqb">
                         <font key="font" metaFont="system" size="16"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
