@@ -21,6 +21,14 @@
             <rect key="frame" x="0.0" y="0.0" width="250" height="580"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Xb7-Q6-2Cv">
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="580"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                            <color key="value" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </customView>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ThR-Gr-ONr">
                     <rect key="frame" x="5" y="495" width="240" height="80"/>
                     <constraints>
@@ -454,11 +462,14 @@
                 <constraint firstItem="ThR-Gr-ONr" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="5" id="6mZ-iJ-Syl"/>
                 <constraint firstItem="yyD-Jk-sKs" firstAttribute="top" secondItem="jd3-5u-juE" secondAttribute="bottom" constant="20" id="7Oi-5p-09u"/>
                 <constraint firstAttribute="trailing" secondItem="jd3-5u-juE" secondAttribute="trailing" constant="15" id="FQy-kh-8fc"/>
+                <constraint firstAttribute="trailing" secondItem="Xb7-Q6-2Cv" secondAttribute="trailing" id="I0w-V5-v1A"/>
                 <constraint firstAttribute="trailing" secondItem="vrw-Nd-LRN" secondAttribute="trailing" constant="15" id="MIA-xU-JCW"/>
+                <constraint firstAttribute="bottom" secondItem="Xb7-Q6-2Cv" secondAttribute="bottom" id="N8A-HX-cS2"/>
                 <constraint firstAttribute="trailing" secondItem="PmN-QP-WkG" secondAttribute="trailing" constant="15" id="PbW-u2-30s"/>
                 <constraint firstItem="ThK-OG-A4k" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="15" id="Pf4-fU-wVd"/>
                 <constraint firstItem="ThR-Gr-ONr" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="5" id="SqY-Rk-UUn"/>
                 <constraint firstItem="ck1-dK-9nV" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="30" id="TCX-Ah-7tG"/>
+                <constraint firstItem="Xb7-Q6-2Cv" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="U9Z-Bv-Fz4"/>
                 <constraint firstItem="PmN-QP-WkG" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="15" id="Xwy-ES-lre"/>
                 <constraint firstItem="PmN-QP-WkG" firstAttribute="top" secondItem="vrw-Nd-LRN" secondAttribute="bottom" constant="8" id="Ysl-J4-qaT"/>
                 <constraint firstAttribute="trailing" secondItem="ck1-dK-9nV" secondAttribute="trailing" constant="30" id="aFF-fM-E1G"/>
@@ -468,6 +479,7 @@
                 <constraint firstItem="jd3-5u-juE" firstAttribute="top" secondItem="PmN-QP-WkG" secondAttribute="bottom" constant="8" id="l4G-kO-umJ"/>
                 <constraint firstAttribute="bottom" secondItem="ck1-dK-9nV" secondAttribute="bottom" constant="20" id="p0j-Gb-qVD"/>
                 <constraint firstItem="jd3-5u-juE" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="15" id="r4i-Hu-4TR"/>
+                <constraint firstItem="Xb7-Q6-2Cv" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="sk8-jQ-J2v"/>
                 <constraint firstAttribute="trailing" secondItem="yyD-Jk-sKs" secondAttribute="trailing" constant="30" id="uRI-kB-6jO"/>
             </constraints>
             <point key="canvasLocation" x="132" y="186"/>

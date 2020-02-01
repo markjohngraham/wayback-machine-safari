@@ -30,7 +30,7 @@ class WMSAPIManager {
     let UPLOAD_BASE_URL     = "https://s3.us.archive.org"
 
     /// update headers to reflect different apps
-    let HEADERS = [
+    let HEADERS: HTTPHeaders = [
         "User-Agent": "Wayback_Machine_Safari_XC/\(APP_VERSION)",
         "Wayback-Extension-Version": "Wayback_Machine_Safari_XC/\(APP_VERSION)",
         "Wayback-Api-Version": "2"
@@ -118,11 +118,14 @@ class WMSAPIManager {
     func webLogin(email: String, password: String,
                   completion: @escaping (_ loggedInUser: String?, _ loggedInSig: String?) -> Void) {
 
+        // prepare request
+        var headers = HEADERS
+        headers["Content-Type"] = "application/x-www-form-urlencoded"
         var params = [String: Any]()
         params["username"] = email
         params["password"] = password
         params["action"] = "login"
-
+        /*
         // TODO: Test if following is necessary
         let cookieProps: [HTTPCookiePropertyKey: Any] = [
             HTTPCookiePropertyKey.version: 0,
@@ -133,14 +136,14 @@ class WMSAPIManager {
             HTTPCookiePropertyKey.secure: false,
             HTTPCookiePropertyKey.expires: NSDate(timeIntervalSinceNow: 86400 * 20)
         ]
-        // TODO: Replace using Alamofire with URLSession?
         if let cookie = HTTPCookie(properties: cookieProps) {
             Alamofire.SessionManager.default.session.configuration.httpCookieStorage?.setCookie(cookie)
         }
+        // */
 
-        // TODO: add headers!
+        // make login request
         Alamofire.request(WEB_BASE_URL + WEB_LOGIN, method: .post, parameters: params, encoding: URLEncoding.default,
-                          headers: ["Content-Type": "application/x-www-form-urlencoded"]).responseString { (response) in
+                          headers: headers).responseString { (response) in
             switch response.result {
             case .success:
                 var ck = [String: String]()
@@ -162,6 +165,7 @@ class WMSAPIManager {
     func getIAS3Keys(loggedInUser: String, loggedInSig: String,
                      completion: @escaping (_ accessKey: String?, _ secretKey: String?) -> Void) {
 
+        // prepare cookies for request
         let cookiePropsLoggedInUser: [HTTPCookiePropertyKey: Any] = [
             HTTPCookiePropertyKey.name: "logged-in-user",
             HTTPCookiePropertyKey.path: "/",
@@ -180,9 +184,9 @@ class WMSAPIManager {
             Alamofire.SessionManager.default.session.configuration.httpCookieStorage?.setCookie(cookieLoggedInSig)
         }
 
-        // TODO: add headers!
+        // make request
         Alamofire.request(WEB_BASE_URL + WEB_S3KEYS, method: .get, parameters: nil, encoding: URLEncoding.default,
-                          headers: nil).responseJSON { (response) in
+                          headers: HEADERS).responseJSON { (response) in
             // API Response:
             // {"success":1,"key":{"s3accesskey":"...","s3secretkey":"..."}}
             switch response.result {
@@ -227,7 +231,7 @@ class WMSAPIManager {
         }
         request.httpBody = requestParams.data(using: .utf8)
 
-        // call API
+        // make request
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else { return }
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 { return }

@@ -22,39 +22,8 @@ class WMEMainVC: WMEBaseVC {
     ///////////////////////////////////////////////////////////////////////////////////
     // MARK: - View Lifecycle
 
-    override func viewDidAppear() {
-        NSLog("*** WMEMainVC.viewDidAppear()")  // DEBUG
-
+    override func viewWillAppear() {
         updateLoginUI(WMEGlobal.shared.isLoggedIn())
-
-        /* REMOVE
-        if let userData = WMEGlobal.shared.getUserData(),
-            let isLoggedin = userData["logged-in"] as? Bool,
-            let email = userData["email"] as? String,
-            let password = userData["password"] as? String,
-            isLoggedin == true {
-
-            // FIXME: flashes to LoginVC, even if "logged in", if no Internet connection.
-            // need to NOT call the login API on every viewDidAppear() !!
-
-            WMEAPIManager.shared.login(email: email, password: password) { (loggedInUser, loggedInSig) in
-                
-                if let loggedInUser = loggedInUser, let loggedInSig = loggedInSig {
-                    WMEGlobal.shared.saveUserData(userData: [
-                        "email": email,
-                        "password": password,
-                        "logged-in-user": loggedInUser,
-                        "logged-in-sig": loggedInSig,
-                        "logged-in": true
-                    ])
-                } else {
-                    self.view.window?.contentViewController = WMELoginVC()
-                }
-            }
-        } else {
-            self.view.window?.contentViewController = WMELoginVC()
-        }
-        */
     }
 
     func updateLoginUI(_ isLoggedIn: Bool) {
@@ -70,6 +39,9 @@ class WMEMainVC: WMEBaseVC {
             btnLoginout?.title = "Login"
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////
+    // MARK: - Helper Functions
 
     func getURL(completion: @escaping (String?) -> Void) {
         if !txtSearch.stringValue.isEmpty {
@@ -91,6 +63,8 @@ class WMEMainVC: WMEBaseVC {
                 return
             }
 
+            // FIXME: No longer works as cookies aren't stored
+            /*
             guard let userData = WMEGlobal.shared.getUserData(),
                 let loggedInUser = userData["logged-in-user"] as? HTTPCookie,
                 let loggedInSig = userData["logged-in-sig"] as? HTTPCookie else {
@@ -113,6 +87,7 @@ class WMEMainVC: WMEBaseVC {
                     }
                 })
             })
+            // */
         }
     }
     
