@@ -22,21 +22,43 @@ class WMELoginVC: WMEBaseVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        txtEmail.delegate = self
         enableLogin(true)
     }
 
-    override func viewDidAppear() {
+    // doesn't get called every time displayed
+    override func viewWillAppear() {
+        super.viewWillAppear()
         enableLogin(true)
+        loadEmailField()
     }
+
+    // viewWillDisappear() and viewDidDisappear() aren't called
+
+    ///////////////////////////////////////////////////////////////////////////////////
+    // MARK: - Helper Functions
 
     func enableLogin(_ enable:Bool) {
         if enable {
             btnLogin.title = "Log In"
             btnLogin.isEnabled = true
         } else {
-            // TODO: animate?
             btnLogin.title = "Please Wait..."
             btnLogin.isEnabled = false
+        }
+    }
+
+    func loadEmailField() {
+        let userData = WMEGlobal.shared.getUserData()
+        if let email = userData?["email"] as? String {
+            txtEmail.stringValue = email
+        }
+    }
+
+    func saveEmailField(text: String?) {
+        if var userData = WMEGlobal.shared.getUserData() {
+            userData["email"] = text
+            WMEGlobal.shared.saveUserData(userData: userData)
         }
     }
 
@@ -58,26 +80,6 @@ class WMELoginVC: WMEBaseVC {
         }
 
         enableLogin(false)
-
-        /* TODO: REMOVE
-        WMEAPIManager.shared.login(email: email, password: password) { (loggedInUser, loggedInSig) in
-
-            self.enableLogin(true)
-            guard let loggedInUser = loggedInUser, let loggedInSig = loggedInSig else {
-                WMEUtil.shared.showMessage(msg: "Login failed", info: "Email or password is not valid")
-                return
-            }
-            WMEGlobal.shared.saveUserData(userData: [
-                "email": email,
-                "password": password,
-                "logged-in-user": loggedInUser,
-                "logged-in-sig": loggedInSig,
-                "logged-in": true
-            ])
-            self.view.window?.contentViewController = WMEMainVC()
-        }
-        */
-
         WMSAPIManager.shared.login(email: email, password: password) { (userData) in
             self.enableLogin(true)
             if let userData = userData {
@@ -86,7 +88,7 @@ class WMELoginVC: WMEBaseVC {
                 self.view.window?.contentViewController = WMEMainVC()
             } else {
                 // failure
-                WMEUtil.shared.showMessage(msg: "Login failed", info: "Either the connection failed, or your email or password were incorrect.")
+                WMEUtil.shared.showMessage(msg: "Login Failed", info: "Either the connection failed, or your email or password were incorrect.")
             }
         }
     }
@@ -104,6 +106,17 @@ class WMELoginVC: WMEBaseVC {
     /// Go to About view
     @IBAction func aboutClicked(_ sender: Any) {
         self.view.window?.contentViewController = WMEAboutVC()
+    }
+
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+// MARK: -
+
+extension WMELoginVC: NSTextFieldDelegate {
+
+    func controlTextDidEndEditing(_ obj: Notification) {
+        saveEmailField(text: txtEmail.stringValue)
     }
 
 }

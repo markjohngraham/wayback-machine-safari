@@ -35,7 +35,7 @@
                                     </constraints>
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="wayback-logo" id="GwZ-Ns-2wG"/>
                                 </imageView>
-                                <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ThK-OG-A4k">
+                                <searchField wantsLayer="YES" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ThK-OG-A4k">
                                     <rect key="frame" x="15" y="460" width="220" height="22"/>
                                     <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Enter website URL" usesSingleLineMode="YES" bezelStyle="round" id="9zS-SW-Q7i">
                                         <font key="font" metaFont="system"/>

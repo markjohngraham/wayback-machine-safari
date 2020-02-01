@@ -36,7 +36,6 @@ class WMSAPIManager {
         "Wayback-Api-Version": "2"
     ]
 
-
     ///////////////////////////////////////////////////////////////////////////////////
     // MARK: - Helper Functions
 
@@ -52,7 +51,6 @@ class WMSAPIManager {
     func fullWebURL(_ url: String) -> String {
         return isValidWebURL(url) ? url : "https://\(url)"
     }
-
 
     ///////////////////////////////////////////////////////////////////////////////////
     // MARK: - Login API
@@ -77,7 +75,7 @@ class WMSAPIManager {
                         // success
                         let data: [String: Any?] = [
                             "email"          : email,
-                            "password"       : password,    // FIXME: don't save pw
+                            //"password"       : password,
                             "logged-in-user" : loggedInUser,
                             "logged-in-sig"  : loggedInSig,
                             "s3accesskey"    : accessKey,
@@ -125,8 +123,9 @@ class WMSAPIManager {
         params["username"] = email
         params["password"] = password
         params["action"] = "login"
-        /*
-        // TODO: Test if following is necessary
+
+        // Looks like setting this cookie is necessary to avoid
+        // a glitch where sometimes login won't work half the time.
         let cookieProps: [HTTPCookiePropertyKey: Any] = [
             HTTPCookiePropertyKey.version: 0,
             HTTPCookiePropertyKey.name: "test-cookie",
@@ -139,7 +138,6 @@ class WMSAPIManager {
         if let cookie = HTTPCookie(properties: cookieProps) {
             Alamofire.SessionManager.default.session.configuration.httpCookieStorage?.setCookie(cookie)
         }
-        // */
 
         // make login request
         Alamofire.request(WEB_BASE_URL + WEB_LOGIN, method: .post, parameters: params, encoding: URLEncoding.default,
@@ -207,7 +205,6 @@ class WMSAPIManager {
     //func getAccountInfo(email: String, completion: @escaping ([String: Any]?) -> Void) {
     //    SendDataToService(params: ["email": email], operation: API_INFO, completion: completion)
     //}
-
 
     ///////////////////////////////////////////////////////////////////////////////////
     // MARK: - Wayback API

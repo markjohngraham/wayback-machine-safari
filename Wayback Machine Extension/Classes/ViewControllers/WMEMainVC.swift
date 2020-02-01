@@ -22,13 +22,27 @@ class WMEMainVC: WMEBaseVC {
     ///////////////////////////////////////////////////////////////////////////////////
     // MARK: - View Lifecycle
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        txtSearch.delegate = self
+    }
     override func viewWillAppear() {
-        updateLoginUI(WMEGlobal.shared.isLoggedIn())
+        super.viewWillAppear()
+        loadSearchField()
+
+        // login UI
+        let userData = WMEGlobal.shared.getUserData()
+        let email = userData?["email"] as? String
+        updateLoginUI(WMEGlobal.shared.isLoggedIn(), username: email)
     }
 
-    func updateLoginUI(_ isLoggedIn: Bool) {
+    ///////////////////////////////////////////////////////////////////////////////////
+    // MARK: - Helper Functions
+
+    func updateLoginUI(_ isLoggedIn: Bool, username: String? = nil) {
         if isLoggedIn {
-            boxWayback?.title = "Wayback (FooBarBaz)"  // TODO: username
+            let uname = username ?? "logged in"
+            boxWayback?.title = "Wayback (\(uname))"
             btnSavePage?.isEnabled = true
             btnSavePage?.title = "Save Page Now"
             btnLoginout?.title = "Logout"
@@ -40,8 +54,19 @@ class WMEMainVC: WMEBaseVC {
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////
-    // MARK: - Helper Functions
+    func loadSearchField() {
+        let userData = WMEGlobal.shared.getUserData()
+        if let txt = userData?["searchField"] as? String {
+            txtSearch.stringValue = txt
+        }
+    }
+
+    func saveSearchField(text: String?) {
+        if var userData = WMEGlobal.shared.getUserData() {
+            userData["searchField"] = text
+            WMEGlobal.shared.saveUserData(userData: userData)
+        }
+    }
 
     func getURL(completion: @escaping (String?) -> Void) {
         if !txtSearch.stringValue.isEmpty {
@@ -265,6 +290,17 @@ class WMEMainVC: WMEBaseVC {
             // login clicked, so go to login view
             self.view.window?.contentViewController = WMELoginVC()
         }
+    }
+
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+// MARK: -
+
+extension WMEMainVC: NSSearchFieldDelegate {
+
+    func controlTextDidEndEditing(_ obj: Notification) {
+        saveSearchField(text: txtSearch.stringValue)
     }
 
 }
