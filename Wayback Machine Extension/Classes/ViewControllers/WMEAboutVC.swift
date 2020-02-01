@@ -13,7 +13,7 @@ class WMEAboutVC: WMEBaseVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        txtVersion.stringValue = "\(VERSION) (\(BUILD))"
+        txtVersion.stringValue = "\(APP_VERSION) (\(APP_BUILD))"
     }
     
     @IBAction func backClicked(_ sender: Any) {

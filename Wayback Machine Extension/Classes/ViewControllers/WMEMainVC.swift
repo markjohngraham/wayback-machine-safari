@@ -5,29 +5,29 @@
 //  Created by mac-admin on 9/29/18.
 //
 
+import Foundation
 import Cocoa
 
 class WMEMainVC: WMEBaseVC {
 
+    static let shared: WMEMainVC = {
+        return WMEMainVC()
+    }()
+
+    @IBOutlet weak var txtSearch: NSSearchField!
     @IBOutlet weak var btnSavePage: NSButton!
     @IBOutlet weak var btnLoginout: NSButton!
     @IBOutlet weak var boxWayback: NSBox!
 
-    static let shared: WMEMainVC = {
-        return WMEMainVC()
-    }()
-    
-    //- MARK: Actions
-    @IBOutlet weak var txtSearch: NSSearchField!
-    
+    ///////////////////////////////////////////////////////////////////////////////////
+    // MARK: - View Lifecycle
+
     override func viewDidAppear() {
         NSLog("*** WMEMainVC.viewDidAppear()")  // DEBUG
 
         updateLoginUI(WMEGlobal.shared.isLoggedIn())
 
-        //return  // TEST
-
-        /*
+        /* REMOVE
         if let userData = WMEGlobal.shared.getUserData(),
             let isLoggedin = userData["logged-in"] as? Bool,
             let email = userData["email"] as? String,
@@ -80,7 +80,10 @@ class WMEMainVC: WMEBaseVC {
             }
         }
     }
-    
+
+    ///////////////////////////////////////////////////////////////////////////////////
+    // MARK: - Actions
+
     @IBAction func savePageNowClicked(_ sender: Any) {
         getURL { (url) in
             guard let url = url else {
@@ -265,8 +268,9 @@ class WMEMainVC: WMEBaseVC {
         self.view.window?.contentViewController = WMEAboutVC()
     }
 
-    @IBAction func logoutClicked(_ sender: Any) {
-        // clear login data
+    @IBAction func loginoutClicked(_ sender: Any) {
+
+        /* TODO: REMOVE
         WMEGlobal.shared.saveUserData(userData: [
             "email": nil,
             "password": nil,
@@ -274,8 +278,18 @@ class WMEMainVC: WMEBaseVC {
             "logged-in-sig": nil,
             "logged-in": false
         ])
-        // go to Login view
-        self.view.window?.contentViewController = WMELoginVC()
+        */
+
+        if WMEGlobal.shared.isLoggedIn() {
+            // logout clicked, so clear any stored data
+            updateLoginUI(false)
+            if let userData = WMSAPIManager.shared.logout(userData: WMEGlobal.shared.getUserData()) {
+                WMEGlobal.shared.saveUserData(userData: userData)
+            }
+        } else {
+            // login clicked, so go to login view
+            self.view.window?.contentViewController = WMELoginVC()
+        }
     }
 
 }

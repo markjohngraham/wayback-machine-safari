@@ -67,7 +67,7 @@ Extension</string>
                                 <textFieldCell key="cell" alignment="left" id="rcW-xP-Yoy">
                                     <font key="font" metaFont="system"/>
                                     <string key="title">The Internet Archive presents 
-The Official WayBack Machine Extension. With the power of the WayBack Machine, we let you go in time to see how a URL has changed and evolved through the history of the Web!</string>
+The Official WayBack Machine Extension. With the power of the WayBack Machine, we let you go back in time to see how a website has changed and evolved through the history of the Web!</string>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>

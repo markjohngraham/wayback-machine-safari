@@ -5,7 +5,7 @@
 //  Created by admin on 7/7/19.
 //
 
-import Cocoa
+import Foundation
 import Alamofire
 
 public enum WMCaptureOption {
@@ -30,7 +30,7 @@ class WMEAPIManager: NSObject {
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-type")
         request.setValue("2", forHTTPHeaderField: "Wayback-Api-Version")
-        request.setValue("Wayback_Machine_Safari_XC/\(VERSION)", forHTTPHeaderField: "User-Agent")
+        request.setValue("Wayback_Machine_Safari_XC/\(APP_VERSION)", forHTTPHeaderField: "User-Agent")
         request.httpBody = requestParams.data(using: .utf8)
 
         // call API
@@ -91,7 +91,7 @@ class WMEAPIManager: NSObject {
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let data):
-                    completion(data as! [Any])
+                    completion(data as! [Any])   // FIXME: as!
                 case .failure(let error):
                     NSLog("*** ERROR: %@", error.localizedDescription)
                     completion([])
@@ -112,8 +112,8 @@ class WMEAPIManager: NSObject {
 
         let headers = [
             "Accept": "application/json",
-            "User-Agent": "Wayback_Machine_Safari_XC/\(VERSION)",
-            "Wayback-Extension-Version": "Wayback_Machine_Safari_XC/\(VERSION)"
+            "User-Agent": "Wayback_Machine_Safari_XC/\(APP_VERSION)",
+            "Wayback-Extension-Version": "Wayback_Machine_Safari_XC/\(APP_VERSION)"
         ]
         
         Alamofire.request(SPN2URL,
@@ -144,8 +144,8 @@ class WMEAPIManager: NSObject {
         let param = ["job_id" : job_id]
         let headers = [
             "Accept": "application/json",
-            "User-Agent": "Wayback_Machine_Safari_XC/\(VERSION)",
-            "Wayback-Extension-Version": "Wayback_Machine_Safari_XC/\(VERSION)"
+            "User-Agent": "Wayback_Machine_Safari_XC/\(APP_VERSION)",
+            "Wayback-Extension-Version": "Wayback_Machine_Safari_XC/\(APP_VERSION)"
         ]
         
         Alamofire.request("\(SPN2URL)status/",

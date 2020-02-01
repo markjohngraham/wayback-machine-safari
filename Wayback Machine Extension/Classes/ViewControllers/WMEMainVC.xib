@@ -414,7 +414,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="logoutClicked:" target="-2" id="wT2-Wj-Nrb"/>
+                        <action selector="loginoutClicked:" target="-2" id="imj-8d-S8J"/>
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ck1-dK-9nV">

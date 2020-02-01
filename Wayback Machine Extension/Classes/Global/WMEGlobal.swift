@@ -5,7 +5,7 @@
 //  Created by admin on 7/7/19.
 //
 
-import Cocoa
+import Foundation
 
 class WMEGlobal: NSObject {
     static let shared = WMEGlobal()

@@ -42,6 +42,7 @@
 		C38D18FB215EE78D00E95389 /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = C38D18FA215EE78D00E95389 /* script.js */; };
 		C38D1901215EE78D00E95389 /* Wayback Machine Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C38D18ED215EE78D00E95389 /* Wayback Machine Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C38D191A215EF59100E95389 /* WMBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38D1919215EF59100E95389 /* WMBaseVC.swift */; };
+		C3A7CF3C23E18C4E004DD308 /* WMSAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A7CF3B23E18C4E004DD308 /* WMSAPIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		C38D18FE215EE78D00E95389 /* Wayback_Machine_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wayback_Machine_Extension.entitlements; sourceTree = "<group>"; };
 		C38D1913215EE8BE00E95389 /* Wayback Machine Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Wayback Machine Extension.entitlements"; sourceTree = "<group>"; };
 		C38D1919215EF59100E95389 /* WMBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMBaseVC.swift; sourceTree = "<group>"; };
+		C3A7CF3B23E18C4E004DD308 /* WMSAPIManager.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = WMSAPIManager.swift; sourceTree = "<group>"; tabWidth = 4; };
 		EB596902556784B78624D76F /* Pods_Wayback_Machine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wayback_Machine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -220,6 +222,7 @@
 				840C191A22AF834600B6C67E /* WMEUtil.swift */,
 				8492ADA222D2BF1E004EAEA4 /* WMEGlobal.swift */,
 				8492ADA422D2BF3A004EAEA4 /* WMEAPIManager.swift */,
+				C3A7CF3B23E18C4E004DD308 /* WMSAPIManager.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -741,6 +744,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C38D18F5215EE78D00E95389 /* WMEMainVC.swift in Sources */,
+				C3A7CF3C23E18C4E004DD308 /* WMSAPIManager.swift in Sources */,
 				84F2843D22AB0E55006E260A /* NSViewExtensions.swift in Sources */,
 				841E733322B0D39100F489E6 /* WMEAboutVC.swift in Sources */,
 				840C191B22AF834600B6C67E /* WMEUtil.swift in Sources */,

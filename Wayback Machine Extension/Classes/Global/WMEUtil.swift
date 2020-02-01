@@ -5,7 +5,7 @@
 //  Created by admin on 6/10/19.
 //
 
-import Cocoa
+import Foundation
 import Alamofire
 import SafariServices
 
@@ -74,14 +74,12 @@ class WMEUtil: NSObject {
     }
     
     func getOriginalURL(url: String) -> String {
-        var originalURL:String? = nil
+        var originalURL = url
         let tempArray = url.components(separatedBy: "http")
         if (tempArray.count > 2) {
             originalURL = "http" + tempArray[2]
-        } else {
-            originalURL = url
         }
-        return originalURL!
+        return originalURL
     }
-    
+
 }

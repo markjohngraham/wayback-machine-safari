@@ -7,8 +7,8 @@
 
 import Cocoa
 
-let VERSION = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? ""
-let BUILD = Bundle.main.infoDictionary!["CFBundleVersion"] as? String ?? ""
+let APP_VERSION = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? ""
+let APP_BUILD = Bundle.main.infoDictionary!["CFBundleVersion"] as? String ?? ""
 let BaseURL = "https://web.archive.org"
 let SPN2URL = "https://web.archive.org/save/"
 let WebLoginURL = "https://archive.org/account/login"
