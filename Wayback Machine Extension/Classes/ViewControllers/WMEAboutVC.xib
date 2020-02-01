@@ -18,6 +18,9 @@
             <rect key="frame" x="0.0" y="0.0" width="250" height="580"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <visualEffectView wantsLayer="YES" appearanceType="inheritedVibrantLight" blendingMode="withinWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="m0A-fd-lPb">
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="580"/>
+                </visualEffectView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VtI-1A-CC6">
                     <rect key="frame" x="5" y="550" width="20" height="20"/>
                     <constraints>
@@ -182,16 +185,20 @@ Internet Archive, AGPLv3</string>
                 <constraint firstAttribute="trailing" secondItem="R8F-wZ-Fj8" secondAttribute="trailing" constant="30" id="4HN-ph-yFG"/>
                 <constraint firstItem="Mej-br-Ayp" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="57I-tH-9yI"/>
                 <constraint firstItem="R8F-wZ-Fj8" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="59M-dy-gqt"/>
+                <constraint firstItem="m0A-fd-lPb" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="9ez-F1-fRj"/>
                 <constraint firstItem="VtI-1A-CC6" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="10" id="Bgd-eM-RbG"/>
+                <constraint firstAttribute="bottom" secondItem="m0A-fd-lPb" secondAttribute="bottom" id="E4O-Op-dxY"/>
                 <constraint firstItem="R8F-wZ-Fj8" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="30" id="HsD-GS-nqU"/>
                 <constraint firstItem="v8H-sT-yYC" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="15" id="HxA-LH-ULJ"/>
                 <constraint firstItem="VtI-1A-CC6" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="5" id="NqZ-Sc-dAC"/>
                 <constraint firstItem="v8H-sT-yYC" firstAttribute="top" secondItem="Mej-br-Ayp" secondAttribute="bottom" constant="10" id="WPU-gf-EeJ"/>
                 <constraint firstItem="R8F-wZ-Fj8" firstAttribute="top" secondItem="v8H-sT-yYC" secondAttribute="bottom" constant="20" id="c53-dN-PtL"/>
+                <constraint firstItem="m0A-fd-lPb" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="cYZ-7Q-lzr"/>
                 <constraint firstAttribute="trailing" secondItem="SOs-mS-orT" secondAttribute="trailing" constant="10" id="ft2-2f-sGL"/>
                 <constraint firstItem="SOs-mS-orT" firstAttribute="leading" secondItem="Mej-br-Ayp" secondAttribute="trailing" constant="10" id="oS8-8L-3cB"/>
                 <constraint firstAttribute="bottom" secondItem="R8F-wZ-Fj8" secondAttribute="bottom" constant="20" id="rbU-Ws-XNJ"/>
                 <constraint firstAttribute="trailing" secondItem="v8H-sT-yYC" secondAttribute="trailing" constant="15" id="umR-Q1-NEM"/>
+                <constraint firstAttribute="trailing" secondItem="m0A-fd-lPb" secondAttribute="trailing" id="unN-qs-x25"/>
                 <constraint firstItem="Mej-br-Ayp" firstAttribute="top" secondItem="VtI-1A-CC6" secondAttribute="bottom" constant="20" id="xgB-tE-Iei"/>
                 <constraint firstItem="SOs-mS-orT" firstAttribute="centerY" secondItem="Mej-br-Ayp" secondAttribute="centerY" id="xxO-u4-9UR"/>
             </constraints>

@@ -21,6 +21,9 @@
             <rect key="frame" x="0.0" y="0.0" width="250" height="580"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <visualEffectView wantsLayer="YES" appearanceType="inheritedVibrantLight" blendingMode="withinWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="1ZO-gQ-CKe">
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="580"/>
+                </visualEffectView>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yxq-jJ-2NE">
                     <rect key="frame" x="5" y="495" width="240" height="80"/>
                     <constraints>
@@ -194,18 +197,22 @@
                 <constraint firstItem="Unj-gS-T29" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="30" id="PCd-8O-opt"/>
                 <constraint firstItem="Yxq-jJ-2NE" firstAttribute="width" secondItem="Yxq-jJ-2NE" secondAttribute="height" multiplier="12:4" id="PRz-qK-Zsl"/>
                 <constraint firstItem="bGM-gB-50H" firstAttribute="top" secondItem="9Kn-HO-LeY" secondAttribute="bottom" constant="10" id="RsG-ft-6LS"/>
+                <constraint firstItem="1ZO-gQ-CKe" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="Tbf-vy-C1H"/>
                 <constraint firstAttribute="trailing" secondItem="ZSf-24-bOS" secondAttribute="trailing" constant="30" id="XpN-5o-K8N"/>
                 <constraint firstItem="bGM-gB-50H" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="30" id="a34-hM-YZk"/>
+                <constraint firstAttribute="trailing" secondItem="1ZO-gQ-CKe" secondAttribute="trailing" id="cpi-Az-0Rf"/>
                 <constraint firstItem="itb-SH-sBX" firstAttribute="width" secondItem="itb-SH-sBX" secondAttribute="height" multiplier="1:1" id="dGc-X4-08h"/>
                 <constraint firstAttribute="trailing" secondItem="bGM-gB-50H" secondAttribute="trailing" constant="30" id="f3O-tM-6V6"/>
                 <constraint firstItem="dn8-z9-cdk" firstAttribute="top" secondItem="itb-SH-sBX" secondAttribute="bottom" constant="20" id="gAn-12-0fY"/>
                 <constraint firstItem="ZSf-24-bOS" firstAttribute="top" secondItem="itb-SH-sBX" secondAttribute="bottom" constant="80" id="iTM-cQ-CWV"/>
                 <constraint firstAttribute="trailing" secondItem="Unj-gS-T29" secondAttribute="trailing" constant="30" id="ihX-dF-oQ6"/>
                 <constraint firstItem="ZSf-24-bOS" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="30" id="j5t-oM-RPZ"/>
+                <constraint firstAttribute="bottom" secondItem="1ZO-gQ-CKe" secondAttribute="bottom" id="kAQ-TP-vUT"/>
                 <constraint firstItem="YBt-7F-SxZ" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="30" id="mYe-u2-gbF"/>
                 <constraint firstItem="dn8-z9-cdk" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="nzN-G2-GUi"/>
                 <constraint firstItem="4Nv-ge-RcT" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="30" id="p8H-eI-ZKw"/>
                 <constraint firstAttribute="trailing" secondItem="Yxq-jJ-2NE" secondAttribute="trailing" constant="5" id="pGI-oG-Ovi"/>
+                <constraint firstItem="1ZO-gQ-CKe" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="pPI-hn-DZf"/>
                 <constraint firstAttribute="bottom" secondItem="4Nv-ge-RcT" secondAttribute="bottom" constant="20" id="piU-zT-200"/>
                 <constraint firstItem="Yxq-jJ-2NE" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="5" id="qPI-e9-SOx"/>
                 <constraint firstItem="Unj-gS-T29" firstAttribute="top" secondItem="ZSf-24-bOS" secondAttribute="bottom" constant="10" id="rI4-q9-j4I"/>
@@ -214,7 +221,7 @@
                 <constraint firstItem="4Nv-ge-RcT" firstAttribute="top" secondItem="YBt-7F-SxZ" secondAttribute="bottom" constant="65" id="t9y-aA-rKk"/>
                 <constraint firstItem="YBt-7F-SxZ" firstAttribute="top" secondItem="bGM-gB-50H" secondAttribute="bottom" constant="10" id="wd0-xV-kuF"/>
             </constraints>
-            <point key="canvasLocation" x="141" y="154.5"/>
+            <point key="canvasLocation" x="141" y="154"/>
         </customView>
     </objects>
     <resources>
