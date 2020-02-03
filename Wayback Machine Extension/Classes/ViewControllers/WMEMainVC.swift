@@ -54,6 +54,16 @@ class WMEMainVC: WMEBaseVC {
         }
     }
 
+    func enableSavePageUI(_ enable:Bool) {
+        if enable {
+            btnSavePage?.title = "Save Page Now"
+            btnSavePage?.isEnabled = true
+        } else {
+            btnSavePage?.title = "Saving..."
+            btnSavePage?.isEnabled = false
+        }
+    }
+
     func loadSearchField() {
         let userData = WMEGlobal.shared.getUserData()
         if let txt = userData?["searchField"] as? String {
@@ -84,35 +94,37 @@ class WMEMainVC: WMEBaseVC {
     @IBAction func savePageNowClicked(_ sender: Any) {
         getURL { (url) in
             guard let url = url else {
-                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
+                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab.")
+                return
+            }
+            guard let userData = WMEGlobal.shared.getUserData(),
+                let accessKey = userData["s3accesskey"] as? String,
+                let secretKey = userData["s3secretkey"] as? String else
+            {
+                WMEUtil.shared.showMessage(msg: "Login Error", info: "Something's not working right.")  // FIXME
                 return
             }
 
-            // FIXME: No longer works as cookies aren't stored
-            /*
-            guard let userData = WMEGlobal.shared.getUserData(),
-                let loggedInUser = userData["logged-in-user"] as? HTTPCookie,
-                let loggedInSig = userData["logged-in-sig"] as? HTTPCookie else {
-                // TODO: popup error msg
-                return
-            }
-            
-            WMEAPIManager.shared.requestCapture(url: url, logged_in_user: loggedInUser, logged_in_sig: loggedInSig, options:[.allErrors], completion: { (jobId) in
-                
-                if jobId == nil {
-                    WMEUtil.shared.showMessage(msg: "Error", info: "Archiving failed")
-                    return
-                }
-                
-                WMEAPIManager.shared.requestCaptureStatus(job_id: jobId!, logged_in_user: loggedInUser, logged_in_sig: loggedInSig, completion: { (url, error) in
-                    if let url = url {
-                        WMEUtil.shared.openTabWithURL(url: url)
-                    } else {
-                        WMEUtil.shared.showMessage(msg: "Error", info: (error ?? "Unknown"))
+            self.enableSavePageUI(false)
+            WMSAPIManager.shared.capturePage(url: url, accessKey: accessKey, secretKey: secretKey) {
+                (jobId) in
+
+                if let jobId = jobId {
+                    WMSAPIManager.shared.getPageStatus(jobId: jobId, accessKey: accessKey, secretKey: secretKey) {
+                        (archiveURL, errMsg) in
+
+                        self.enableSavePageUI(true)
+                        if let archiveURL = archiveURL {
+                            WMEUtil.shared.openTabWithURL(url: archiveURL)
+                        } else {
+                            WMEUtil.shared.showMessage(msg: "Error", info: (errMsg ?? "Unknown"))
+                        }
                     }
-                })
-            })
-            // */
+                } else {
+                    self.enableSavePageUI(true)
+                    WMEUtil.shared.showMessage(msg: "Error", info: "Archiving failed.")
+                }
+            }
         }
     }
     
