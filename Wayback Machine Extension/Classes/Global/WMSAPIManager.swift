@@ -24,19 +24,22 @@ class WMSAPIManager {
     // MARK: - API Constants
 
     // keep base URLs as vars to support testing
-    var WM_BASE_URL         = "https://web.archive.org"
-    let WM_SPN2_SAVE        = "/save/"
-    let WM_SPN2_STATUS      = "/save/status/"
+    static var WM_BASE_URL         = "https://web.archive.org"
+    static let WM_SPN2_SAVE        = "/save/"
+    static let WM_SPN2_STATUS      = "/save/status/"
+    static let WM_OLDEST           = "/web/0/"
+    static let WM_NEWEST           = "/web/2/"
+    static let WM_OVERVIEW         = "/web/*/"
 
-    var WEB_BASE_URL        = "https://archive.org"
-    let WEB_AVAILABILITY    = "/wayback/available"
-    let WEB_LOGIN           = "/account/login"
-    let WEB_S3KEYS          = "/account/s3.php?output_json=1"
+    static var WEB_BASE_URL        = "https://archive.org"
+    static let WEB_AVAILABILITY    = "/wayback/available"
+    static let WEB_LOGIN           = "/account/login"
+    static let WEB_S3KEYS          = "/account/s3.php?output_json=1"
 
-    let UPLOAD_BASE_URL     = "https://s3.us.archive.org"
+    static var UPLOAD_BASE_URL     = "https://s3.us.archive.org"
 
     /// update headers to reflect different apps
-    let HEADERS: HTTPHeaders = [
+    static let HEADERS: HTTPHeaders = [
         "User-Agent": "Wayback_Machine_Safari_XC/\(APP_VERSION)",
         "Wayback-Extension-Version": "Wayback_Machine_Safari_XC/\(APP_VERSION)",
         "Wayback-Api-Version": "2"
@@ -139,34 +142,20 @@ class WMSAPIManager {
     func webLogin(email: String, password: String,
                   completion: @escaping (_ loggedInUser: String?, _ loggedInSig: String?) -> Void) {
 
+        // prepare cookie to avoid glitch where login doesn't work half the time.
+        setArchiveCookie(name: "test-cookie", value: "1")
+
         // prepare request
-        var headers = HEADERS
+        var headers = WMSAPIManager.HEADERS
         headers["Content-Type"] = "application/x-www-form-urlencoded"
         var params = Parameters()
         params["username"] = email
         params["password"] = password
         params["action"] = "login"
 
-        // prepare cookies (untested)
-        //setArchiveCookie(name: "test-cookie", value: "1")
-
-        // Looks like setting this cookie is necessary to avoid
-        // a glitch where sometimes login won't work half the time.
-        let cookieProps: [HTTPCookiePropertyKey: Any] = [
-            HTTPCookiePropertyKey.version: 0,
-            HTTPCookiePropertyKey.name: "test-cookie",
-            HTTPCookiePropertyKey.path: "/",
-            HTTPCookiePropertyKey.value: "1",
-            HTTPCookiePropertyKey.domain: ".archive.org",
-            HTTPCookiePropertyKey.secure: false,
-            HTTPCookiePropertyKey.expires: NSDate(timeIntervalSinceNow: 86400 * 20)
-        ]
-        if let cookie = HTTPCookie(properties: cookieProps) {
-            Alamofire.SessionManager.default.session.configuration.httpCookieStorage?.setCookie(cookie)
-        }
-
         // make login request
-        Alamofire.request(WEB_BASE_URL + WEB_LOGIN, method: .post, parameters: params,
+        Alamofire.request(WMSAPIManager.WEB_BASE_URL + WMSAPIManager.WEB_LOGIN,
+                          method: .post, parameters: params,
                           headers: headers).responseString { (response) in
 
             switch response.result {
@@ -195,8 +184,9 @@ class WMSAPIManager {
         setArchiveCookie(name: "logged-in-sig", value: loggedInSig)
 
         // make request
-        Alamofire.request(WEB_BASE_URL + WEB_S3KEYS, method: .get, parameters: nil,
-                          headers: HEADERS).responseJSON { (response) in
+        Alamofire.request(WMSAPIManager.WEB_BASE_URL + WMSAPIManager.WEB_S3KEYS,
+                          method: .get, parameters: nil,
+                          headers: WMSAPIManager.HEADERS).responseJSON { (response) in
 
             // API Response:
             // {"success":1,"key":{"s3accesskey":"...","s3secretkey":"..."}}
@@ -233,10 +223,10 @@ class WMSAPIManager {
 
         // prepare request
         let requestParams = "url=\(url)"
-        var request = URLRequest(url: URL(string: WEB_BASE_URL + WEB_AVAILABILITY)!)
+        var request = URLRequest(url: URL(string: WMSAPIManager.WEB_BASE_URL + WMSAPIManager.WEB_AVAILABILITY)!)
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-type")
-        for (key, value) in HEADERS {
+        for (key, value) in WMSAPIManager.HEADERS {
             request.setValue(value, forHTTPHeaderField: key)
         }
         request.httpBody = requestParams.data(using: .utf8)
@@ -286,18 +276,19 @@ class WMSAPIManager {
     }
 
     // TODO: refactor getSearchResult()
-    func getSearchResult(url: String, completion: @escaping ([Any]) -> Void) {
-        let url = "https://web.archive.org/cdx/search/cdx?url=\(url)/&fl=timestamp,original&matchType=prefix&filter=statuscode:200&filter=mimetype:text/html&output=json"
+    func getSearchResult(url: String, completion: @escaping ([Any]?) -> Void) {
+        let apiURL = "https://web.archive.org/cdx/search/cdx?url=\(url)/&fl=timestamp,original&matchType=prefix&filter=statuscode:200&filter=mimetype:text/html&output=json"
 
-        Alamofire.request(url, method: .get)
-            .responseJSON { (response) in
-                switch response.result {
-                case .success(let data):
-                    completion(data as! [Any])   // FIXME: as!
-                case .failure(let error):
-                    NSLog("*** ERROR: %@", error.localizedDescription)
-                    completion([])
-                }
+        // make request
+        Alamofire.request(apiURL, method: .get, headers: WMSAPIManager.HEADERS).responseJSON { (response) in
+            switch response.result {
+            case .success(let data):
+                //if let json = response.result.value as? [String: Any]  // ??
+                completion(data as? [Any])
+            case .failure(let error):
+                NSLog("*** ERROR: %@", error.localizedDescription)
+                completion(nil)
+            }
         }
     }
 
@@ -313,7 +304,7 @@ class WMSAPIManager {
         setArchiveCookie(name: "logged-in-user", value: loggedInUser)
         setArchiveCookie(name: "logged-in-sig", value: loggedInSig)
         // prepare request
-        var headers = HEADERS
+        var headers = WMSAPIManager.HEADERS
         headers["Accept"] = "application/json"
         capturePage(url: url, headers: headers, options: options, completion: completion)
     }
@@ -322,7 +313,7 @@ class WMSAPIManager {
                      completion: @escaping (_ jobId: String?) -> Void) {
 
         // prepare request
-        var headers = HEADERS
+        var headers = WMSAPIManager.HEADERS
         headers["Accept"] = "application/json"
         headers["Authorization"] = "LOW \(accessKey):\(secretKey)"
         capturePage(url: url, headers: headers, options: options, completion: completion)
@@ -339,7 +330,8 @@ class WMSAPIManager {
         if options.contains(.screenshot) { params["capture_screenshot"] = "1" }  // full page screenshot as PNG
 
         // make request
-        Alamofire.request(WM_BASE_URL + WM_SPN2_SAVE, method: .post, parameters: params,
+        Alamofire.request(WMSAPIManager.WM_BASE_URL + WMSAPIManager.WM_SPN2_SAVE,
+                          method: .post, parameters: params,
                           headers: headers).responseJSON { (response) in
 
             switch response.result {
@@ -368,7 +360,7 @@ class WMSAPIManager {
         setArchiveCookie(name: "logged-in-user", value: loggedInUser)
         setArchiveCookie(name: "logged-in-sig", value: loggedInSig)
         // prepare request
-        var headers = HEADERS
+        var headers = WMSAPIManager.HEADERS
         headers["Accept"] = "application/json"
         getPageStatus(jobId: jobId, headers: headers, options: options, completion: completion)
     }
@@ -377,7 +369,7 @@ class WMSAPIManager {
                        completion: @escaping (_ archiveURL: String?, _ errMsg: String?) -> Void) {
 
         // prepare request
-        var headers = HEADERS
+        var headers = WMSAPIManager.HEADERS
         headers["Accept"] = "application/json"
         headers["Authorization"] = "LOW \(accessKey):\(secretKey)"
         getPageStatus(jobId: jobId, headers: headers, options: options, completion: completion)
@@ -389,12 +381,13 @@ class WMSAPIManager {
         // prepare request
         var params = Parameters()
         params["job_id"] = jobId
-        //if options.contains(.availability) { params["outlinks_availability"] = "1" }  // outlinks contain timestamps (NOT USED)
+        if options.contains(.availability) { params["outlinks_availability"] = "1" }  // outlinks contain timestamps (NOT USED)
 
         // TODO: return custom Error objects?
 
         // make request
-        Alamofire.request(WM_BASE_URL + WM_SPN2_STATUS, method: .post, parameters: params,
+        Alamofire.request(WMSAPIManager.WM_BASE_URL + WMSAPIManager.WM_SPN2_STATUS,
+                          method: .post, parameters: params,
                           headers: headers).responseJSON { (response) in
 
             switch response.result {
@@ -410,7 +403,7 @@ class WMSAPIManager {
                     } else if status == "success" {
                         if let timestamp = json["timestamp"] as? String,
                             let originalUrl = json["original_url"] as? String {
-                            let archiveUrl = self.WM_BASE_URL + "/web/\(timestamp)/\(originalUrl)" // TODO: redo?
+                            let archiveUrl = WMSAPIManager.WM_BASE_URL + "/web/\(timestamp)/\(originalUrl)" // TODO: redo?
                             completion(archiveUrl, nil)
                         } else {
                             completion(nil, "Unknown Status Error 1")

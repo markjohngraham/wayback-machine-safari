@@ -11,6 +11,7 @@
                 <outlet property="boxWayback" destination="vrw-Nd-LRN" id="Lh4-K5-Z8G"/>
                 <outlet property="btnLoginout" destination="yyD-Jk-sKs" id="SLT-D5-gk0"/>
                 <outlet property="btnSavePage" destination="My3-Jq-Y72" id="tWz-l0-Us5"/>
+                <outlet property="btnSiteMap" destination="0WI-ow-eAc" id="f6o-XB-2O8"/>
                 <outlet property="txtSearch" destination="ThK-OG-A4k" id="Jxk-Ud-f90"/>
                 <outlet property="view" destination="c22-O7-iKe" id="vwT-Xx-Aiz"/>
             </connections>
@@ -74,7 +75,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="firstVersionClicked:" target="-2" id="wAw-Dy-gcK"/>
+                                                    <action selector="oldestClicked:" target="-2" id="90W-iM-y3v"/>
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aL5-QC-bEM">
@@ -131,7 +132,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="recentVersionClicked:" target="-2" id="ypH-qv-LPO"/>
+                                                    <action selector="newestClicked:" target="-2" id="i1Z-Uo-hlE"/>
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0WI-ow-eAc">
@@ -162,7 +163,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="sitemapClicked:" target="-2" id="oZD-KF-09k"/>
+                                                    <action selector="siteMapClicked:" target="-2" id="7pv-ar-6gV"/>
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="My3-Jq-Y72">

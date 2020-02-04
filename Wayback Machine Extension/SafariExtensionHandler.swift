@@ -43,12 +43,12 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         NSLog("*** handleBeforeNavigate()")  // DEBUG
         WMEUtil.shared.getActivePageURL { (url) in
             guard let url = url else { return }
-            self.getResponse(url: url, completion: { (status) in
+            self.getResponse(url: url) { (status) in
                 guard let status = status else { return }
                 // if success (200) or not one of the fail codes then return, else check the archive
                 // FIXME: Need to handle (401) Unauthorized, but before the login prompt?
                 if (HTTPFailCodes.index(of: status) == nil) { return }
-                WMEAPIManager.shared.wmAvailabilityCheck(url: url, completion: { (waybackURL, url) in
+                WMSAPIManager.shared.checkAvailability(url: url) { (waybackURL, originalURL) in
                     guard let waybackURL = waybackURL else { return }
                     SFSafariApplication.getActiveWindow(completionHandler: {(activeWindow) in
                         activeWindow?.getActiveTab(completionHandler: {(activeTab) in
@@ -57,9 +57,8 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
                             })
                         })
                     })
-                    
-                })
-            })
+                }
+            }
         }
     }
     
