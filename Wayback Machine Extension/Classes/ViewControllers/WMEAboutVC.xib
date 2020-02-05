@@ -157,7 +157,7 @@ Internet Archive, AGPLv3</string>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="0FL-hG-fI6"/>
                     </constraints>
-                    <buttonCell key="cell" type="square" title="Help Center" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="b0k-nN-3RY">
+                    <buttonCell key="cell" type="square" title="Contact Us" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="b0k-nN-3RY">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>

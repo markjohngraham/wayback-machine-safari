@@ -554,6 +554,7 @@
 				TargetAttributes = {
 					C38D18C7215EE6E600E95389 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1030;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -562,10 +563,12 @@
 					};
 					C38D18D9215EE6E700E95389 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1030;
 						TestTargetID = C38D18C7215EE6E600E95389;
 					};
 					C38D18EC215EE78D00E95389 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1030;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -920,7 +923,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = archive.org.waybackmachine.mac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -945,7 +948,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = archive.org.waybackmachine.mac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -968,7 +971,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "archive.org.Wayback-MachineTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wayback Machine.app/Contents/MacOS/Wayback Machine";
 			};
 			name = Debug;
@@ -992,7 +995,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "archive.org.Wayback-MachineTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wayback Machine.app/Contents/MacOS/Wayback Machine";
 			};
 			name = Release;
@@ -1017,7 +1020,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1041,7 +1044,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

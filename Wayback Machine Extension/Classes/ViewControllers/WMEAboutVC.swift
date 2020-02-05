@@ -26,8 +26,9 @@ class WMEAboutVC: WMEBaseVC {
         //}
     }
 
-    /// Opens the help.archive.org webpage.
+    /// Opens the help webpage.
     @IBAction func helpClicked(_ sender: Any) {
-        WMEUtil.shared.openTabWithURL(url: "https://help.archive.org")
+        //WMEUtil.shared.openTabWithURL(url: "https://help.archive.org")
+        WMEUtil.shared.openTabWithURL(url: "https://archive.org/about/contact.php")
     }
 }

@@ -45,6 +45,8 @@ class WMSAPIManager {
         "Wayback-Api-Version": "2"
     ]
 
+    // TODO: set headers to URLSessionConfiguration to automatically apply?
+
     ///////////////////////////////////////////////////////////////////////////////////
     // MARK: - Helper Functions
 
@@ -68,7 +70,7 @@ class WMSAPIManager {
             HTTPCookiePropertyKey.value: value,
             HTTPCookiePropertyKey.domain: ".archive.org",
             HTTPCookiePropertyKey.secure: true,
-            HTTPCookiePropertyKey.discard: true  // TODO: untested
+            HTTPCookiePropertyKey.discard: true
         ]
         if let cookie = HTTPCookie(properties: cookieProps) {
             Alamofire.SessionManager.default.session.configuration.httpCookieStorage?.setCookie(cookie)
@@ -147,7 +149,7 @@ class WMSAPIManager {
 
         // prepare request
         var headers = WMSAPIManager.HEADERS
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
+        headers["Content-Type"] = "application/x-www-form-urlencoded"  // TODO: not needed w/ Alamofire?
         var params = Parameters()
         params["username"] = email
         params["password"] = password
