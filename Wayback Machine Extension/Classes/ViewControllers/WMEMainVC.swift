@@ -31,10 +31,21 @@ class WMEMainVC: WMEBaseVC {
         super.viewWillAppear()
         loadSearchField()
 
-        // login UI
+/*
         let userData = WMEGlobal.shared.getUserData()
         let email = userData?["email"] as? String
         updateLoginUI(WMEGlobal.shared.isLoggedIn(), username: email)
+// */
+        // update login UI & restore button states
+        if WMEGlobal.shared.isLoggedIn() {
+            let userData = WMEGlobal.shared.getUserData()
+            let email = userData?["email"] as? String
+            updateLoginUI(true, username: email)
+            enableSavePageUI(WMEGlobal.shared.savePageEnabled)
+        } else {
+            updateLoginUI(false)
+        }
+        enableSiteMapUI(WMEGlobal.shared.siteMapEnabled)
     }
 
     ///////////////////////////////////////////////////////////////////////////////////
@@ -63,6 +74,8 @@ class WMEMainVC: WMEBaseVC {
             btnSavePage?.title = "Saving..."
             btnSavePage?.isEnabled = false
         }
+        // save state in case view disappears
+        WMEGlobal.shared.savePageEnabled = enable
     }
 
     func enableSiteMapUI(_ enable:Bool) {
@@ -73,6 +86,8 @@ class WMEMainVC: WMEBaseVC {
             btnSiteMap?.title = "Loading..."
             btnSiteMap?.isEnabled = false
         }
+        // save state in case view disappears
+        WMEGlobal.shared.siteMapEnabled = enable
     }
 
     func loadSearchField() {
@@ -89,9 +104,15 @@ class WMEMainVC: WMEBaseVC {
         }
     }
 
-    func getURL(completion: @escaping (String?) -> Void) {
+    /// Percent encode any whitespace for given URL.
+    func encodeWhitespace(_ url: String?) -> String? {
+        return url?.addingPercentEncoding(withAllowedCharacters: (CharacterSet.whitespacesAndNewlines).inverted)
+    }
+
+    /// Grab URL from search field if it's not empty, otherwise grab from active open browser tab.
+    func grabURL(completion: @escaping (String?) -> Void) {
         if !txtSearch.stringValue.isEmpty {
-            completion(txtSearch.stringValue)
+            completion(encodeWhitespace(txtSearch.stringValue))
         } else {
             WMEUtil.shared.getActivePageURL { (url) in
                 completion(url)
@@ -103,7 +124,9 @@ class WMEMainVC: WMEBaseVC {
     // MARK: - Actions
 
     @IBAction func savePageNowClicked(_ sender: Any) {
-        getURL { (url) in
+
+        self.enableSavePageUI(false)
+        grabURL { (url) in
             guard let url = url else {
                 WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab.")
                 return
@@ -116,19 +139,22 @@ class WMEMainVC: WMEBaseVC {
                 return
             }
 
-            self.enableSavePageUI(false)
             WMSAPIManager.shared.capturePage(url: url, accessKey: accessKey, secretKey: secretKey, options:[.allErrors]) {
                 (jobId) in
 
                 if let jobId = jobId {
-                    WMSAPIManager.shared.getPageStatus(jobId: jobId, accessKey: accessKey, secretKey: secretKey) {
-                        (archiveURL, errMsg) in
+                    // short delay before retrieving status
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        WMSAPIManager.shared.getPageStatus(jobId: jobId, accessKey: accessKey, secretKey: secretKey) {
+                            (archiveURL, errMsg) in
 
-                        self.enableSavePageUI(true)
-                        if let archiveURL = archiveURL {
-                            WMEUtil.shared.openTabWithURL(url: archiveURL)
-                        } else {
-                            WMEUtil.shared.showMessage(msg: "Save Page Failed", info: (errMsg ?? "Unknown Error"))
+                            self.enableSavePageUI(true)
+                            if archiveURL != nil {
+                                WMEUtil.shared.showMessage(msg: "Page Saved", info: "The following website has been archived:\n\(url)")
+                                //WMEUtil.shared.openTabWithURL(url: archiveURL)
+                            } else {
+                                WMEUtil.shared.showMessage(msg: "Save Page Failed", info: (errMsg ?? "Unknown Error"))
+                            }
                         }
                     }
                 } else {
@@ -157,125 +183,154 @@ class WMEMainVC: WMEBaseVC {
     }
 
     @IBAction func oldestClicked(_ sender: Any) {
-        getURL { (url) in
+        grabURL { (url) in
             self.openInWayback(url: url, waybackPath: WMSAPIManager.WM_OLDEST)
         }
     }
 
     @IBAction func overviewClicked(_ sender: Any) {
-        getURL { (url) in
+        grabURL { (url) in
             self.openInWayback(url: url, waybackPath: WMSAPIManager.WM_OVERVIEW)
         }
     }
 
     @IBAction func newestClicked(_ sender: Any) {
-        getURL { (url) in
+        grabURL { (url) in
             self.openInWayback(url: url, waybackPath: WMSAPIManager.WM_NEWEST)
         }
     }
 
     @IBAction func alexaClicked(_ sender: Any) {
-        getURL { (url) in
+        grabURL { (url) in
             guard let url = url else {
                 WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
                 return
             }
-            WMEUtil.shared.openTabWithURL(url: "https://www.alexa.com/siteinfo/\(url)")
+            guard let urlHost = URL(string: WMSAPIManager.shared.fullWebURL(url))?.host else {
+                WMEUtil.shared.showMessage(msg: "Incorrect URL", info: "Please type a correct URL in the search field or web browser.")
+                return
+            }
+            // search alexa
+            WMEUtil.shared.openTabWithURL(url: "https://www.alexa.com/siteinfo/" + urlHost)
         }
     }
     
     @IBAction func whoisClicked(_ sender: Any) {
-        getURL { (url) in
+        grabURL { (url) in
             guard let url = url else {
                 WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
                 return
             }
-            WMEUtil.shared.openTabWithURL(url: "https://www.whois.com/whois/\(url)")
+            guard let urlHost = URL(string: WMSAPIManager.shared.fullWebURL(url))?.host else {
+                WMEUtil.shared.showMessage(msg: "Incorrect URL", info: "Please type a correct URL in the search field or web browser.")
+                return
+            }
+            // search whois
+            WMEUtil.shared.openTabWithURL(url: "https://www.whois.com/whois/" + urlHost)
         }
     }
     
     @IBAction func tweetsClicked(_ sender: Any) {
-        getURL { (url) in
-            guard var url = url else {
+        grabURL { (url) in
+            guard let url = url else {
                 WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
                 return
             }
-
-            // remove "http(s)://" from url
-            // TODO: refactor?
-            if url.contains("http://") {
-                url = String(url[url.index(url.startIndex, offsetBy: 7)..<url.endIndex])
-            } else if url.contains("https://") {
-                url = String(url[url.index(url.startIndex, offsetBy: 8)..<url.endIndex])
+            let fullURL = WMSAPIManager.shared.fullWebURL(url)
+            guard let urlHost = URL(string: fullURL)?.host, let urlPath = URL(string: fullURL)?.path else {
+                WMEUtil.shared.showMessage(msg: "Incorrect URL", info: "Please type a correct URL in the search field or web browser.")
+                return
             }
-            // remove trailing slash
-            let lastCharacter = String(url[url.index(before: url.endIndex)])
-            if lastCharacter == "/" {
-                url = String(url[..<url.index(url.startIndex, offsetBy: url.count - 1)])
-            }
-            
-            WMEUtil.shared.openTabWithURL(url: "https://twitter.com/search?q=\(url)")
+            // search twitter
+            WMEUtil.shared.openTabWithURL(url: "https://twitter.com/search?q=" + urlHost + urlPath)
         }
     }
     
     @IBAction func siteMapClicked(_ sender: Any) {
-        getURL { (url) in
-            guard var url = url else {
-                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
-                return
-            }
+        NSLog("*** siteMapClicked()")  // DEBUG
 
-            // preparing url
-            // TODO: refactor?
-            url = url.replacingOccurrences(of: "https://", with: "")
-            url = url.replacingOccurrences(of: "http://", with: "")
-            if url.contains("/") {
-                url = url.components(separatedBy: "/")[0]
+        self.enableSiteMapUI(false)
+        let sUrl = encodeWhitespace(txtSearch.stringValue) ?? ""
+        if sUrl.isEmpty {
+            // use the current url in web browser
+            NSLog("*** is empty")  // DEBUG
+            WMEUtil.shared.getActivePageURL { (url) in
+                self.showSiteMap(url: url)
             }
-
-            // display loader in webpage
-            self.enableSiteMapUI(false)  // FIXME: not updating UI properly
-            WMEUtil.shared.dispatchMessage(messageName: "DISPLAY_RT_LOADER", userInfo: ["visible": true])
-            WMSAPIManager.shared.getSearchResult(url: url) { (data) in
-                if let data = data {
-                    // FIXME: need to fix JS code to prevent slow / freezing UI
-                    WMEUtil.shared.dispatchMessage(messageName: "RADIAL_TREE", userInfo: ["url": url, "data": data])
-                    self.enableSiteMapUI(true)
-                } else {
-                    self.enableSiteMapUI(true)
-                    WMEUtil.shared.showMessage(msg: "Site Map Failed", info: "Loading the Site Map failed.")
+        } else {
+            // open the url in web browser before showing the site map
+            NSLog("*** not empty: \(sUrl)")  // DEBUG
+            let tUrl = WMSAPIManager.shared.fullWebURL(sUrl)
+            NSLog("*** open url: \(tUrl)")  // DEBUG
+            WMEUtil.shared.openTabWithURL(url: tUrl, completion: {
+                NSLog("*** openTabWithURL completed")  // DEBUG
+                // clear search field in case user clicks "Site Map" button again
+                self.txtSearch.stringValue = ""
+                self.saveSearchField(text: "")
+                // short delay to allow website to load
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    WMEUtil.shared.getActivePageURL { (url) in
+                        self.showSiteMap(url: url)
+                    }
                 }
+            })
+        }
+    }
+
+    func showSiteMap(url: String?) {
+        NSLog("*** showSiteMap() url: \(String(describing: url))")  // DEBUG
+        guard let url = url else {
+            WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
+            return
+        }
+        guard let urlHost = URL(string: WMSAPIManager.shared.fullWebURL(url))?.host else {
+            WMEUtil.shared.showMessage(msg: "Incorrect URL", info: "Please type a correct URL in the search field or web browser.")
+            return
+        }
+        // display loader in webpage
+        WMEUtil.shared.dispatchMessage(messageName: "DISPLAY_RT_LOADER", userInfo: ["visible": true])
+        WMSAPIManager.shared.getSearchResult(url: urlHost) { (data) in
+            if let data = data {
+                // FIXME: need to fix JS code to prevent slow / freezing UI
+                WMEUtil.shared.dispatchMessage(messageName: "RADIAL_TREE", userInfo: ["url": urlHost, "data": data])
+                self.enableSiteMapUI(true)
+            } else {
+                self.enableSiteMapUI(true)
+                WMEUtil.shared.showMessage(msg: "Site Map Failed", info: "Loading the Site Map failed.")
             }
         }
     }
     
     @IBAction func facebookClicked(_ sender: Any) {
-        getURL { (url) in
+        grabURL { (url) in
             guard let url = url else {
                 WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
                 return
             }
-            WMEUtil.shared.openTabWithURL(url: "https://www.facebook.com/sharer/sharer.php?u=\(url)")
+            // share on facebook
+            WMEUtil.shared.openTabWithURL(url: "https://www.facebook.com/sharer/sharer.php?u=" + url)
         }
     }
     
     @IBAction func twitterClicked(_ sender: Any) {
-        getURL { (url) in
+        grabURL { (url) in
             guard let url = url else {
                 WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
                 return
             }
-            WMEUtil.shared.openTabWithURL(url: "http://twitter.com/share?url=\(url)")
+            // share on twitter
+            WMEUtil.shared.openTabWithURL(url: "http://twitter.com/share?url=" + url)
         }
     }
     
     @IBAction func linkedinClicked(_ sender: Any) {
-        getURL { (url) in
+        grabURL { (url) in
             guard let url = url else {
                 WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
                 return
             }
-            WMEUtil.shared.openTabWithURL(url: "https://www.linkedin.com/shareArticle?url=\(url)")
+            // share on linkedin
+            WMEUtil.shared.openTabWithURL(url: "https://www.linkedin.com/shareArticle?url=" + url)
         }
     }
     

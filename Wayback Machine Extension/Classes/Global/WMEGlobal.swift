@@ -9,6 +9,9 @@ import Foundation
 
 class WMEGlobal: NSObject {
     static let shared = WMEGlobal()
+
+    var savePageEnabled = true
+    var siteMapEnabled = true
     
     func saveUserData(userData: [String: Any?]) {
         let encodedObject = NSKeyedArchiver.archivedData(withRootObject: userData)

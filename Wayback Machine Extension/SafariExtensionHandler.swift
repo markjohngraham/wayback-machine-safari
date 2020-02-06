@@ -62,13 +62,12 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         }
     }
     
-    func getResponse(url: String?, completion: @escaping (Int?) -> Void) {
-        NSLog("*** getResponse() url: %@", url ?? "")  // DEBUG
-        if (url == nil) {return}
-        
-        var request = URLRequest(url: URL(string: url!)!)
+    func getResponse(url: String, completion: @escaping (Int?) -> Void) {
+        NSLog("*** getResponse() url: \(url)")  // DEBUG
+
+        guard let realURL = URL(string: url) else { return }
+        var request = URLRequest(url: realURL)
         request.httpMethod = "GET"
-        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             
             guard let _ = data, error == nil else {
@@ -82,7 +81,6 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
             NSLog("*** allHeaderFields: \(String(describing: httpStatus?.allHeaderFields))")  // DEBUG
             completion(httpStatus?.statusCode)
         }
-        
         task.resume()
     }
 

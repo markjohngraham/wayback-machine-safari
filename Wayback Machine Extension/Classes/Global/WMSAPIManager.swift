@@ -63,6 +63,7 @@ class WMSAPIManager {
         return isValidWebURL(url) ? url : "https://\(url)"
     }
 
+    /// Sets a temporary cookie for the archive.org domain and its sub-domains.
     func setArchiveCookie(name: String, value: String) {
         let cookieProps: [HTTPCookiePropertyKey: Any] = [
             HTTPCookiePropertyKey.name: name,
@@ -157,8 +158,8 @@ class WMSAPIManager {
 
         // make login request
         Alamofire.request(WMSAPIManager.WEB_BASE_URL + WMSAPIManager.WEB_LOGIN,
-                          method: .post, parameters: params,
-                          headers: headers).responseString { (response) in
+                          method: .post, parameters: params, headers: headers)
+        .responseString { (response) in
 
             switch response.result {
             case .success:
@@ -187,8 +188,8 @@ class WMSAPIManager {
 
         // make request
         Alamofire.request(WMSAPIManager.WEB_BASE_URL + WMSAPIManager.WEB_S3KEYS,
-                          method: .get, parameters: nil,
-                          headers: WMSAPIManager.HEADERS).responseJSON { (response) in
+                          method: .get, parameters: nil, headers: WMSAPIManager.HEADERS)
+        .responseJSON { (response) in
 
             // API Response:
             // {"success":1,"key":{"s3accesskey":"...","s3secretkey":"..."}}
@@ -279,10 +280,24 @@ class WMSAPIManager {
 
     // TODO: refactor getSearchResult()
     func getSearchResult(url: String, completion: @escaping ([Any]?) -> Void) {
+
+        // TODO: need to check/encode url?
         let apiURL = "https://web.archive.org/cdx/search/cdx?url=\(url)/&fl=timestamp,original&matchType=prefix&filter=statuscode:200&filter=mimetype:text/html&output=json"
 
+        /* TODO: later
+        // prepare request
+        var params = Parameters()
+        params["url"] = url
+        params["fl"] = "timestamp,original"
+        params["matchType"] = "prefix"
+        //params["filter"] = "statuscode:200"  // need to handle multiple values for same key
+        //params["filter"] = "mimetype:text/html"
+        params["output"] = "json"
+        // */
+
         // make request
-        Alamofire.request(apiURL, method: .get, headers: WMSAPIManager.HEADERS).responseJSON { (response) in
+        Alamofire.request(apiURL, method: .get, headers: WMSAPIManager.HEADERS)
+        .responseJSON { (response) in
             switch response.result {
             case .success(let data):
                 //if let json = response.result.value as? [String: Any]  // ??
@@ -333,8 +348,8 @@ class WMSAPIManager {
 
         // make request
         Alamofire.request(WMSAPIManager.WM_BASE_URL + WMSAPIManager.WM_SPN2_SAVE,
-                          method: .post, parameters: params,
-                          headers: headers).responseJSON { (response) in
+                          method: .post, parameters: params, headers: headers)
+        .responseJSON { (response) in
 
             switch response.result {
             case .success:
@@ -350,8 +365,6 @@ class WMSAPIManager {
             }
         }
     }
-
-    //func requestCaptureStatus(job_id: String, logged_in_user: HTTPCookie, logged_in_sig: HTTPCookie, completion: @escaping (String?, String?) -> Void) {
 
     // WAS: requestCaptureStatus(...)
 
@@ -380,6 +393,8 @@ class WMSAPIManager {
     func getPageStatus(jobId: String, headers: HTTPHeaders, options: CaptureOptions = [],
                        completion: @escaping (_ archiveURL: String?, _ errMsg: String?) -> Void) {
 
+        NSLog("*** getPageStatus()")  // DEBUG
+
         // prepare request
         var params = Parameters()
         params["job_id"] = jobId
@@ -389,19 +404,19 @@ class WMSAPIManager {
 
         // make request
         Alamofire.request(WMSAPIManager.WM_BASE_URL + WMSAPIManager.WM_SPN2_STATUS,
-                          method: .post, parameters: params,
-                          headers: headers).responseJSON { (response) in
-
+                          method: .post, parameters: params, headers: headers)
+        .responseJSON { (response) in
             switch response.result {
             case .success:
                 if let json = response.result.value as? [String: Any],
                     let status = json["status"] as? String {
                     // status is one of {"success", "pending", "error"}
+                    NSLog("*** SPN2 Status: \(status)")  // DEBUG
                     if status == "pending" {
                         // TODO: Redo this! Need to cancel or timeout at some point...
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                             self.getPageStatus(jobId: jobId, headers: headers, options: options, completion: completion)
-                        })
+                        }
                     } else if status == "success" {
                         if let timestamp = json["timestamp"] as? String,
                             let originalUrl = json["original_url"] as? String {
@@ -421,6 +436,8 @@ class WMSAPIManager {
                 }
 
             case .failure(let error):
+                // FIXME: fix this error: "The request timed out"
+                NSLog("*** getPageStatus(): request failure: " + error.localizedDescription)  // DEBUG
                 completion(nil, error.localizedDescription)
             }
         }

@@ -29,6 +29,7 @@ function handleMessage(event) {
         document.getElementById("RTloader").style.display = "none";
         displayRadialTree(event.message["url"], event.message["data"]);
     } else if (event.name == "DISPLAY_RT_LOADER") {
+        displayRTContent();
         document.getElementById("myModal").style.display = "block";
         document.getElementById("RTloader").style.display = "block";
     }
