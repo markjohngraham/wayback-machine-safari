@@ -17,18 +17,11 @@ class WMEAboutVC: WMEBaseVC {
     }
     
     @IBAction func backClicked(_ sender: Any) {
-        //if WMEGlobal.shared.isLoggedIn() {
-            // return to Main if logged in
-            self.view.window?.contentViewController = WMEMainVC()
-        //} else {
-            // return to Login if logged out
-        //    self.view.window?.contentViewController = WMELoginVC()
-        //}
+        self.view.window?.contentViewController = WMEMainVC()
     }
 
     /// Opens the help webpage.
     @IBAction func helpClicked(_ sender: Any) {
-        //WMEUtil.shared.openTabWithURL(url: "https://help.archive.org")
         WMEUtil.shared.openTabWithURL(url: "https://archive.org/about/contact.php")
     }
 }

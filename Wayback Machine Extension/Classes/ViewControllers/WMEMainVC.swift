@@ -31,11 +31,6 @@ class WMEMainVC: WMEBaseVC {
         super.viewWillAppear()
         loadSearchField()
 
-/*
-        let userData = WMEGlobal.shared.getUserData()
-        let email = userData?["email"] as? String
-        updateLoginUI(WMEGlobal.shared.isLoggedIn(), username: email)
-// */
         // update login UI & restore button states
         if WMEGlobal.shared.isLoggedIn() {
             let userData = WMEGlobal.shared.getUserData()
@@ -128,7 +123,7 @@ class WMEMainVC: WMEBaseVC {
         self.enableSavePageUI(false)
         grabURL { (url) in
             guard let url = url else {
-                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab.")
+                WMEUtil.shared.showMessage(msg: "Missing URL", info: "Please type a URL in the search field or open a URL in the web browser.")
                 return
             }
             guard let userData = WMEGlobal.shared.getUserData(),
@@ -169,12 +164,12 @@ class WMEMainVC: WMEBaseVC {
     func openInWayback(url: String?, waybackPath: String) {
 
         guard let url = url else {
-            WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab.")
+            WMEUtil.shared.showMessage(msg: "Missing URL", info: "Please type a URL in the search field or open a URL in the web browser.")
             return
         }
         WMSAPIManager.shared.checkAvailability(url: url) { (waybackURL, originalURL) in
             guard waybackURL != nil else {
-                WMEUtil.shared.showMessage(msg: "Not in Internet Archive", info: "The URL is not in Internet Archive. We would suggest to archive the URL by clicking Save Page Now")
+                WMEUtil.shared.showMessage(msg: "Not in Internet Archive", info: "The URL is not in Internet Archive. We would suggest to archive the URL by clicking Save Page Now.")
                 return
             }
             let fullURL = WMSAPIManager.WM_BASE_URL + waybackPath + originalURL
@@ -203,7 +198,7 @@ class WMEMainVC: WMEBaseVC {
     @IBAction func alexaClicked(_ sender: Any) {
         grabURL { (url) in
             guard let url = url else {
-                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
+                WMEUtil.shared.showMessage(msg: "Missing URL", info: "Please type a URL in the search field or open a URL in the web browser.")
                 return
             }
             guard let urlHost = URL(string: WMSAPIManager.shared.fullWebURL(url))?.host else {
@@ -218,7 +213,7 @@ class WMEMainVC: WMEBaseVC {
     @IBAction func whoisClicked(_ sender: Any) {
         grabURL { (url) in
             guard let url = url else {
-                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
+                WMEUtil.shared.showMessage(msg: "Missing URL", info: "Please type a URL in the search field or open a URL in the web browser.")
                 return
             }
             guard let urlHost = URL(string: WMSAPIManager.shared.fullWebURL(url))?.host else {
@@ -233,12 +228,12 @@ class WMEMainVC: WMEBaseVC {
     @IBAction func tweetsClicked(_ sender: Any) {
         grabURL { (url) in
             guard let url = url else {
-                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
+                WMEUtil.shared.showMessage(msg: "Missing URL", info: "Please type a URL in the search field or open a URL in the web browser.")
                 return
             }
             let fullURL = WMSAPIManager.shared.fullWebURL(url)
             guard let urlHost = URL(string: fullURL)?.host, let urlPath = URL(string: fullURL)?.path else {
-                WMEUtil.shared.showMessage(msg: "Incorrect URL", info: "Please type a correct URL in the search field or web browser.")
+                WMEUtil.shared.showMessage(msg: "Missing URL", info: "Please type a URL in the search field or open a URL in the web browser.")
                 return
             }
             // search twitter
@@ -280,7 +275,7 @@ class WMEMainVC: WMEBaseVC {
     func showSiteMap(url: String?) {
         NSLog("*** showSiteMap() url: \(String(describing: url))")  // DEBUG
         guard let url = url else {
-            WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
+            WMEUtil.shared.showMessage(msg: "Missing URL", info: "Please type a URL in the search field or open a URL in the web browser.")
             return
         }
         guard let urlHost = URL(string: WMSAPIManager.shared.fullWebURL(url))?.host else {
@@ -304,7 +299,7 @@ class WMEMainVC: WMEBaseVC {
     @IBAction func facebookClicked(_ sender: Any) {
         grabURL { (url) in
             guard let url = url else {
-                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
+                WMEUtil.shared.showMessage(msg: "Missing URL", info: "Please type a URL in the search field or open a URL in the web browser.")
                 return
             }
             // share on facebook
@@ -315,7 +310,7 @@ class WMEMainVC: WMEBaseVC {
     @IBAction func twitterClicked(_ sender: Any) {
         grabURL { (url) in
             guard let url = url else {
-                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
+                WMEUtil.shared.showMessage(msg: "Missing URL", info: "Please type a URL in the search field or open a URL in the web browser.")
                 return
             }
             // share on twitter
@@ -326,7 +321,7 @@ class WMEMainVC: WMEBaseVC {
     @IBAction func linkedinClicked(_ sender: Any) {
         grabURL { (url) in
             guard let url = url else {
-                WMEUtil.shared.showMessage(msg: "Please type a URL", info: "You need to type a URL in search field or open a URL in a new tab")
+                WMEUtil.shared.showMessage(msg: "Missing URL", info: "Please type a URL in the search field or open a URL in the web browser.")
                 return
             }
             // share on linkedin
