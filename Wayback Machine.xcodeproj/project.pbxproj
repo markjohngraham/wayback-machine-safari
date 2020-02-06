@@ -15,7 +15,6 @@
 		846C82D322EFEA4400A13F62 /* close.svg in Resources */ = {isa = PBXBuildFile; fileRef = 846C82D122EFEA4400A13F62 /* close.svg */; };
 		8476247122C3DCCD00E8ADD8 /* d3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 8476247022C3DCCD00E8ADD8 /* d3.min.js */; };
 		8476247822C3E3C500E8ADD8 /* sequences.css in Resources */ = {isa = PBXBuildFile; fileRef = 8476247522C3E3C500E8ADD8 /* sequences.css */; };
-		8476247922C3E3C500E8ADD8 /* googlestyle.css in Resources */ = {isa = PBXBuildFile; fileRef = 8476247622C3E3C500E8ADD8 /* googlestyle.css */; };
 		8476247A22C3E3C500E8ADD8 /* RTContent.css in Resources */ = {isa = PBXBuildFile; fileRef = 8476247722C3E3C500E8ADD8 /* RTContent.css */; };
 		84781FB92162186700F8290D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C38D18CF215EE6E700E95389 /* Assets.xcassets */; };
 		84781FBB216219F500F8290D /* WMConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84781FBA216219F500F8290D /* WMConstants.swift */; };
@@ -25,7 +24,6 @@
 		8492AD9F22D21F80004EAEA4 /* WMELoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8492AD9D22D21F80004EAEA4 /* WMELoginVC.xib */; };
 		8492ADA122D21FC5004EAEA4 /* WMEMainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8492ADA022D21FC5004EAEA4 /* WMEMainVC.xib */; };
 		8492ADA322D2BF1E004EAEA4 /* WMEGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8492ADA222D2BF1E004EAEA4 /* WMEGlobal.swift */; };
-		8492ADA522D2BF3A004EAEA4 /* WMEAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8492ADA422D2BF3A004EAEA4 /* WMEAPIManager.swift */; };
 		84F2843D22AB0E55006E260A /* NSViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F2843C22AB0E55006E260A /* NSViewExtensions.swift */; };
 		84F2843E22AB0F68006E260A /* NSViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F2843C22AB0E55006E260A /* NSViewExtensions.swift */; };
 		9DDBBD09CCE05C0221DBA198 /* Pods_Wayback_Machine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB596902556784B78624D76F /* Pods_Wayback_Machine.framework */; };
@@ -88,7 +86,6 @@
 		846C82D122EFEA4400A13F62 /* close.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = close.svg; sourceTree = "<group>"; };
 		8476247022C3DCCD00E8ADD8 /* d3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = d3.min.js; sourceTree = "<group>"; };
 		8476247522C3E3C500E8ADD8 /* sequences.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = sequences.css; sourceTree = "<group>"; };
-		8476247622C3E3C500E8ADD8 /* googlestyle.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = googlestyle.css; sourceTree = "<group>"; };
 		8476247722C3E3C500E8ADD8 /* RTContent.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = RTContent.css; sourceTree = "<group>"; };
 		84781FBA216219F500F8290D /* WMConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMConstants.swift; sourceTree = "<group>"; };
 		84781FBE2162294300F8290D /* WMEBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMEBaseVC.swift; sourceTree = "<group>"; };
@@ -96,7 +93,6 @@
 		8492AD9D22D21F80004EAEA4 /* WMELoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WMELoginVC.xib; sourceTree = "<group>"; };
 		8492ADA022D21FC5004EAEA4 /* WMEMainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMEMainVC.xib; sourceTree = "<group>"; };
 		8492ADA222D2BF1E004EAEA4 /* WMEGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMEGlobal.swift; sourceTree = "<group>"; };
-		8492ADA422D2BF3A004EAEA4 /* WMEAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMEAPIManager.swift; sourceTree = "<group>"; };
 		849D0F112309D6AB0004E080 /* Wayback Machine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Wayback Machine.entitlements"; sourceTree = "<group>"; };
 		84F2843C22AB0E55006E260A /* NSViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewExtensions.swift; sourceTree = "<group>"; };
 		8865BE4CB6E14B950A1CC51C /* Pods_Wayback_Machine_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wayback_Machine_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,7 +196,6 @@
 		8476247422C3E39200E8ADD8 /* StyleSheet */ = {
 			isa = PBXGroup;
 			children = (
-				8476247622C3E3C500E8ADD8 /* googlestyle.css */,
 				8476247722C3E3C500E8ADD8 /* RTContent.css */,
 				8476247522C3E3C500E8ADD8 /* sequences.css */,
 			);
@@ -221,7 +216,6 @@
 				84F2843622AB0DDF006E260A /* Extension */,
 				840C191A22AF834600B6C67E /* WMEUtil.swift */,
 				8492ADA222D2BF1E004EAEA4 /* WMEGlobal.swift */,
-				8492ADA422D2BF3A004EAEA4 /* WMEAPIManager.swift */,
 				C3A7CF3B23E18C4E004DD308 /* WMSAPIManager.swift */,
 			);
 			path = Global;
@@ -621,7 +615,6 @@
 				C33C34A923D3E9EA00A214FB /* toolbar-item-icon.pdf in Resources */,
 				84781FB92162186700F8290D /* Assets.xcassets in Resources */,
 				8476247122C3DCCD00E8ADD8 /* d3.min.js in Resources */,
-				8476247922C3E3C500E8ADD8 /* googlestyle.css in Resources */,
 				841E733422B0D39100F489E6 /* WMEAboutVC.xib in Resources */,
 				8492ADA122D21FC5004EAEA4 /* WMEMainVC.xib in Resources */,
 				8492AD9F22D21F80004EAEA4 /* WMELoginVC.xib in Resources */,
@@ -751,7 +744,6 @@
 				84F2843D22AB0E55006E260A /* NSViewExtensions.swift in Sources */,
 				841E733322B0D39100F489E6 /* WMEAboutVC.swift in Sources */,
 				840C191B22AF834600B6C67E /* WMEUtil.swift in Sources */,
-				8492ADA522D2BF3A004EAEA4 /* WMEAPIManager.swift in Sources */,
 				8492ADA322D2BF1E004EAEA4 /* WMEGlobal.swift in Sources */,
 				84781FBC216219F800F8290D /* WMConstants.swift in Sources */,
 				C38D18F3215EE78D00E95389 /* SafariExtensionHandler.swift in Sources */,
