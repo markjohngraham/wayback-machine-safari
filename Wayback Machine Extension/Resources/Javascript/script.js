@@ -1,27 +1,32 @@
 //safari.self.addEventListener("beforeNavigate", _onBeforeNavigate, true);
 //safari.self.addEventListener("navigate", _onNavigate, true);
 
-document.addEventListener("DOMContentLoaded", function(event) {
-    safari.extension.dispatchMessage("Hello World!");
-    safari.self.addEventListener("message", handleMessage);
-});
+var IAExtension = function () {
+    "use strict";
+    var me = {};
+    var IAglobvar;
 
-window.addEventListener("load", function(event) {
-    if (location.href.indexOf("https://www.facebook.com/dialog/return/close") > -1 ||
-        location.href.indexOf("https://twitter.com/intent/tweet/complete") > -1) {
-        
-    }
-});
+    me.init = function () {
+        window.addEventListener("DOMContentLoaded", function(event) {
+            safari.extension.dispatchMessage("Hello World!");
+            safari.self.addEventListener("message", me.handleMessage);
+        });
 
-window.onbeforeunload = function(event) {
-    safari.extension.dispatchMessage("_onBeforeNavigate");
-}
+        window.addEventListener("load", function(event) {
+            if (location.href.indexOf("https://www.facebook.com/dialog/return/close") > -1 ||
+                location.href.indexOf("https://twitter.com/intent/tweet/complete") > -1) {
+                // don't load
+            } else {
+                me.displayRTContent();
+            }
+        });
 
-window.onload = function() {
-    displayRTContent();
-}
+        window.addEventListener("beforeunload", function(event) {
+            safari.extension.dispatchMessage("_onBeforeNavigate");
+        });
+    };
 
-function handleMessage(event) {
+me.handleMessage = function (event) {
     if (event.name == "SHOW_BANNER") {
         checkIt(event.message["url"]);
     } else if (event.name == "RADIAL_TREE") {
@@ -29,7 +34,7 @@ function handleMessage(event) {
         document.getElementById("RTloader").style.display = "none";
         displayRadialTree(event.message["url"], event.message["data"]);
     } else if (event.name == "DISPLAY_RT_LOADER") {
-        displayRTContent();
+        me.displayRTContent();
         document.getElementById("myModal").style.display = "block";
         document.getElementById("RTloader").style.display = "block";
     }
@@ -91,7 +96,7 @@ function createEl(type, handler) {
     return el;
 }
 
-function createBanner(wayback_url) {
+me.createBanner = function (wayback_url) {
     if (document.getElementById("no-more-404s-message") !== null) {
         return;
     }
@@ -272,11 +277,11 @@ function checkIt(wayback_url) {
     // Some pages use javascript to update the dom so poll to ensure
     // the banner gets recreated if it is deleted.
     enforceBannerInterval = setInterval(function() {
-        createBanner(wayback_url);
+        me.createBanner(wayback_url);
     }, 500);
 }
 
-function displayRTContent() {
+me.displayRTContent = function () {
     // if (window.top !== window) return;
     
     if (document.getElementById("myModal") != null) {
@@ -776,4 +781,8 @@ function displayRadialTree(url, data) {
   }
 }
 
+
+    me.init();
+    return me;
+}();
 
