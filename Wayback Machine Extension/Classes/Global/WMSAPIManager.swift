@@ -223,6 +223,7 @@ class WMSAPIManager {
     /// - parameter originalURL: The original URL passed in.
     ///
     func checkAvailability(url: String, completion: @escaping (_ waybackURL: String?, _ originalURL: String) -> Void) {
+        NSLog("*** checkAvailability() url: \(url)")  // DEBUG
 
         // prepare request
         let requestParams = "url=\(url)"

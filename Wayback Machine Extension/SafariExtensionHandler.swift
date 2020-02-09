@@ -19,7 +19,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         if (messageName == "_onBeforeNavigate") {
             // NOTE: Commenting this out will prevent keychain alert during auth logins,
             // but will also disable auto-checking the archive when http GET returns an error status code.
-            //handleBeforeNavigate()
+            handleBeforeNavigate()
         }
     }
     
@@ -50,6 +50,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
                 if (HTTPFailCodes.firstIndex(of: status) == nil) { return }
                 WMSAPIManager.shared.checkAvailability(url: url) { (waybackURL, originalURL) in
                     guard let waybackURL = waybackURL else { return }
+                    NSLog("*** in wayback: \(waybackURL)")  // DEBUG
                     SFSafariApplication.getActiveWindow(completionHandler: {(activeWindow) in
                         activeWindow?.getActiveTab(completionHandler: {(activeTab) in
                             activeTab?.getActivePage(completionHandler: {(activePage) in
@@ -67,7 +68,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
 
         guard let realURL = URL(string: url) else { return }
         var request = URLRequest(url: realURL)
-        request.httpMethod = "GET"
+        request.httpMethod = "HEAD"
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             
             guard let _ = data, error == nil else {
