@@ -13,9 +13,6 @@ class WMEBaseVC: SFSafariExtensionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //let s = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height)
-        //NSLog("*** viewDidLoad size = \(s)")  // DEBUG
-        //self.preferredContentSize = s
     }
     
 }

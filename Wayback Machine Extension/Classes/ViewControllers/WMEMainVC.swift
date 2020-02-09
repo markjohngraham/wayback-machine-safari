@@ -242,23 +242,23 @@ class WMEMainVC: WMEBaseVC {
     }
     
     @IBAction func siteMapClicked(_ sender: Any) {
-        NSLog("*** siteMapClicked()")  // DEBUG
+        if (DEBUG_LOG) { NSLog("*** siteMapClicked()") }
 
         self.enableSiteMapUI(false)
         let sUrl = encodeWhitespace(txtSearch.stringValue) ?? ""
         if sUrl.isEmpty {
             // use the current url in web browser
-            NSLog("*** is empty")  // DEBUG
+            if (DEBUG_LOG) { NSLog("*** is empty") }
             WMEUtil.shared.getActivePageURL { (url) in
                 self.showSiteMap(url: url)
             }
         } else {
             // open the url in web browser before showing the site map
-            NSLog("*** not empty: \(sUrl)")  // DEBUG
+            if (DEBUG_LOG) { NSLog("*** not empty: \(sUrl)") }
             let tUrl = WMSAPIManager.shared.fullWebURL(sUrl)
-            NSLog("*** open url: \(tUrl)")  // DEBUG
+            if (DEBUG_LOG) { NSLog("*** open url: \(tUrl)") }
             WMEUtil.shared.openTabWithURL(url: tUrl, completion: {
-                NSLog("*** openTabWithURL completed")  // DEBUG
+                if (DEBUG_LOG) { NSLog("*** openTabWithURL completed") }
                 // clear search field in case user clicks "Site Map" button again
                 self.txtSearch.stringValue = ""
                 self.saveSearchField(text: "")
@@ -273,7 +273,7 @@ class WMEMainVC: WMEBaseVC {
     }
 
     func showSiteMap(url: String?) {
-        NSLog("*** showSiteMap() url: \(String(describing: url))")  // DEBUG
+        if (DEBUG_LOG) { NSLog("*** showSiteMap() url: \(String(describing: url))") }
         guard let url = url else {
             WMEUtil.shared.showMessage(msg: "Missing URL", info: "Please type a URL in the search field or open a URL in the web browser.")
             return
@@ -286,7 +286,6 @@ class WMEMainVC: WMEBaseVC {
         WMEUtil.shared.dispatchMessage(messageName: "DISPLAY_RT_LOADER", userInfo: ["visible": true])
         WMSAPIManager.shared.getSearchResult(url: urlHost) { (data) in
             if let data = data {
-                // FIXME: need to fix JS code to prevent slow / freezing UI
                 WMEUtil.shared.dispatchMessage(messageName: "RADIAL_TREE", userInfo: ["url": urlHost, "data": data])
                 self.enableSiteMapUI(true)
             } else {

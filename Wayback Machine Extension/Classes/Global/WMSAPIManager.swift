@@ -45,8 +45,6 @@ class WMSAPIManager {
         "Wayback-Api-Version": "2"
     ]
 
-    // TODO: set headers to URLSessionConfiguration to automatically apply?
-
     ///////////////////////////////////////////////////////////////////////////////////
     // MARK: - Helper Functions
 
@@ -223,7 +221,7 @@ class WMSAPIManager {
     /// - parameter originalURL: The original URL passed in.
     ///
     func checkAvailability(url: String, completion: @escaping (_ waybackURL: String?, _ originalURL: String) -> Void) {
-        NSLog("*** checkAvailability() url: \(url)")  // DEBUG
+        if (DEBUG_LOG) { NSLog("*** checkAvailability() url: \(url)") }
 
         // prepare request
         let requestParams = "url=\(url)"
@@ -394,7 +392,7 @@ class WMSAPIManager {
     func getPageStatus(jobId: String, headers: HTTPHeaders, options: CaptureOptions = [],
                        completion: @escaping (_ archiveURL: String?, _ errMsg: String?) -> Void) {
 
-        NSLog("*** getPageStatus()")  // DEBUG
+        if (DEBUG_LOG) { NSLog("*** getPageStatus()") }
 
         // prepare request
         var params = Parameters()
@@ -412,7 +410,7 @@ class WMSAPIManager {
                 if let json = response.result.value as? [String: Any],
                     let status = json["status"] as? String {
                     // status is one of {"success", "pending", "error"}
-                    NSLog("*** SPN2 Status: \(status)")  // DEBUG
+                    if (DEBUG_LOG) { NSLog("*** SPN2 Status: \(status)") }
                     if status == "pending" {
                         // TODO: Redo this! Need to cancel or timeout at some point...
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -438,7 +436,7 @@ class WMSAPIManager {
 
             case .failure(let error):
                 // FIXME: fix this error: "The request timed out"
-                NSLog("*** getPageStatus(): request failure: " + error.localizedDescription)  // DEBUG
+                if (DEBUG_LOG) { NSLog("*** getPageStatus(): request failure: " + error.localizedDescription) }
                 completion(nil, error.localizedDescription)
             }
         }

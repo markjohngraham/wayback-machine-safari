@@ -64,12 +64,11 @@ class WMEUtil: NSObject {
     }
     
     func openTabWithURL(url: String?, completion: (() -> Void)? = nil) {
-        NSLog("*** openTabWithURL()")  // DEBUG
+        if (DEBUG_LOG) { NSLog("*** openTabWithURL() url: \(String(describing: url))") }
         guard let url = url, let realURL = URL(string: url) else { return }
-        NSLog("*** openTabWithURL() url: \(url)")  // DEBUG
         SFSafariApplication.getActiveWindow { (activeWindow) in
             activeWindow?.openTab(with: realURL, makeActiveIfPossible: true, completionHandler: { (tab) in
-                NSLog("*** openTabWithURL() completionHandler:")  // DEBUG
+                if (DEBUG_LOG) { NSLog("*** openTabWithURL() completionHandler:") }
                 if let completion = completion { completion() }
             })
         }

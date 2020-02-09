@@ -338,13 +338,15 @@ function displayRadialTree(url, data) {
       if(url.includes('jpg') || url.includes('pdf') || url.includes('png') || url.includes('form') || url.includes('gif')){
         continue;
       }
+/*
       if(url.startsWith('https')){
         url=url.replace('https','http');
       }
+*/
       if(data[i][1].indexOf(':80')>(-1)){
         url=data[i][1].replace(':80','');
       }
-      
+/*
       if(url.includes('www1')){
         url=url.replace('www1','www');
       }else if(url.includes('www2')){
@@ -358,7 +360,7 @@ function displayRadialTree(url, data) {
       if(url.indexOf('://www')==(-1)){
         url="http://www."+url.substring(7);
       }
-      
+*/
       var format=/[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
       var n=0;
       while(format.test(url.charAt(url.length-1))){
@@ -608,8 +610,10 @@ function displayRadialTree(url, data) {
           url = url+'/'+anc[i].data.name;
         }
 
-        var wbURL =" https://web.archive.org/web/" + year + "0630";
-        safari.self.tab.dispatchMessage("OPEN_URL", {wbURL: wbURL, pageURL: url});
+        //var wbPath = "/web/" + year + "0630";
+        //safari.extension.dispatchMessage("OPEN_URL", {wbPath: wbPath, pageURL: url});
+        var fullURL = "https://web.archive.org/web/" + year + "0630" + url;
+        window.open(fullURL, '_blank').focus();
       }
       
       // Fade all but the current sequence, and show it in the breadcrumb trail.
