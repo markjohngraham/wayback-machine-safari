@@ -85,6 +85,7 @@ class WMEMainVC: WMEBaseVC {
         WMEGlobal.shared.siteMapEnabled = enable
     }
 
+    /// Restore search field from persistent storage.
     func loadSearchField() {
         let userData = WMEGlobal.shared.getUserData()
         if let txt = userData?["searchField"] as? String {
@@ -92,6 +93,7 @@ class WMEMainVC: WMEBaseVC {
         }
     }
 
+    /// Save search field to persistent storage.
     func saveSearchField(text: String?) {
         if var userData = WMEGlobal.shared.getUserData() {
             userData["searchField"] = text
@@ -160,7 +162,10 @@ class WMEMainVC: WMEBaseVC {
         }
     }
 
-    // TODO: redo waybackPath arg?
+    /// Check if `url` is available in Wayback Machine, then open Wayback version in web browser.
+    /// - parameter url: Archived website to view.
+    /// - parameter waybackPath: Pass in `WMSAPIManager.WM_OLDEST`, `.WM_NEWEST` or `.WM_OVERVIEW`.
+    ///
     func openInWayback(url: String?, waybackPath: String) {
 
         guard let url = url else {
@@ -284,7 +289,7 @@ class WMEMainVC: WMEBaseVC {
         }
         // display loader in webpage
         WMEUtil.shared.dispatchMessage(messageName: "DISPLAY_RT_LOADER", userInfo: ["visible": true])
-        WMSAPIManager.shared.getSearchResult(url: urlHost) { (data) in
+        WMSAPIManager.shared.getSiteMapData(url: urlHost) { (data) in
             if let data = data {
                 WMEUtil.shared.dispatchMessage(messageName: "RADIAL_TREE", userInfo: ["url": urlHost, "data": data])
                 self.enableSiteMapUI(true)

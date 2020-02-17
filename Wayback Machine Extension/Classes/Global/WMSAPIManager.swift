@@ -12,6 +12,7 @@ import Alamofire
 
 /// # Globals Used #
 /// - APP_VERSION
+/// - DEBUG_LOG
 
 class WMSAPIManager {
     static let shared = WMSAPIManager()
@@ -84,7 +85,7 @@ class WMSAPIManager {
     /// - parameter password: User's password.
     /// - parameter completion: Returns a Dictionary to pass to saveUserData(), else nil if failed.
     /// - returns: *Keys*:
-    ///   email, logged-in-user, logged-in-sig, s3accesskey, s3secretkey, screenname (not yet)
+    ///   email, logged-in-user, logged-in-sig, s3accesskey, s3secretkey
     ///
     func login(email: String, password: String, completion: @escaping ([String: Any?]?) -> Void) {
 
@@ -98,8 +99,8 @@ class WMSAPIManager {
                     if let accessKey = accessKey, let secretKey = secretKey {
                         // success
                         let data: [String: Any?] = [
+                            // password not stored
                             "email"          : email,
-                            //"password"       : password,
                             "logged-in-user" : loggedInUser,
                             "logged-in-sig"  : loggedInSig,
                             "s3accesskey"    : accessKey,
@@ -148,7 +149,7 @@ class WMSAPIManager {
 
         // prepare request
         var headers = WMSAPIManager.HEADERS
-        headers["Content-Type"] = "application/x-www-form-urlencoded"  // TODO: not needed w/ Alamofire?
+        headers["Content-Type"] = "application/x-www-form-urlencoded"
         var params = Parameters()
         params["username"] = email
         params["password"] = password
@@ -175,7 +176,7 @@ class WMSAPIManager {
         }
     }
 
-    /// Get the S3 account keys.
+    /// Get the S3 account keys for long-term API access. Pass in cookie strings returned by webLogin().
     ///
     func getIAS3Keys(loggedInUser: String, loggedInSig: String,
                      completion: @escaping (_ accessKey: String?, _ secretKey: String?) -> Void) {
@@ -206,6 +207,7 @@ class WMSAPIManager {
     }
 
     // TODO: Get Account Info
+    // Get additional info such as user's screenname.
     //func getAccountInfo(email: String, completion: @escaping ([String: Any]?) -> Void) {
     //    SendDataToService(params: ["email": email], operation: API_INFO, completion: completion)
     //}
@@ -277,8 +279,8 @@ class WMSAPIManager {
        return nil
     }
 
-    // TODO: refactor getSearchResult()
-    func getSearchResult(url: String, completion: @escaping ([Any]?) -> Void) {
+    /// Retrieves data for the Site Map graph.
+    func getSiteMapData(url: String, completion: @escaping (_ data: [Any]?) -> Void) {
 
         // TODO: need to check/encode url?
         let apiURL = "https://web.archive.org/cdx/search/cdx?url=\(url)/&fl=timestamp,original&matchType=prefix&filter=statuscode:200&filter=mimetype:text/html&output=json"
@@ -312,7 +314,13 @@ class WMSAPIManager {
     // MARK: - Save Page Now API (SPN2)
 
     // WAS: requestCapture(...)
-
+    /// Requests Wayback Machine to save the given webpage using cookie auth.
+    /// - parameter url: Can be a full or partial URL with or without the http(s).
+    /// - parameter loggedInUser: Cookie string for short-term auth.
+    /// - parameter loggedInSig: Cookie string for short-term auth.
+    /// - parameter options: See enum & API docs for options.
+    /// - parameter jobId: Returns a job ID to pass to getPageStatus() for status updates.
+    ///
     func capturePage(url: String, loggedInUser: String, loggedInSig: String, options: CaptureOptions = [],
                      completion: @escaping (_ jobId: String?) -> Void) {
 
@@ -325,6 +333,13 @@ class WMSAPIManager {
         capturePage(url: url, headers: headers, options: options, completion: completion)
     }
 
+    /// Requests Wayback Machine to save the given webpage using S3 auth.
+    /// - parameter url: Can be a full or partial URL with or without the http(s).
+    /// - parameter accessKey: String for long-term S3 auth.
+    /// - parameter secretKey: String for long-term S3 auth.
+    /// - parameter options: See enum & API docs for options.
+    /// - parameter jobId: Returns a job ID to pass to getPageStatus() for status updates.
+    ///
     func capturePage(url: String, accessKey: String, secretKey: String, options: CaptureOptions = [],
                      completion: @escaping (_ jobId: String?) -> Void) {
 
@@ -335,6 +350,9 @@ class WMSAPIManager {
         capturePage(url: url, headers: headers, options: options, completion: completion)
     }
 
+    /// Requests Wayback Machine to save the given webpage. Requires manually setting headers.
+    /// Better to call the other functions directly.
+    ///
     func capturePage(url: String, headers: HTTPHeaders, options: CaptureOptions = [],
                      completion: @escaping (_ jobId: String?) -> Void) {
 
@@ -366,7 +384,14 @@ class WMSAPIManager {
     }
 
     // WAS: requestCaptureStatus(...)
-
+    /// Use to retrieve status of saving a page in the Wayback Machine, using cookie auth.
+    /// - parameter jobId: ID from capturePage().
+    /// - parameter loggedInUser: Cookie string for short-term auth.
+    /// - parameter loggedInSig: Cookie string for short-term auth.
+    /// - parameter options: Normally leave off.
+    /// - parameter archiveURL: URL of archived website on the Wayback Machine, or `nil` if error.
+    /// - parameter errMsg: Error message as String.
+    ///
     func getPageStatus(jobId: String, loggedInUser: String, loggedInSig: String, options: CaptureOptions = [],
                        completion: @escaping (_ archiveURL: String?, _ errMsg: String?) -> Void) {
 
@@ -379,6 +404,14 @@ class WMSAPIManager {
         getPageStatus(jobId: jobId, headers: headers, options: options, completion: completion)
     }
 
+    /// Use to retrieve status of saving a page in the Wayback Machine, using S3 auth.
+    /// - parameter jobId: ID from capturePage().
+    /// - parameter accessKey: String for long-term S3 auth.
+    /// - parameter secretKey: String for long-term S3 auth.
+    /// - parameter options: Normally leave off.
+    /// - parameter archiveURL: URL of archived website on the Wayback Machine, or `nil` if error.
+    /// - parameter errMsg: Error message as String.
+    ///
     func getPageStatus(jobId: String, accessKey: String, secretKey: String, options: CaptureOptions = [],
                        completion: @escaping (_ archiveURL: String?, _ errMsg: String?) -> Void) {
 
@@ -389,6 +422,9 @@ class WMSAPIManager {
         getPageStatus(jobId: jobId, headers: headers, options: options, completion: completion)
     }
 
+    /// Use to retrieve status of saving a page in the Wayback Machine. Requires manually setting headers.
+    /// Better to call the other functions directly.
+    ///
     func getPageStatus(jobId: String, headers: HTTPHeaders, options: CaptureOptions = [],
                        completion: @escaping (_ archiveURL: String?, _ errMsg: String?) -> Void) {
 
@@ -412,14 +448,14 @@ class WMSAPIManager {
                     // status is one of {"success", "pending", "error"}
                     if (DEBUG_LOG) { NSLog("*** SPN2 Status: \(status)") }
                     if status == "pending" {
-                        // TODO: Redo this! Need to cancel or timeout at some point...
+                        // TODO: May need to allow for cancel or timeout.
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                             self.getPageStatus(jobId: jobId, headers: headers, options: options, completion: completion)
                         }
                     } else if status == "success" {
                         if let timestamp = json["timestamp"] as? String,
                             let originalUrl = json["original_url"] as? String {
-                            let archiveUrl = WMSAPIManager.WM_BASE_URL + "/web/\(timestamp)/\(originalUrl)" // TODO: redo?
+                            let archiveUrl = WMSAPIManager.WM_BASE_URL + "/web/\(timestamp)/\(originalUrl)"
                             completion(archiveUrl, nil)
                         } else {
                             completion(nil, "Unknown Status Error 1")
@@ -435,7 +471,8 @@ class WMSAPIManager {
                 }
 
             case .failure(let error):
-                // FIXME: fix this error: "The request timed out"
+                // Sometimes we get "The request timed out".
+                // This error really should be fixed on the server API end.
                 if (DEBUG_LOG) { NSLog("*** getPageStatus(): request failure: " + error.localizedDescription) }
                 completion(nil, error.localizedDescription)
             }
