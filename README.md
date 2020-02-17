@@ -1,12 +1,11 @@
 ## Wayback Machine Safari Extension ##
 
-<img src="screenshots/main-light-75p.png" alt="screenshot" style="float:right; padding:10pt">
-
 By [Internet Archive](https://archive.org)
 
 The Internet Archive presents 
 The Official WayBack Machine Extension. With the power of the WayBack Machine, we let you go back in time to see how a website has changed and evolved through the history of the Web!
 
+![screenshot](screenshots/main-light-75p.png)
 
 ### Dependencies ###
 
