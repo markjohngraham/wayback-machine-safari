@@ -77,6 +77,6 @@
 		</dict>
 	</dict>
 	<key>NSHumanReadableDescription</key>
-	<string>Archive web pages and tweets to the Wayback Machine!</string>
+	<string>Archive and explore web pages over time!</string>
 </dict>
 </plist>
