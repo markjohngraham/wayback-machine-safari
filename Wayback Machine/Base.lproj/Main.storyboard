@@ -59,8 +59,8 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                    <window key="window" title="Wayback Machine" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="574" y="349" width="520" height="320"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
@@ -84,7 +84,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eGO-xX-nzZ">
-                                <rect key="frame" x="30" y="190" width="100" height="100"/>
+                                <rect key="frame" x="30" y="205" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="Zzy-dC-z3s"/>
                                     <constraint firstAttribute="height" constant="100" id="qJd-Fg-kTp"/>
@@ -92,7 +92,7 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppIcon100" id="JZG-vx-m4Z"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zRy-6Z-ZQY">
-                                <rect key="frame" x="148" y="268" width="158" height="22"/>
+                                <rect key="frame" x="148" y="283" width="158" height="22"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Wayback Machine" id="tw7-gs-Dfo">
                                     <font key="font" metaFont="systemSemibold" size="18"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -100,7 +100,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NYj-X9-VeS">
-                                <rect key="frame" x="148" y="251" width="102" height="17"/>
+                                <rect key="frame" x="148" y="266" width="102" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Safari Extension" id="NeF-vF-nfm">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -108,7 +108,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FOZ-BP-IMC">
-                                <rect key="frame" x="148" y="219" width="53" height="17"/>
+                                <rect key="frame" x="148" y="234" width="53" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Version:" id="GFp-93-LAJ">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -116,7 +116,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F6D-6X-UDI">
-                                <rect key="frame" x="207" y="219" width="42" height="17"/>
+                                <rect key="frame" x="207" y="234" width="42" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="-- (--)" id="bhb-0R-adg">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -124,7 +124,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NtS-0V-u8X">
-                                <rect key="frame" x="28" y="79" width="174" height="57"/>
+                                <rect key="frame" x="28" y="94" width="174" height="57"/>
                                 <textFieldCell key="cell" alignment="left" title="Check the box next to Wayback Machine in your Safari Preferences." id="ktq-yg-u8V">
                                     <font key="font" metaFont="system" size="15"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -132,11 +132,11 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="e4j-SM-5tF">
-                                <rect key="frame" x="30" y="20" width="170" height="35"/>
+                                <rect key="frame" x="30" y="20" width="160" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="JU9-HB-qDV"/>
                                 </constraints>
-                                <buttonCell key="cell" type="square" title="Show Preferences" bezelStyle="shadowlessSquare" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" id="ken-Q2-XYx">
+                                <buttonCell key="cell" type="square" title="Finish Setup" bezelStyle="shadowlessSquare" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" id="ken-Q2-XYx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system" size="14"/>
                                 </buttonCell>
@@ -168,7 +168,7 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyDown" image="preferences-clip" id="i9b-Kg-tVA"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zf2-8F-BUB">
-                                <rect key="frame" x="28" y="151" width="87" height="19"/>
+                                <rect key="frame" x="28" y="166" width="87" height="19"/>
                                 <textFieldCell key="cell" alignment="left" title="To Activate:" id="X7R-fF-SC9">
                                     <font key="font" metaFont="systemMedium" size="15"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -178,20 +178,19 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="YHv-lc-plQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NtS-0V-u8X" secondAttribute="trailing" constant="20" id="0IG-OH-LUO"/>
-                            <constraint firstItem="YHv-lc-plQ" firstAttribute="leading" secondItem="e4j-SM-5tF" secondAttribute="trailing" constant="20" id="25F-V1-Kh4"/>
+                            <constraint firstItem="YHv-lc-plQ" firstAttribute="leading" secondItem="e4j-SM-5tF" secondAttribute="trailing" constant="30" id="25F-V1-Kh4"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NYj-X9-VeS" secondAttribute="trailing" constant="20" symbolic="YES" id="4E0-Gw-VO4"/>
-                            <constraint firstItem="zRy-6Z-ZQY" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="30" id="6dn-ll-tzK"/>
+                            <constraint firstItem="zRy-6Z-ZQY" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="15" id="6dn-ll-tzK"/>
                             <constraint firstItem="NYj-X9-VeS" firstAttribute="top" secondItem="zRy-6Z-ZQY" secondAttribute="bottom" id="Aou-ms-LtO"/>
                             <constraint firstItem="NYj-X9-VeS" firstAttribute="leading" secondItem="zRy-6Z-ZQY" secondAttribute="leading" id="HjF-F0-lGv"/>
                             <constraint firstAttribute="bottom" secondItem="e4j-SM-5tF" secondAttribute="bottom" constant="20" id="J6N-bK-efl"/>
                             <constraint firstItem="YHv-lc-plQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="e4j-SM-5tF" secondAttribute="trailing" constant="8" symbolic="YES" id="P2U-V6-c4R"/>
                             <constraint firstItem="FOZ-BP-IMC" firstAttribute="top" secondItem="NYj-X9-VeS" secondAttribute="bottom" constant="15" id="SB5-qx-AWo"/>
                             <constraint firstItem="eGO-xX-nzZ" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="30" id="U1B-WF-Jej"/>
-                            <constraint firstItem="eGO-xX-nzZ" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="30" id="Zvs-xV-ffX"/>
+                            <constraint firstItem="eGO-xX-nzZ" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="15" id="Zvs-xV-ffX"/>
                             <constraint firstItem="F6D-6X-UDI" firstAttribute="bottom" secondItem="FOZ-BP-IMC" secondAttribute="bottom" id="aS3-vF-An6"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="F6D-6X-UDI" secondAttribute="trailing" constant="20" symbolic="YES" id="bIX-DU-xLW"/>
                             <constraint firstItem="NtS-0V-u8X" firstAttribute="top" secondItem="zf2-8F-BUB" secondAttribute="bottom" constant="15" id="bWV-Ne-JER"/>
-                            <constraint firstAttribute="top" secondItem="F6D-6X-UDI" secondAttribute="bottom" constant="-101" id="dkL-oj-1C9"/>
                             <constraint firstItem="YHv-lc-plQ" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="220" id="eb5-oh-GEM"/>
                             <constraint firstAttribute="trailing" secondItem="YHv-lc-plQ" secondAttribute="trailing" id="fXo-Ja-g5B"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zRy-6Z-ZQY" secondAttribute="trailing" constant="20" symbolic="YES" id="fbC-9H-MSu"/>
