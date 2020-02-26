@@ -124,8 +124,8 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NtS-0V-u8X">
-                                <rect key="frame" x="28" y="94" width="174" height="57"/>
-                                <textFieldCell key="cell" alignment="left" title="Check the box next to Wayback Machine in your Safari Preferences." id="ktq-yg-u8V">
+                                <rect key="frame" x="28" y="75" width="174" height="57"/>
+                                <textFieldCell key="cell" alignment="left" title="Check the box next to Wayback Machine in Safari Preferences." id="ktq-yg-u8V">
                                     <font key="font" metaFont="system" size="15"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -136,17 +136,17 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="JU9-HB-qDV"/>
                                 </constraints>
-                                <buttonCell key="cell" type="square" title="Finish Setup" bezelStyle="shadowlessSquare" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" id="ken-Q2-XYx">
+                                <buttonCell key="cell" type="square" title="Activate Now" bezelStyle="shadowlessSquare" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" id="ken-Q2-XYx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system" size="14"/>
                                 </buttonCell>
                                 <color key="contentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="0.45000000000000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="value" red="0.75083591439999997" green="0.28718608709999999" blue="0.27334579370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
-                                        <color key="value" white="0.29999999999999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="value" red="0.60427127400000002" green="0.2311268007" blue="0.21998815969999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="1"/>
@@ -168,9 +168,9 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyDown" image="preferences-clip" id="i9b-Kg-tVA"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zf2-8F-BUB">
-                                <rect key="frame" x="28" y="166" width="87" height="19"/>
+                                <rect key="frame" x="28" y="147" width="89" height="19"/>
                                 <textFieldCell key="cell" alignment="left" title="To Activate:" id="X7R-fF-SC9">
-                                    <font key="font" metaFont="systemMedium" size="15"/>
+                                    <font key="font" metaFont="systemSemibold" size="15"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -184,6 +184,7 @@
                             <constraint firstItem="NYj-X9-VeS" firstAttribute="top" secondItem="zRy-6Z-ZQY" secondAttribute="bottom" id="Aou-ms-LtO"/>
                             <constraint firstItem="NYj-X9-VeS" firstAttribute="leading" secondItem="zRy-6Z-ZQY" secondAttribute="leading" id="HjF-F0-lGv"/>
                             <constraint firstAttribute="bottom" secondItem="e4j-SM-5tF" secondAttribute="bottom" constant="20" id="J6N-bK-efl"/>
+                            <constraint firstItem="e4j-SM-5tF" firstAttribute="top" secondItem="NtS-0V-u8X" secondAttribute="bottom" constant="20" id="Kr0-KI-rd2"/>
                             <constraint firstItem="YHv-lc-plQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="e4j-SM-5tF" secondAttribute="trailing" constant="8" symbolic="YES" id="P2U-V6-c4R"/>
                             <constraint firstItem="FOZ-BP-IMC" firstAttribute="top" secondItem="NYj-X9-VeS" secondAttribute="bottom" constant="15" id="SB5-qx-AWo"/>
                             <constraint firstItem="eGO-xX-nzZ" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="30" id="U1B-WF-Jej"/>
@@ -197,7 +198,6 @@
                             <constraint firstItem="YHv-lc-plQ" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="120" id="gCL-gu-Y2b"/>
                             <constraint firstItem="zRy-6Z-ZQY" firstAttribute="leading" secondItem="eGO-xX-nzZ" secondAttribute="trailing" constant="20" id="i36-QD-jvt"/>
                             <constraint firstItem="FOZ-BP-IMC" firstAttribute="leading" secondItem="zRy-6Z-ZQY" secondAttribute="leading" id="iaw-dx-dYM"/>
-                            <constraint firstItem="zf2-8F-BUB" firstAttribute="top" secondItem="eGO-xX-nzZ" secondAttribute="bottom" constant="20" id="lAS-jT-Std"/>
                             <constraint firstItem="F6D-6X-UDI" firstAttribute="leading" secondItem="FOZ-BP-IMC" secondAttribute="trailing" constant="10" id="lPI-mZ-msS"/>
                             <constraint firstItem="NtS-0V-u8X" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="30" id="mWf-ZV-IId"/>
                             <constraint firstItem="zf2-8F-BUB" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="30" id="ocn-N4-KbZ"/>

@@ -130,6 +130,7 @@ class WMEMainVC: WMEBaseVC {
         enableSavePageUI(false)
         grabURL { (url) in
             guard let url = url else {
+                self.enableSavePageUI(true)
                 WMEUtil.shared.showMessage(msg: "Missing URL", info: "Please type a URL in the search field or open a URL in the web browser.")
                 return
             }
@@ -137,6 +138,7 @@ class WMEMainVC: WMEBaseVC {
                 let accessKey = userData["s3accesskey"] as? String,
                 let secretKey = userData["s3secretkey"] as? String else
             {
+                self.enableSavePageUI(true)
                 WMEUtil.shared.showMessage(msg: "Not Logged In?", info: "Try logging out and back in again.")
                 return
             }
@@ -196,7 +198,7 @@ class WMEMainVC: WMEBaseVC {
                             } else {
                                 WMEUtil.shared.showMessage(msg: "Save Page Failed", info: (errMsg ?? "Unknown Error"))
                             }
-                        });
+                        })
                     }
                 } else {
                     self.enableSavePageUI(true)
@@ -324,10 +326,12 @@ class WMEMainVC: WMEBaseVC {
     func showSiteMap(url: String?) {
         if (DEBUG_LOG) { NSLog("*** showSiteMap() url: \(String(describing: url))") }
         guard let url = url else {
+            enableSiteMapUI(true)
             WMEUtil.shared.showMessage(msg: "Missing URL", info: "Please type a URL in the search field or open a URL in the web browser.")
             return
         }
         guard let urlHost = URL(string: WMSAPIManager.shared.fullWebURL(url))?.host else {
+            enableSiteMapUI(true)
             WMEUtil.shared.showMessage(msg: "Incorrect URL", info: "Please type a correct URL in the search field or web browser.")
             return
         }
