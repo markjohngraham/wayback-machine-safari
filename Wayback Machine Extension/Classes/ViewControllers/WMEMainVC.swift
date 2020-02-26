@@ -16,12 +16,10 @@ class WMEMainVC: WMEBaseVC {
 
     @IBOutlet weak var txtSearch: NSSearchField!
     @IBOutlet weak var btnSavePage: NSButton!
-    //@IBOutlet weak var btnOverview: NSButton!  // REMOVE
     @IBOutlet weak var btnSiteMap: NSButton!
     @IBOutlet weak var btnLoginout: NSButton!
     @IBOutlet weak var boxWayback: NSBox!
     @IBOutlet weak var indProgress: NSProgressIndicator!
-    //@IBOutlet weak var txtProgress: NSTextField!
 
     ///////////////////////////////////////////////////////////////////////////////////
     // MARK: - View Lifecycle
@@ -30,8 +28,6 @@ class WMEMainVC: WMEBaseVC {
         super.viewDidLoad()
         txtSearch.delegate = self
         indProgress.stopAnimation(nil)
-        //txtProgress.isHidden = true
-        //txtProgress.stringValue = ""
     }
     override func viewWillAppear() {
         super.viewWillAppear()
@@ -71,15 +67,11 @@ class WMEMainVC: WMEBaseVC {
         if enable {
             btnSavePage.title = "Save Page Now"
             btnSavePage.isEnabled = true
-            //btnOverview?.isHidden = false
-            //txtProgress?.isHidden = true
             indProgress.stopAnimation(nil)
 
         } else {
             btnSavePage.title = "Saving..."
             btnSavePage.isEnabled = false
-            //btnOverview?.isHidden = true
-            //txtProgress?.isHidden = false
             indProgress.startAnimation(nil)
         }
         // save state in case view disappears
@@ -153,7 +145,6 @@ class WMEMainVC: WMEBaseVC {
                 (jobId) in
 
                 if let jobId = jobId {
-                    //self.txtProgress.stringValue = "0"
                     // short delay before retrieving status
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
                         WMSAPIManager.shared.getPageStatus(jobId: jobId, accessKey: accessKey, secretKey: secretKey,
