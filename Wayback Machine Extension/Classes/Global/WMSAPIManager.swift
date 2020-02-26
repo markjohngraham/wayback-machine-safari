@@ -314,49 +314,34 @@ class WMSAPIManager {
     // MARK: - Save Page Now API (SPN2)
 
     // WAS: requestCapture(...)
-    /// Requests Wayback Machine to save the given webpage using cookie auth.
+    /// Requests Wayback Machine to save the given webpage.
+    /// Provide `loggedInUser` & `loggedInSig` to use cookie auth.
+    /// Or `accessKey` & `secretKey` to use S3 auth. Must pick one or the other.
     /// - parameter url: Can be a full or partial URL with or without the http(s).
     /// - parameter loggedInUser: Cookie string for short-term auth.
     /// - parameter loggedInSig: Cookie string for short-term auth.
-    /// - parameter options: See enum & API docs for options.
-    /// - parameter jobId: Returns a job ID to pass to getPageStatus() for status updates.
-    ///
-    func capturePage(url: String, loggedInUser: String, loggedInSig: String, options: CaptureOptions = [],
-                     completion: @escaping (_ jobId: String?) -> Void) {
-
-        // prepare cookies
-        setArchiveCookie(name: "logged-in-user", value: loggedInUser)
-        setArchiveCookie(name: "logged-in-sig", value: loggedInSig)
-        // prepare request
-        var headers = WMSAPIManager.HEADERS
-        headers["Accept"] = "application/json"
-        capturePage(url: url, headers: headers, options: options, completion: completion)
-    }
-
-    /// Requests Wayback Machine to save the given webpage using S3 auth.
-    /// - parameter url: Can be a full or partial URL with or without the http(s).
     /// - parameter accessKey: String for long-term S3 auth.
     /// - parameter secretKey: String for long-term S3 auth.
     /// - parameter options: See enum & API docs for options.
     /// - parameter jobId: Returns a job ID to pass to getPageStatus() for status updates.
     ///
-    func capturePage(url: String, accessKey: String, secretKey: String, options: CaptureOptions = [],
-                     completion: @escaping (_ jobId: String?) -> Void) {
-
+    func capturePage(url: String,
+                     loggedInUser: String? = nil, loggedInSig: String? = nil,
+                     accessKey: String? = nil, secretKey: String? = nil,
+                     options: CaptureOptions = [],
+                     completion: @escaping (_ jobId: String?) -> Void)
+    {
+        // prepare cookies
+        if let loggedInUser = loggedInUser, let loggedInSig = loggedInSig {
+            setArchiveCookie(name: "logged-in-user", value: loggedInUser)
+            setArchiveCookie(name: "logged-in-sig", value: loggedInSig)
+        }
         // prepare request
         var headers = WMSAPIManager.HEADERS
         headers["Accept"] = "application/json"
-        headers["Authorization"] = "LOW \(accessKey):\(secretKey)"
-        capturePage(url: url, headers: headers, options: options, completion: completion)
-    }
-
-    /// Requests Wayback Machine to save the given webpage. Requires manually setting headers.
-    /// Better to call the other functions directly.
-    ///
-    func capturePage(url: String, headers: HTTPHeaders, options: CaptureOptions = [],
-                     completion: @escaping (_ jobId: String?) -> Void) {
-
-        // prepare request
+        if let accessKey = accessKey, let secretKey = secretKey {
+            headers["Authorization"] = "LOW \(accessKey):\(secretKey)"
+        }
         var params = Parameters()
         params["url"] = url
         if options.contains(.allErrors)  { params["capture_all"] = "1" }  // page with errors (status=4xx or 5xx)
