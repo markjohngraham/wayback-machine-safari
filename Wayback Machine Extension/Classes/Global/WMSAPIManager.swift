@@ -89,7 +89,7 @@ class WMSAPIManager {
     ///
     func login(email: String, password: String, completion: @escaping ([String: Any?]?) -> Void) {
 
-        self.webLogin(email: email, password: password) {
+        webLogin(email: email, password: password) {
             (loggedInUser, loggedInSig) in
 
             if let loggedInUser = loggedInUser, let loggedInSig = loggedInSig {
@@ -383,54 +383,39 @@ class WMSAPIManager {
         }
     }
 
-    // WAS: requestCaptureStatus(...)
-    /// Use to retrieve status of saving a page in the Wayback Machine, using cookie auth.
+    /// Use to retrieve status of saving a page in the Wayback Machine.
+    /// Provide `loggedInUser` & `loggedInSig` to use cookie auth.
+    /// Or `accessKey` & `secretKey` to use S3 auth. Must pick one or the other.
     /// - parameter jobId: ID from capturePage().
     /// - parameter loggedInUser: Cookie string for short-term auth.
     /// - parameter loggedInSig: Cookie string for short-term auth.
-    /// - parameter options: Normally leave off.
-    /// - parameter archiveURL: URL of archived website on the Wayback Machine, or `nil` if error.
-    /// - parameter errMsg: Error message as String.
-    ///
-    func getPageStatus(jobId: String, loggedInUser: String, loggedInSig: String, options: CaptureOptions = [],
-                       completion: @escaping (_ archiveURL: String?, _ errMsg: String?) -> Void) {
-
-        // prepare cookies
-        setArchiveCookie(name: "logged-in-user", value: loggedInUser)
-        setArchiveCookie(name: "logged-in-sig", value: loggedInSig)
-        // prepare request
-        var headers = WMSAPIManager.HEADERS
-        headers["Accept"] = "application/json"
-        getPageStatus(jobId: jobId, headers: headers, options: options, completion: completion)
-    }
-
-    /// Use to retrieve status of saving a page in the Wayback Machine, using S3 auth.
-    /// - parameter jobId: ID from capturePage().
     /// - parameter accessKey: String for long-term S3 auth.
     /// - parameter secretKey: String for long-term S3 auth.
     /// - parameter options: Normally leave off.
+    /// - parameter resources: Array of Strings of URLs that the Wayback Machine archived.
     /// - parameter archiveURL: URL of archived website on the Wayback Machine, or `nil` if error.
     /// - parameter errMsg: Error message as String.
     ///
-    func getPageStatus(jobId: String, accessKey: String, secretKey: String, options: CaptureOptions = [],
-                       completion: @escaping (_ archiveURL: String?, _ errMsg: String?) -> Void) {
+    func getPageStatus(jobId: String,
+                       loggedInUser: String? = nil, loggedInSig: String? = nil,
+                       accessKey: String? = nil, secretKey: String? = nil,
+                       options: CaptureOptions = [],
+                       pending: @escaping (_ resources: [String]?) -> Void = {_ in },
+                       completion: @escaping (_ archiveURL: String?, _ errMsg: String?) -> Void)
+    {
+        if (DEBUG_LOG) { NSLog("*** getPageStatus()") }
 
+        // prepare cookies
+        if let loggedInUser = loggedInUser, let loggedInSig = loggedInSig {
+            setArchiveCookie(name: "logged-in-user", value: loggedInUser)
+            setArchiveCookie(name: "logged-in-sig", value: loggedInSig)
+        }
         // prepare request
         var headers = WMSAPIManager.HEADERS
         headers["Accept"] = "application/json"
-        headers["Authorization"] = "LOW \(accessKey):\(secretKey)"
-        getPageStatus(jobId: jobId, headers: headers, options: options, completion: completion)
-    }
-
-    /// Use to retrieve status of saving a page in the Wayback Machine. Requires manually setting headers.
-    /// Better to call the other functions directly.
-    ///
-    func getPageStatus(jobId: String, headers: HTTPHeaders, options: CaptureOptions = [],
-                       completion: @escaping (_ archiveURL: String?, _ errMsg: String?) -> Void) {
-
-        if (DEBUG_LOG) { NSLog("*** getPageStatus()") }
-
-        // prepare request
+        if let accessKey = accessKey, let secretKey = secretKey {
+            headers["Authorization"] = "LOW \(accessKey):\(secretKey)"
+        }
         var params = Parameters()
         params["job_id"] = jobId
         if options.contains(.availability) { params["outlinks_availability"] = "1" }  // outlinks contain timestamps (NOT USED)
@@ -448,9 +433,12 @@ class WMSAPIManager {
                     // status is one of {"success", "pending", "error"}
                     if (DEBUG_LOG) { NSLog("*** SPN2 Status: \(status)") }
                     if status == "pending" {
+                        pending(json["resources"] as? [String])
                         // TODO: May need to allow for cancel or timeout.
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                            self.getPageStatus(jobId: jobId, headers: headers, options: options, completion: completion)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                            self.getPageStatus(jobId: jobId, loggedInUser: loggedInUser, loggedInSig: loggedInSig,
+                                               accessKey: accessKey, secretKey: secretKey, options: options,
+                                               pending: pending, completion: completion)
                         }
                     } else if status == "success" {
                         if let timestamp = json["timestamp"] as? String,

@@ -16,7 +16,7 @@ class WMEUtil: NSObject {
     }()
     
     func showMessage(msg: String, info: String) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
             let alert = NSAlert()
             alert.messageText = msg
             alert.informativeText = info
@@ -62,14 +62,21 @@ class WMEUtil: NSObject {
             })
         }
     }
-    
-    func openTabWithURL(url: String?, completion: (() -> Void)? = nil) {
+
+    func openTabWithURL(url: String?, completion: @escaping() -> Void = { }) {
         if (DEBUG_LOG) { NSLog("*** openTabWithURL() url: \(String(describing: url))") }
         guard let url = url, let realURL = URL(string: url) else { return }
+
+        // FIXME: "Error connecting back to host app: NSCocoaErrorDomain, code: 4099" (see in console)
+        // This is preventing the browser from opening the URL after a page is archived.
+        // Looks like this is a bug introduced by Apple in Safari 13 that is still not fixed:
+        // https://forums.developer.apple.com/thread/121032
+        // https://forums.developer.apple.com/thread/118902
+
         SFSafariApplication.getActiveWindow { (activeWindow) in
             activeWindow?.openTab(with: realURL, makeActiveIfPossible: true, completionHandler: { (tab) in
                 if (DEBUG_LOG) { NSLog("*** openTabWithURL() completionHandler:") }
-                if let completion = completion { completion() }
+                completion()
             })
         }
     }

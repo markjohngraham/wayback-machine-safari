@@ -16,9 +16,12 @@ class WMEMainVC: WMEBaseVC {
 
     @IBOutlet weak var txtSearch: NSSearchField!
     @IBOutlet weak var btnSavePage: NSButton!
+    //@IBOutlet weak var btnOverview: NSButton!  // REMOVE
     @IBOutlet weak var btnSiteMap: NSButton!
     @IBOutlet weak var btnLoginout: NSButton!
     @IBOutlet weak var boxWayback: NSBox!
+    @IBOutlet weak var indProgress: NSProgressIndicator!
+    //@IBOutlet weak var txtProgress: NSTextField!
 
     ///////////////////////////////////////////////////////////////////////////////////
     // MARK: - View Lifecycle
@@ -26,6 +29,9 @@ class WMEMainVC: WMEBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         txtSearch.delegate = self
+        indProgress.stopAnimation(nil)
+        //txtProgress.isHidden = true
+        //txtProgress.stringValue = ""
     }
     override func viewWillAppear() {
         super.viewWillAppear()
@@ -49,25 +55,32 @@ class WMEMainVC: WMEBaseVC {
     func updateLoginUI(_ isLoggedIn: Bool, username: String? = nil) {
         if isLoggedIn {
             let uname = username ?? "logged in"
-            boxWayback?.title = "Wayback (\(uname))"
-            btnSavePage?.isEnabled = true
-            btnSavePage?.title = "Save Page Now"
-            btnLoginout?.title = "Logout"
+            boxWayback.title = "Wayback (\(uname))"
+            btnSavePage.isEnabled = true
+            btnSavePage.title = "Save Page Now"
+            btnLoginout.title = "Logout"
         } else {
-            boxWayback?.title = "Wayback (logged out)"
-            btnSavePage?.isEnabled = false
-            btnSavePage?.title = "Login to Save Page"
-            btnLoginout?.title = "Login"
+            boxWayback.title = "Wayback (logged out)"
+            btnSavePage.isEnabled = false
+            btnSavePage.title = "Login to Save Page"
+            btnLoginout.title = "Login"
         }
     }
 
     func enableSavePageUI(_ enable:Bool) {
         if enable {
-            btnSavePage?.title = "Save Page Now"
-            btnSavePage?.isEnabled = true
+            btnSavePage.title = "Save Page Now"
+            btnSavePage.isEnabled = true
+            //btnOverview?.isHidden = false
+            //txtProgress?.isHidden = true
+            indProgress.stopAnimation(nil)
+
         } else {
-            btnSavePage?.title = "Saving..."
-            btnSavePage?.isEnabled = false
+            btnSavePage.title = "Saving..."
+            btnSavePage.isEnabled = false
+            //btnOverview?.isHidden = true
+            //txtProgress?.isHidden = false
+            indProgress.startAnimation(nil)
         }
         // save state in case view disappears
         WMEGlobal.shared.savePageEnabled = enable
@@ -75,11 +88,11 @@ class WMEMainVC: WMEBaseVC {
 
     func enableSiteMapUI(_ enable:Bool) {
         if enable {
-            btnSiteMap?.title = "Site Map"
-            btnSiteMap?.isEnabled = true
+            btnSiteMap.title = "Site Map"
+            btnSiteMap.isEnabled = true
         } else {
-            btnSiteMap?.title = "Loading..."
-            btnSiteMap?.isEnabled = false
+            btnSiteMap.title = "Loading..."
+            btnSiteMap.isEnabled = false
         }
         // save state in case view disappears
         WMEGlobal.shared.siteMapEnabled = enable
@@ -122,7 +135,7 @@ class WMEMainVC: WMEBaseVC {
 
     @IBAction func savePageNowClicked(_ sender: Any) {
 
-        self.enableSavePageUI(false)
+        enableSavePageUI(false)
         grabURL { (url) in
             guard let url = url else {
                 WMEUtil.shared.showMessage(msg: "Missing URL", info: "Please type a URL in the search field or open a URL in the web browser.")
@@ -140,19 +153,59 @@ class WMEMainVC: WMEBaseVC {
                 (jobId) in
 
                 if let jobId = jobId {
+                    //self.txtProgress.stringValue = "0"
                     // short delay before retrieving status
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        WMSAPIManager.shared.getPageStatus(jobId: jobId, accessKey: accessKey, secretKey: secretKey) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                        WMSAPIManager.shared.getPageStatus(jobId: jobId, accessKey: accessKey, secretKey: secretKey,
+                        pending: {
+                            (resources) in
+                            // FIXME: Pending count may not always update after view disappears + reappears?
+                            let resCount = resources?.count ?? 0
+                            if (DEBUG_LOG) { NSLog("*** pending count: \(resCount)") }
+                            self.btnSavePage.title = "Saving... \(resCount)"
+                        },
+                        completion: {
                             (archiveURL, errMsg) in
 
+                            if (DEBUG_LOG) { NSLog("*** capturePage completed: archiveURL: \(String(describing: archiveURL)) errMsg: \(String(describing: errMsg))") }
                             self.enableSavePageUI(true)
                             if archiveURL != nil {
+                                /*
+                                 FIXME: NSAlert fails to show if MainVC not visible.
+                                 I haven't been able to solve this issue.
+                                 I suspect that it's due to NSAlert() not having a parent window
+                                 to associate with, but there's no way to supply this info.
+                                 Console says:
+                                   "*** Assertion failure in +[NSViewServiceMarshal serviceMarshalForAppModalSession:]"
+                                   "An uncaught exception was raised"
+                                 Only idea I came up with is to send a message to some injected JS that runs:
+                                   if (window.confirm("message")) { window.open("url", "_blank "); }
+                                */
+                                /*
+                                // alert to ask to View Archive (keep)
+                                // FIXME: Doesn't open URL due to Safari bug. see openTabWithURL() in WMEUtil.
+                                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                                    let alert = NSAlert()
+                                    alert.messageText = "Page Saved"
+                                    alert.informativeText = "The following website has been archived:\n\(url)"
+                                    alert.alertStyle = .informational
+                                    alert.addButton(withTitle: "OK")
+                                    alert.addButton(withTitle: "View Archive")
+                                    let mr = alert.runModal()
+                                    if mr == .alertSecondButtonReturn {
+                                        if (DEBUG_LOG) { NSLog("*** View Archive button clicked") }
+                                        // Neither of these work:
+                                        //WMEUtil.shared.openTabWithURL(url: archiveURL)
+                                        //self.newestClicked(nil)
+                                    }
+                                }
+                                */
+                                // using this alert since prior code won't work due to Safari bug.
                                 WMEUtil.shared.showMessage(msg: "Page Saved", info: "The following website has been archived:\n\(url)")
-                                //WMEUtil.shared.openTabWithURL(url: archiveURL)
                             } else {
                                 WMEUtil.shared.showMessage(msg: "Save Page Failed", info: (errMsg ?? "Unknown Error"))
                             }
-                        }
+                        });
                     }
                 } else {
                     self.enableSavePageUI(true)
@@ -182,19 +235,19 @@ class WMEMainVC: WMEBaseVC {
         }
     }
 
-    @IBAction func oldestClicked(_ sender: Any) {
+    @IBAction func oldestClicked(_ sender: Any?) {
         grabURL { (url) in
             self.openInWayback(url: url, waybackPath: WMSAPIManager.WM_OLDEST)
         }
     }
 
-    @IBAction func overviewClicked(_ sender: Any) {
+    @IBAction func overviewClicked(_ sender: Any?) {
         grabURL { (url) in
             self.openInWayback(url: url, waybackPath: WMSAPIManager.WM_OVERVIEW)
         }
     }
 
-    @IBAction func newestClicked(_ sender: Any) {
+    @IBAction func newestClicked(_ sender: Any?) {
         grabURL { (url) in
             self.openInWayback(url: url, waybackPath: WMSAPIManager.WM_NEWEST)
         }
@@ -249,7 +302,7 @@ class WMEMainVC: WMEBaseVC {
     @IBAction func siteMapClicked(_ sender: Any) {
         if (DEBUG_LOG) { NSLog("*** siteMapClicked()") }
 
-        self.enableSiteMapUI(false)
+        enableSiteMapUI(false)
         let sUrl = encodeWhitespace(txtSearch.stringValue) ?? ""
         if sUrl.isEmpty {
             // use the current url in web browser
@@ -262,18 +315,18 @@ class WMEMainVC: WMEBaseVC {
             if (DEBUG_LOG) { NSLog("*** not empty: \(sUrl)") }
             let tUrl = WMSAPIManager.shared.fullWebURL(sUrl)
             if (DEBUG_LOG) { NSLog("*** open url: \(tUrl)") }
-            WMEUtil.shared.openTabWithURL(url: tUrl, completion: {
+            WMEUtil.shared.openTabWithURL(url: tUrl) {
                 if (DEBUG_LOG) { NSLog("*** openTabWithURL completed") }
                 // clear search field in case user clicks "Site Map" button again
                 self.txtSearch.stringValue = ""
                 self.saveSearchField(text: "")
                 // short delay to allow website to load
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
                     WMEUtil.shared.getActivePageURL { (url) in
                         self.showSiteMap(url: url)
                     }
                 }
-            })
+            }
         }
     }
 
@@ -334,7 +387,7 @@ class WMEMainVC: WMEBaseVC {
     }
     
     @IBAction func aboutClicked(_ sender: Any) {
-        self.view.window?.contentViewController = WMEAboutVC()
+        view.window?.contentViewController = WMEAboutVC()
     }
 
     @IBAction func loginoutClicked(_ sender: Any) {
@@ -347,7 +400,7 @@ class WMEMainVC: WMEBaseVC {
             }
         } else {
             // login clicked, so go to login view
-            self.view.window?.contentViewController = WMELoginVC()
+            view.window?.contentViewController = WMELoginVC()
         }
     }
 

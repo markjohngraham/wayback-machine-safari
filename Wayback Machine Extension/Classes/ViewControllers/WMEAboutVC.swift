@@ -17,7 +17,7 @@ class WMEAboutVC: WMEBaseVC {
     }
     
     @IBAction func backClicked(_ sender: Any) {
-        self.view.window?.contentViewController = WMEMainVC()
+        view.window?.contentViewController = WMEMainVC()
     }
 
     /// Opens the help webpage.

@@ -105,7 +105,7 @@ class WMELoginVC: WMEBaseVC {
 
     /// Go to About view
     @IBAction func aboutClicked(_ sender: Any) {
-        self.view.window?.contentViewController = WMEAboutVC()
+        view.window?.contentViewController = WMEAboutVC()
     }
 
 }
