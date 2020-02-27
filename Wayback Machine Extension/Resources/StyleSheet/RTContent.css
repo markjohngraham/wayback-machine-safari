@@ -1,10 +1,7 @@
-.RTmodal {
+.wayback1996-RTmodal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 100000000 !important; /* Sit on top */
-
-    
-
     left: 0;
     top: 0;
     width: 100% !important; /* Full width */
@@ -15,18 +12,16 @@
 }
 
 /* Modal Content */
-.modal-content {
+.wayback1996-modal-content {
     background-color: #fefefe;
     background-color: rgba(0,0,0,0.4);
-    
     margin: auto;
     padding: 0px;
-
     width: 100%;
 }
 
 /* The Close Button */
-.RTclose {
+.wayback1996-RTclose {
     background-color: red !important;
     color: white;
     position: absolute;
@@ -40,38 +35,36 @@
     cursor: pointer;
 }
 
-#RTloader {
+#wayback1996-RTloader {
     border: 16px solid #f3f3f3;
     border-radius: 50%;
     border-top: 16px solid #3498db;
     width: 50px;
     height: 50px;
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
+    -webkit-animation: wayback1996-spin 2s linear infinite;
+    animation: wayback1996-spin 2s linear infinite;
     position: absolute;
     left: 50%;
     top: 50%;
 }
 
-@-webkit-keyframes spin {
+@-webkit-keyframes wayback1996-spin {
     0% { -webkit-transform: rotate(0deg); }
     100% { -webkit-transform: rotate(360deg); }
 }
 
-@keyframes spin {
+@keyframes wayback1996-spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
-#message{
+#wayback1996-message {
     color: red;
     font-size: 18px;
-    
     text-align: center;
 }
 
-.close:hover,
-.close:focus {
+.wayback1996-close:hover, .wayback1996-close:focus {
 /*    color: #000;*/
     text-decoration: none;
     cursor: pointer;

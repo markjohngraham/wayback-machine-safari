@@ -30,13 +30,13 @@ me.handleMessage = function (event) {
     if (event.name == "SHOW_BANNER") {
         checkIt(event.message["url"]);
     } else if (event.name == "RADIAL_TREE") {
-        document.getElementById("myModal").style.display = "block";
-        document.getElementById("RTloader").style.display = "none";
+        document.getElementById("wayback1996-myModal").style.display = "block";
+        document.getElementById("wayback1996-RTloader").style.display = "none";
         displayRadialTree(event.message["url"], event.message["data"]);
     } else if (event.name == "DISPLAY_RT_LOADER") {
         me.displayRTContent();
-        document.getElementById("myModal").style.display = "block";
-        document.getElementById("RTloader").style.display = "block";
+        document.getElementById("wayback1996-myModal").style.display = "block";
+        document.getElementById("wayback1996-RTloader").style.display = "block";
     }
 }
 
@@ -97,14 +97,17 @@ function createEl(type, handler) {
 }
 
 me.createBanner = function (wayback_url) {
-    if (document.getElementById("no-more-404s-message") !== null) {
+    if (document.getElementById("wayback1996-no-more-404s-message") !== null) {
         return;
     }
-    
+    var bgBtnColor   = "#9A3B38"; // red / was light-blue #0996f8
+    var bordBtnColor = "#BF4946"; // light-red / was blue #0675d3
+    var darkBtnColor = "#6A2927"; // dark-red / dark-blue #0568ba
+
     document.body.appendChild(
         createEl("div",
             function(el) {
-                el.id = "no-more-404s-message";
+                el.id = "wayback1996-no-more-404s-message";
                 el.style.background = "rgba(0,0,0,.6)";
                 el.style.position = "fixed";
                 el.style.top = "0";
@@ -119,7 +122,7 @@ me.createBanner = function (wayback_url) {
                 
             createEl("div",
                 function(el) {
-                    el.id = "no-more-404s-message-inner";
+                    el.id = "wayback1996-no-more-404s-message-inner";
                     el.style.flex = "0 0 420px";
                     el.style.position = "relative";
                     el.style.top = "0";
@@ -135,10 +138,10 @@ me.createBanner = function (wayback_url) {
                 },
                 createEl("div",
                     function(el) {
-                        el.id = "no-more-404s-header";
+                        el.id = "wayback1996-no-more-404s-header";
                         el.style.alignItems = "center";
-                        el.style.backgroundColor = "#0996f8";
-                        el.style.borderBottom = "1px solid #0675d3";
+                        el.style.backgroundColor = "#3C3C3C"; // dark-gray
+                        el.style.borderBottom = "1px solid #5F5F5F"; // gray
                         el.style.borderRadius = "4px 4px 0 0";
                         el.style.color = "#fff";
                         el.style.display = "flex";
@@ -165,7 +168,7 @@ me.createBanner = function (wayback_url) {
                             el.style.border = "none";
                             el.onclick = function() {
                             clearInterval(enforceBannerInterval);
-                            document.getElementById("no-more-404s-message").style.display = "none";
+                            document.getElementById("wayback1996-no-more-404s-message").style.display = "none";
                             bannerWasClosed = true;
                             };
                             el.onmouseenter = function() {
@@ -207,7 +210,7 @@ me.createBanner = function (wayback_url) {
                 }),
                 
                 createEl("img", function(el) {
-                    el.id = "no-more-404s-image";
+                    el.id = "wayback1996-no-more-404s-image";
                     el.src = safari.extension.baseURI + "car.gif";
                     el.style.height = "auto";
                     el.style.position = "relative";
@@ -217,11 +220,11 @@ me.createBanner = function (wayback_url) {
                 }),
                 
                 createEl("a", function(el) {
-                    el.id = "no-more-404s-message-link";
+                    el.id = "wayback1996-no-more-404s-message-link";
                     el.href = wayback_url;
                     el.style.alignItems = "center";
-                    el.style.backgroundColor = "#0996f8";
-                    el.style.border = "1px solid #0675d3";
+                    el.style.backgroundColor = bgBtnColor;
+                    el.style.border = "1px solid " + bordBtnColor;
                     el.style.borderRadius = "3px";
                     el.style.color = "#fff";
                     el.style.display = "flex";
@@ -232,30 +235,27 @@ me.createBanner = function (wayback_url) {
                     el.style.textDecoration = "none";
                     el.appendChild(document.createTextNode("Click here to see archived version"));
                     el.onmouseenter = function() {
-                    el.style.backgroundColor = "#0675d3";
-                    el.style.border = "1px solid #0568ba";
+                    el.style.backgroundColor = bordBtnColor;
+                    el.style.border = "1px solid " + darkBtnColor;
                     };
                     el.onmousedown = function() {
-                    el.style.backgroundColor = "#0568ba";
-                    el.style.border = "1px solid #0568ba";
+                    el.style.backgroundColor = darkBtnColor;
+                    el.style.border = "1px solid " + darkBtnColor;
                     };
                     el.onmouseup = function() {
-                    el.style.backgroundColor = "#0675d3";
-                    el.style.border = "1px solid #0568ba";
+                    el.style.backgroundColor = bordBtnColor;
+                    el.style.border = "1px solid " + darkBtnColor;
                     };
                     el.onmouseleave = function() {
-                    el.style.backgroundColor = "#0996f8";
-                    el.style.border = "1px solid #0675d3";
+                    el.style.backgroundColor = bgBtnColor;
+                    el.style.border = "1px solid " + bordBtnColor;
                     };
                     el.onclick = function(e) {
                         archiveLinkWasClicked = true;
-                            
-                            // Work-around for myspace which hijacks the link
+                        // Work-around for myspace which hijacks the link
                         if (window.location.hostname.indexOf("myspace.com") >= 0) {
                             e.preventDefault();
                             return false;
-                        } else {
-                                    
                         }
                     };
                 })
@@ -263,11 +263,11 @@ me.createBanner = function (wayback_url) {
         )
     );
     // Focus the link for accessibility
-    document.getElementById("no-more-404s-message-link").focus();
+    document.getElementById("wayback1996-no-more-404s-message-link").focus();
     
     // Transition element in from top of page
     setTimeout(function() {
-               document.getElementById("no-more-404s-message").style.transform = "translate(0, 0%)";
+               document.getElementById("wayback1996-no-more-404s-message").style.transform = "translate(0, 0%)";
     }, 100);
     
     bannerWasShown = true;
@@ -284,34 +284,34 @@ function checkIt(wayback_url) {
 me.displayRTContent = function () {
     // if (window.top !== window) return;
     
-    if (document.getElementById("myModal") != null) {
-        document.getElementById("myModal").remove();
+    if (document.getElementById("wayback1996-myModal") != null) {
+        document.getElementById("wayback1996-myModal").remove();
     }
     
     var modal=document.createElement('div');
-    modal.setAttribute('id','myModal');
-    modal.setAttribute('class','RTmodal');
+    modal.setAttribute('id','wayback1996-myModal');
+    modal.setAttribute('class','wayback1996-RTmodal');
     
     var modalContent=document.createElement('div');
-    modalContent.setAttribute('class','modal-content');
+    modalContent.setAttribute('class','wayback1996-modal-content');
     var span=document.createElement('button');
     var divBtn=document.createElement('div');
-    divBtn.setAttribute('id','divBtn');
+    divBtn.setAttribute('id','wayback1996-divBtn');
     var loader = document.createElement("div");
-    loader.setAttribute("id", "RTloader");
+    loader.setAttribute("id", "wayback1996-RTloader");
     loader.style.display = "none";
     var message=document.createElement('div');
-    message.setAttribute('id','message');
+    message.setAttribute('id','wayback1996-message');
     
-    span.innerHTML='&times';
-    span.setAttribute('class','RTclose');
+    span.innerHTML='&times;';
+    span.setAttribute('class','wayback1996-RTclose');
     
     var main=document.createElement('div');
     var sequence=document.createElement('div');
     var chart=document.createElement('div');
-    sequence.setAttribute('id','sequence');
-    chart.setAttribute('id','chart');
-    main.setAttribute('id','main');
+    sequence.setAttribute('id','wayback1996-sequence');
+    chart.setAttribute('id','wayback1996-chart');
+    main.setAttribute('id','wayback1996-main');
     
     modal.appendChild(divBtn);
     modal.appendChild(loader);
@@ -482,13 +482,13 @@ function displayRadialTree(url, data) {
       return text;
     }  
 
-    var divBtn=document.getElementById('divBtn');  
-    if(document.getElementsByClassName('yearbtn').length==0){
+    var divBtn=document.getElementById('wayback1996-divBtn');
+    if(document.getElementsByClassName('wayback1996-yearBtn').length==0){
       for(var i=0;i<all_years.length;i++){
         
         var btn=document.createElement('button');
-        btn.setAttribute('class','yearbtn');
-        btn.setAttribute('id',all_years[i]);
+        btn.setAttribute('class','wayback1996-yearBtn');
+        btn.setAttribute('value', all_years[i]);
         btn.innerHTML=all_years[i];
         btn.onclick=highlightBtn;
         divBtn.appendChild(btn);
@@ -497,35 +497,34 @@ function displayRadialTree(url, data) {
 
     function highlightBtn(eventObj){
       var target=eventObj.target;
-      if(document.getElementsByClassName('activebtn').length!=0){
-        
-        document.getElementsByClassName('activebtn')[0].classList.remove('activebtn') ;
+      if(document.getElementsByClassName('wayback1996-activeBtn').length!=0){
+        document.getElementsByClassName('wayback1996-activeBtn')[0].classList.remove('wayback1996-activeBtn') ;
       }
-      target.classList.add('activebtn');
-      IAglobvar=target.id;
-      var num=all_years.indexOf(target.id) ;
+      target.classList.add('wayback1996-activeBtn');
+      IAglobvar=target.value;
+      var num=all_years.indexOf(target.value);
       var text=make_new_text(num);
       make_chart(text);
     }
 
-    var btns=document.getElementsByClassName('yearbtn');
-    if(document.getElementsByClassName('activebtn').length!=0){
-      var actId=document.getElementsByClassName('activebtn')[0].id;
+    var btns=document.getElementsByClassName('wayback1996-yearBtn');
+    if(document.getElementsByClassName('wayback1996-activeBtn').length!=0){
+      var actId=document.getElementsByClassName('wayback1996-activeBtn')[0].value;
       var index=all_years.indexOf(actId);
       IAglobvar=actId;
       var text=make_new_text(index);
       make_chart(text);
     } else {
-      btns[0].classList.add('activebtn');
-      IAglobvar= document.getElementsByClassName('activebtn')[0].id;
+      btns[0].classList.add('wayback1996-activeBtn');
+      IAglobvar= document.getElementsByClassName('wayback1996-activeBtn')[0].value;
       var text=make_new_text(0);
       make_chart(text);
     }
     
     function make_chart(text){
-      document.getElementById('sequence').innerHTML="";
-      document.getElementById('chart').innerHTML="";
-      document.getElementById('message').innerHTML="";
+      document.getElementById('wayback1996-sequence').innerHTML="";
+      document.getElementById('wayback1996-chart').innerHTML="";
+      document.getElementById('wayback1996-message').innerHTML="";
       var width = window.innerWidth-150;
       var height = window.innerHeight-150;
       var radius = Math.min(width, height) / 2;
@@ -535,11 +534,11 @@ function displayRadialTree(url, data) {
       
       var colors=d3.scaleOrdinal(d3.schemeCategory20b);
       var totalSize = 0; 
-      var vis = d3.select("#chart").append("svg:svg")
+      var vis = d3.select("#wayback1996-chart").append("svg:svg")
       .attr("width", width)
       .attr("height", height)
       .append("svg:g")
-      .attr("id", "container")
+      .attr("id", "wayback1996-container")
       .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
       
       var partition = d3.partition().size([2 * Math.PI, radius * radius]);
@@ -593,7 +592,7 @@ function displayRadialTree(url, data) {
         .on("mouseover", mouseover)
         .on("click",openTheUrl);
         // Add the mouseleave handler to the bounding circle.
-        d3.select("#container").on("mouseleave", mouseleave);
+        d3.select("#wayback1996-container").on("mouseleave", mouseleave);
         
         // Get total size of the tree = value of root node from partition.
         totalSize = path.datum().value;
@@ -624,7 +623,7 @@ function displayRadialTree(url, data) {
           percentageString = "< 0.1%";
         }
         
-        d3.select("#percentage")
+        d3.select("#wayback1996-percentage")
         .text(percentageString);
         
         var sequenceArray = d.ancestors().reverse();
@@ -644,7 +643,7 @@ function displayRadialTree(url, data) {
       
       // Restore everything to full opacity when moving off the visualization.
       function mouseleave(d) {
-        document.getElementById("sequence").innerHTML="";
+        document.getElementById("wayback1996-sequence").innerHTML="";
         // Deactivate all segments during transition.
         d3.selectAll("path").on("mouseover", null);
         
@@ -681,11 +680,11 @@ function displayRadialTree(url, data) {
     function updateBreadcrumbs(nodeArray, percentageString) {
       var anc_arr=nodeArray;
       // Data join; key function combines name and depth (= position in sequence).
-      var trail = document.getElementById("sequence");
+      var trail = document.getElementById("wayback1996-sequence");
       
       var text="";
       var symb=document.createElement('span');
-      symb.setAttribute('class','symb');
+      symb.setAttribute('class','wayback1996-symb');
       symb.innerHTML="/";
       for(var i=0;i<anc_arr.length;i++){
         if(i==0){
@@ -703,7 +702,7 @@ function displayRadialTree(url, data) {
         w: 75, h: 30, s: 3, r: 3
       };
       
-      var legend = d3.select("#legend").append("svg:svg")
+      var legend = d3.select("#wayback1996-legend").append("svg:svg")
       .attr("width", li.w)
       .attr("height", d3.keys(colors).length * (li.h + li.s));
       
@@ -730,7 +729,7 @@ function displayRadialTree(url, data) {
     }
     
     function toggleLegend() {
-      var legend = d3.select("#legend");
+      var legend = d3.select("#wayback1996-legend");
       if (legend.style("visibility") == "hidden") {
         legend.style("visibility", "");
       } else {
@@ -784,7 +783,6 @@ function displayRadialTree(url, data) {
     }; 
   }
 }
-
 
     me.init();
     return me;
