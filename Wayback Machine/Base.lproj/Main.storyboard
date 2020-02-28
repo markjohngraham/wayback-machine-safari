@@ -138,9 +138,9 @@
                                 </constraints>
                                 <buttonCell key="cell" type="square" title="Activate Now" bezelStyle="shadowlessSquare" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" id="ken-Q2-XYx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system" size="14"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
-                                <color key="contentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="contentTintColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" red="0.75083591439999997" green="0.28718608709999999" blue="0.27334579370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

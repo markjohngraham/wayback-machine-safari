@@ -34,7 +34,7 @@ class WMMainVC: WMBaseVC, NSWindowDelegate {
     @IBAction func showPreferencesClicked(_ sender: Any) {
         SFSafariApplication.showPreferencesForExtension(withIdentifier: "archive.org.waybackmachine.mac.extension") { (error) in
             if let error = error {
-                print("*** Error launching the extension's preferences: %@", error)
+                NSLog("*** Error launching the extension's preferences: \(error)")
             }
         }
     }
