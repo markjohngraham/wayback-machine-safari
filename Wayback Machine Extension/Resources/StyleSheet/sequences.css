@@ -1,7 +1,7 @@
-#main{
+#wayback1996-main {
     padding-top: 5px;
 }
-#sequence {
+#wayback1996-sequence {
     display: block;
     clear: both;
     padding-top: 10px;
@@ -11,28 +11,27 @@
     font-style: bold;
     text-align: left;
 }
-#legend {
+#wayback1996-legend {
     padding: 10px 0 0 3px;
 }
-#sequence text, #legend text {
+#wayback1996-sequence text, #wayback1996-legend text {
     font-weight: 600;
     fill: #fff;
 }
-#chart{
+#wayback1996-chart {
     width: 100%;
 }
 
-#chart svg {
-
+#wayback1996-chart svg {
     margin: auto;
 }
-#percentage {
+#wayback1996-percentage {
     font-size: 2.5em;
 }
-.divBtn{
+.wayback1996-divBtn {
     width: 100%;
 }
-.yearbtn{
+.wayback1996-yearBtn {
     float: left;
     background-color: black !important;
     color: white !important;
@@ -41,12 +40,12 @@
     text-align: center;
     cursor: pointer;
 }
-.activebtn{
+.wayback1996-activeBtn {
     background-color: green !important;
     color: white !important;
     font-size: 18px;
 }
-.symb{
+.wayback1996-symb {
     color: red;
     font-size: 18px;
 }

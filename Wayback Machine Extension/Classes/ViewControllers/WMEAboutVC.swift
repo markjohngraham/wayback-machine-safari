@@ -9,13 +9,19 @@ import Cocoa
 
 class WMEAboutVC: WMEBaseVC {
 
+    @IBOutlet weak var txtVersion: NSTextField!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        txtVersion.stringValue = "\(APP_VERSION) (\(APP_BUILD))"
     }
     
     @IBAction func backClicked(_ sender: Any) {
-        let mainVC = WMEMainVC.init(nibName: "WMEMainVC", bundle: nil)
-        self.view.window?.contentViewController = mainVC
+        view.window?.contentViewController = WMEMainVC()
     }
-    
+
+    /// Opens the help webpage.
+    @IBAction func helpClicked(_ sender: Any) {
+        WMEUtil.shared.openTabWithURL(url: "https://archive.org/about/contact.php")
+    }
 }

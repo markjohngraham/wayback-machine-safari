@@ -66,7 +66,7 @@
 			<key>Identifier</key>
 			<string>Button</string>
 			<key>Image</key>
-			<string>ToolbarItemIcon.pdf</string>
+			<string>toolbar-item-icon.pdf</string>
 			<key>Label</key>
 			<string>Wayback Machine</string>
 		</dict>
@@ -77,6 +77,6 @@
 		</dict>
 	</dict>
 	<key>NSHumanReadableDescription</key>
-	<string>Archive web pages and tweets to the Wayback Machine!</string>
+	<string>Archive and explore web pages over time!</string>
 </dict>
 </plist>

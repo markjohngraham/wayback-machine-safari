@@ -1,0 +1,22 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "prefs-clip-light-1.3.1_480x320.png"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "prefs-clip-dark-1.3.1_480x320.png",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

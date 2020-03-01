@@ -5,8 +5,7 @@
 //  Created by admin on 6/10/19.
 //
 
-import Cocoa
-import Alamofire
+import Foundation
 import SafariServices
 
 class WMEUtil: NSObject {
@@ -17,7 +16,7 @@ class WMEUtil: NSObject {
     }()
     
     func showMessage(msg: String, info: String) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
             let alert = NSAlert()
             alert.messageText = msg
             alert.informativeText = info
@@ -63,103 +62,32 @@ class WMEUtil: NSObject {
             })
         }
     }
-    
-    func openTabWithURL(url: String?) {
-        guard let url = url else { return }
-        
+
+    func openTabWithURL(url: String?, completion: @escaping() -> Void = { }) {
+        if (DEBUG_LOG) { NSLog("*** openTabWithURL() url: \(String(describing: url))") }
+        guard let url = url, let realURL = URL(string: url) else { return }
+
+        // FIXME: "Error connecting back to host app: NSCocoaErrorDomain, code: 4099" (see in console)
+        // This is preventing the browser from opening the URL after a page is archived.
+        // Looks like this is a bug introduced by Apple in Safari 13 that is still not fixed:
+        // https://forums.developer.apple.com/thread/121032
+        // https://forums.developer.apple.com/thread/118902
+
         SFSafariApplication.getActiveWindow { (activeWindow) in
-            activeWindow?.openTab(with: URL(string: url)!, makeActiveIfPossible: true, completionHandler: { (tab) in
-                
+            activeWindow?.openTab(with: realURL, makeActiveIfPossible: true, completionHandler: { (tab) in
+                if (DEBUG_LOG) { NSLog("*** openTabWithURL() completionHandler:") }
+                completion()
             })
         }
     }
     
-    func wmAvailabilityCheck(url: String, completion: @escaping (String?, String) -> Void) {
-        
-        let requestParams = "url=\(url)"
-        var request = URLRequest(url: URL(string: AvailabilityAPIURL)!)
-        request.httpMethod = "POST"
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-type")
-        request.setValue("2", forHTTPHeaderField: "Wayback-Api-Version")
-        request.setValue("Wayback_Machine_Safari_XC/\(VERSION)", forHTTPHeaderField: "User-Agent")
-        request.httpBody = requestParams.data(using: .utf8)
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            
-            guard let data = data, error == nil else {
-                return
-            }
-            
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                return
-            }
-            
-            do {
-                
-                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]{
-                    
-                    completion(self.getWaybackUrlFromResponse(response: json), url)
-                    
-                } else {
-                    completion(nil, url)
-                }
-                
-            } catch _ {
-                completion(nil, url)
-            }
-            
-        }
-        
-        task.resume()
-    }
-    
-    func getWaybackUrlFromResponse(response: [String: Any]) -> String? {
-        let results = response["results"] as Any?
-        let results_first = ((response["results"] as? [Any])?[0])
-        let archived_snapshots = (results_first as? [String: Any])?["archived_snapshots"]
-        let closest = (archived_snapshots as? [String: Any])?["closest"]
-        let available = (closest as? [String: Any])? ["available"] as? Bool
-        let status = (closest as? [String: Any])? ["status"] as? String
-        let url = (closest as? [String: Any])? ["url"] as? String
-        
-        if (results != nil &&
-            results_first != nil &&
-            archived_snapshots != nil &&
-            closest != nil &&
-            available != nil &&
-            available == true &&
-            status == "200" &&
-            isValidSnapshotUrl(url: url)
-            ) {
-            return url!
-        } else {
-            return nil
-        }
-        
-    }
-    
-    func isValidSnapshotUrl(url: String?) -> Bool {
-        if (url == nil) {
-            return false
-        }
-        
-        if (url!.range(of: "http://") != nil || (url!.range(of: "https://") != nil)) {
-            return true
-        } else {
-            return false
-        }
-    }
-    
     func getOriginalURL(url: String) -> String {
-        var originalURL:String? = nil
+        var originalURL = url
         let tempArray = url.components(separatedBy: "http")
         if (tempArray.count > 2) {
             originalURL = "http" + tempArray[2]
-        } else {
-            originalURL = url
         }
-        
-        return originalURL!
+        return originalURL
     }
-    
+
 }
